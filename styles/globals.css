@@ -5,6 +5,7 @@ body {
   scroll-snap-align: 26px;
   scroll-margin: 24px;
   scroll-behavior: smooth;
+  /* overflow-y: hidden; */
   font-family: -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Oxygen,
     Ubuntu, Cantarell, Fira Sans, Droid Sans, Helvetica Neue, sans-serif;
 }
@@ -16,4 +17,31 @@ a {
 
 * {
   box-sizing: border-box;
+}
+#instagram-icon{
+  transform: scale(.7)
+}
+
+
+.swiper {
+  width: 100%;
+  padding-top: 50px;
+  padding-bottom: 50px;
+}
+
+.swiper-slide {
+  background-position: center;
+  background-size: cover;
+  width: 100%;
+  display:flex;
+  justify-content: center;
+  align-items:center;
+  height: 100%;
+}
+
+.swiper-slide img {
+  display: block;
+  /* width: 100%; */
+  height:250px;
+  width:250px
 }

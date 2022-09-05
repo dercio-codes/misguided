@@ -9,19 +9,19 @@ export const Banners = () => {
         {
             name: "Dj Shadzo",
             img: "",
-            embedItem: <iframe onLoad={()=>setLoading(false)} style={{ borderRadius: "12px", margin: '18px 0' }} src="https://open.spotify.com/embed/artist/5JuA3291INTaMk0R8xMkZK?utm_source=generator" width="100%" height="315" frameBorder="0" allowfullscreen="" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe>,
+            embedItem: <iframe onLoad={()=>setLoading(false)} style={{ borderRadius: "12px", margin: '18px 0' }} src="https://open.spotify.com/embed/artist/5JuA3291INTaMk0R8xMkZK?utm_source=generator" width="100%" height="315" frameBorder="0" allowFullScreen="" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe>,
             slogan: "If your girl dont know Shadzo don't dala"
         },
         {
             name: "YKM THEE MC",
             img: "",
-            embedItem: <iframe onLoad={()=>setLoading(false)} style={{ borderRadius: "12px", margin: '18px 0' }} width="100%" height="315" src="https://www.youtube.com/embed/gy6gGT-G6ak" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen loading="lazy"></iframe>,
+            embedItem: <iframe onLoad={()=>setLoading(false)} style={{ borderRadius: "12px", margin: '18px 0' }} width="100%" height="315" src="https://www.youtube.com/embed/gy6gGT-G6ak" title="YouTube video player" frameBorder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowFullScreen loading="lazy"></iframe>,
             slogan: "Mr Lovers and Friends."
         },
         {
             name: "Karlo Dj",
             img: "",
-            embedItem: <iframe onLoad={()=>setLoading(false)} style={{ borderRadius: "12px", margin: '18px 0' }} width="100%" height="315" src="https://www.youtube.com/embed/-J0fR8UMfIc" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>,
+            embedItem: <iframe onLoad={()=>setLoading(false)} style={{ borderRadius: "12px", margin: '18px 0' }} width="100%" height="315" src="https://www.youtube.com/embed/-J0fR8UMfIc" title="YouTube video player" frameBorder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowFullScreen></iframe>,
             slogan: "If your girl dont know Shadzo don't dala"
         }];
     const [active, setActive] = useState("");

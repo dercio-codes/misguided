@@ -2,7 +2,7 @@ import { Box, Typography, Avatar, Grid, Button, Fade, Stack } from "@mui/materia
 import React, { useRef, useState } from "react";
 // Import Swiper React components
 import { Swiper, SwiperSlide } from "swiper/react";
-import { Autoplay, EffectFade ,Pagination, Navigation } from "swiper";
+import { Autoplay, EffectFade, Pagination, Navigation } from "swiper";
 
 import "swiper/css";
 import "swiper/css/effect-fade";
@@ -59,7 +59,7 @@ export const Banners = () => {
 
                         {artists.map((artist, index) => {
                             return (
-                                <Grid key={index} xs={4} md={12} sx={{ background: '', display: 'flex', alignItems: 'center' }}>
+                                <Grid item key={index} xs={4} md={12} sx={{ background: '', display: 'flex', alignItems: 'center' }}>
                                     <Button onClick={(e) => {
                                         e.preventDefault();
                                         handleArtistClick(artist);
@@ -69,22 +69,22 @@ export const Banners = () => {
                         })}
                     </Grid>
                 </Grid>
-                <Grid xs={12} md={7} sx={{ height: { lg: 'fit-content', xs: 'fit-content' }, padding: { lg: "24px 16px" } , margin:'auto 0' }}>
+                <Grid xs={12} md={7} sx={{ height: { lg: 'fit-content', xs: 'fit-content' }, padding: { lg: "24px 16px" }, margin: 'auto 0' }}>
                     {
                         active === "" ? (
-                            // <Box sx={{ backgroundImage: 'url("/misguided-2.jpeg")', backgroundSize: 'contain', backgroundRepeat: 'no-repeat', backgroundPosition: 'center', margin:'auto 0' ,height: {lg:'500px' , xs:'250px'} }}>
+                            <Box sx={{ height: { xs: '40vh', md: 'fit-content' }, background: '' }}>
 
-                            // </Box>
-                            <SquadSlides />
+                                <SquadSlides />
+                            </Box>
                         ) : (
                             <Fade in={active} sx={{ width: '100%', background: 'rgba(1,1,1,.3)', height: '100%', padding: { lg: "16px" } }} >
                                 <Box sx={{ padding: { lg: "2px 16px" } }}>
                                     <Box sx={{ display: 'flex', alignItems: 'center', padding: { xs: "16px 12px", md: "0px" } }}>
 
-                                        <Avatar src={active.img} alt={active.name} sx={{ width: { lg: '120px', xs: "80px" }, height: { lg: '120px', xs: "80px" } , filter:"blur(0.3px)" }} ></Avatar>
+                                        <Avatar src={active.img} alt={active.name} sx={{ width: { lg: '120px', xs: "80px" }, height: { lg: '120px', xs: "80px" }, filter: "blur(0.3px)" }} ></Avatar>
                                         <Stack sx={{ margin: { xs: '0px 21px' } }}>
                                             <Typography variant="h6" color={"#eee"} fontWeight={"600"} textAlign={"start"}>{active.name}</Typography>
-                                            <Typography variant="p" color={"#eee"} fontWeight={"300"} textAlign={"center"}>{active.slogan}</Typography>
+                                            <Typography variant="p" color={"#eee"} fontWeight={"300"} >{active.slogan}</Typography>
 
                                         </Stack>
                                     </Box>
@@ -123,7 +123,7 @@ export const Banners = () => {
 
 export const SquadSlides = () => {
     return (
-        <Box id="squad-slides">
+        <Box id="squad-slides" sx={{ margin: 'auto 0' }}>
             <Swiper
                 spaceBetween={30}
                 effect={"fade"}

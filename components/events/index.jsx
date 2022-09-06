@@ -19,12 +19,12 @@ export const Events = () => {
     <Box id="events" sx={{ padding: '21px 0', height: 'fit-content', background: '#111', width: '100%' }}>
 
       <Grid container>
-        <Grid item xs={12} sx={{ padding: { xs: "12px 8px" }, textAlign: { xs: "center" }, margin: "0px 0px 18px 0px", }} >
-          <Typography variant="p" width={"100%"} color={"#eee"} sx={{ fontSize: { xs: "32px", md: "54px", lg: "62px" } }} fontWeight={"600"}>Events & Gigs</Typography>
+        <Grid item xs={12} sx={{ padding: { xs: "12px 8px" }, textAlign: { xs: "center" }, margin: "32px 0", }} >
+          <Typography variant="p" width={"100%"} color={"#eee"} sx={{ fontSize: { xs: "32px", md: "54px" } }} fontWeight={"600"}>Events & Gigs</Typography>
 
         </Grid>
 
-        <Grid item xs={12} sx={{ display: 'flex', alignItems: 'center', background: '' }}>
+        <Grid item xs={12} sx={{ display: 'flex',marginBottom:'54px', alignItems: 'center', background: '' , padding:'0 48px' }}>
           <Swiper
             effect={"coverflow"}
             grabCursor={true}

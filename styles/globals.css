@@ -18,7 +18,8 @@ a {
 * {
   box-sizing: border-box;
 }
-#instagram-icon{
+
+#instagram-icon {
   transform: scale(.7)
 }
 
@@ -33,15 +34,44 @@ a {
   background-position: center;
   background-size: cover;
   width: 100%;
-  display:flex;
+  display: flex;
   justify-content: center;
-  align-items:center;
+  align-items: center;
   height: 100%;
 }
 
 .swiper-slide img {
   display: block;
   /* width: 100%; */
-  height:250px;
-  width:250px
+  height: 250px;
+  width: 250px
+}
+
+#squad-slides .swiper-slide,
+#events .swiper-slide {
+  background: rgba(1, 1, 1, .3);
+}
+
+#squad-slides .swiper-slide img {
+  display: block;
+  object-fit: contain;
+  height: 500px;
+  width: 100%;
+}
+
+.swiper-button-next,
+.swiper-rtl .swiper-button-prev {
+  color: #111;
+}
+
+
+/* Media Queries */
+/* /////////////////////////////////////////// */
+@media (max-width:900px) {
+  #squad-slides .swiper-slide img {
+    display: block;
+    object-fit: contain;
+    height: 250px;
+    width: 100%;
+  }
 }

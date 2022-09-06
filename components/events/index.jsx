@@ -24,7 +24,7 @@ export const Events = () => {
 
         </Grid>
 
-        <Grid item xs={12} sx={{ display: 'flex',marginBottom:'54px', alignItems: 'center', background: '' , padding:'0 48px' }}>
+        <Grid item xs={12} sx={{ display: 'flex',marginBottom:'54px', alignItems: 'center', background: '' , padding:{xs:'0 12px' , md:'0 48px' }}}>
           <Swiper
             effect={"coverflow"}
             grabCursor={true}

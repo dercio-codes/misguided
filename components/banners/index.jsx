@@ -62,8 +62,8 @@ export const Banners = () => {
 
                         {artists.map((artist, index) => {
                             return (
-                                <Grid xs={4} md={12} sx={{ background: '', display: 'flex', alignItems: 'center' }}>
-                                    <Button key={index} onClick={(e) => {
+                                <Grid key={index} xs={4} md={12} sx={{ background: '', display: 'flex', alignItems: 'center' }}>
+                                    <Button onClick={(e) => {
                                         e.preventDefault();
                                         handleArtistClick(artist);
                                     }} sx={{ width: { xs: "90%", md: '75%' }, fontWeight: active.name === artist.name ? "900" : '500', fontSize: '16px', padding: { xs: '16px 0', md: '32px 0' }, margin: '18px auto', background: '#eee', color: '#111', "&:hover": { color: '#eee' } }}>{artist.name}</Button>

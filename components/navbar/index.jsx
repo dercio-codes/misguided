@@ -16,6 +16,7 @@ import Button from '@mui/material/Button';
 import HeadphonesIcon from '@mui/icons-material/Headphones';
 import CelebrationIcon from '@mui/icons-material/Celebration';
 import BookOnlineIcon from '@mui/icons-material/BookOnline';
+import Link from 'next/link';
 
 const drawerWidth = 240;
 const navItems = [
@@ -50,12 +51,15 @@ export const Navbar = (props) => {
                 <Divider />
                 <List>
                     {navItems.map((item) => (
-                        <ListItem key={item} disablePadding>
-                            <ListItemButton sx={{ textAlign: 'center', }}>
-                                {item.icon}
-                                <ListItemText primary={item.title} />
-                            </ListItemButton>
-                        </ListItem>
+                        <Link key={item.title} href={item.title === "Book Now" ? "#book-now" : "#" + item.title.toLowerCase()}>
+                            <a>
+                                <ListItem disablePadding>
+                                    <ListItemButton sx={{ textAlign: 'center', }}>
+                                        {item.icon}
+                                        <ListItemText primary={item.title} />
+                                    </ListItemButton>
+                                </ListItem>
+                            </a></Link>
                     ))}
                 </List>
             </Box>
@@ -89,10 +93,14 @@ export const Navbar = (props) => {
                     </Typography>
                     <Box sx={{ display: { xs: 'none', sm: 'block' } }}>
                         {navItems.map((item) => (
-                            <Button key={item.title} sx={{ color: '#fff', margin: '0 8px', "&:hover": { color: "#40e0d0" } }}>
-                                {item.icon}
-                                {item.title}
-                            </Button>
+                            <Link key={item.title} href={item.title === "Book Now" ? "#book-now" : "#" + item.title.toLowerCase()}>
+                                <a>
+                                    <Button sx={{ color: '#fff', margin: '0 8px', "&:hover": { color: "#40e0d0" } }}>
+                                        {item.icon}
+                                        {item.title}
+                                    </Button>
+                                </a>
+                            </Link>
                         ))}
                     </Box>
                 </Toolbar>

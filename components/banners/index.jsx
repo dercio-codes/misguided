@@ -48,9 +48,9 @@ export const Banners = () => {
     }
 
     return (
-        <Box sx={{ marginTop: '4.5%', background: '#222' }}>
+        <Box sx={{ marginTop: '4.5%', background: '#222' }} id="artists">
             <Grid container >
-                <Grid xs={12} md={5} sx={{ height: { lg: '91vh', xs: 'fit-content' }, padding: { lg: "52px 16px" }, background: '#111', display: 'flex', flexDirection: { xs: 'column', md: 'column' }, alignItems: 'center', justifyContent: 'space-evenly' }}>
+                <Grid item xs={12} md={5} sx={{ height: { lg: '91vh', xs: '50vh' }, padding: { lg: "52px 16px" }, background: '#111', display: 'flex', flexDirection: { xs: 'column', md: 'column' }, alignItems: 'center', justifyContent: 'space-evenly' }}>
                     <Typography variant="h3" width={"100%"} color={"#eee"} fontWeight={"600"} textAlign={"center"} sx={{ marginTop: { xs: '50px' } }}>Meet The Artists</Typography>
                     <Button onClick={() => setActive("")} sx={{ fontWeight: '600', fontSize: '16px', padding: '32px 0', padding: '18px auto 0px auto', margin: '18px auto', color: '#111', background: '#eee' }}>All</Button>
 
@@ -63,16 +63,16 @@ export const Banners = () => {
                                     <Button onClick={(e) => {
                                         e.preventDefault();
                                         handleArtistClick(artist);
-                                    }} sx={{ width: { xs: "90%", md: '75%' }, fontWeight: active.name === artist.name ? "900" : '500', fontSize: '16px', padding: { xs: '16px 0', md: '32px 0' }, margin: '18px auto', background: '#eee', color: '#111', "&:hover": { color: '#eee' } }}>{artist.name}</Button>
+                                    }} sx={{ width: { xs: "90%", md: '75%' }, fontWeight:  active.name === artist.name ? "900" : '500', fontSize: {xs : artist.name === "YKM THEE MC" ? '0.8rem' : '16px' ,sm:'16px'}, padding: { xs: artist.name === "YKM THEE MC" ? '18px 0' : '16px 0', md: '32px 0' }, margin: '18px auto', background: '#eee', color: '#111', "&:hover": { color: '#eee' } }}>{artist.name}</Button>
                                 </Grid>
                             )
                         })}
                     </Grid>
                 </Grid>
-                <Grid xs={12} md={7} sx={{ height: { lg: 'fit-content', xs: 'fit-content' }, padding: { lg: "24px 16px" }, margin: 'auto 0' }}>
+                <Grid item xs={12} md={7} sx={{ height: { lg: 'fit-content', xs: 'fit-content' }, padding: { lg: "24px 16px" }, margin: 'auto 0' }}>
                     {
                         active === "" ? (
-                            <Box sx={{ height: { xs: '40vh', md: 'fit-content' }, background: '' }}>
+                            <Box sx={{ height: { xs: '50vh', md: 'fit-content' }, background: '' }}>
 
                                 <SquadSlides />
                             </Box>

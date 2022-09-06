@@ -26,7 +26,7 @@ export const BookNow = () => {
     }
 
     return (
-        <Box sx={{ background: '#111', padding: "32px", minHeight: '50vh' }}>
+        <Box id="book-now" sx={{ background: '#111', padding: "32px", minHeight: '50vh' }}>
             <Box sx={{ background: '', width: { lg: '40%', xs: '50%' }, padding: '0', display: 'flex', alignItems: 'center', justifyContent: 'space-evenly' }}>
                 <IconButton sx={{ background: '', border: '3px solid #eee', width: '80px', height: '80px' }}>
 

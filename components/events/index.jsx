@@ -6,29 +6,39 @@ import { Box, Grid, Typography } from "@mui/material"
 // Import Swiper styles
 import "swiper/css";
 import "swiper/css/effect-coverflow";
+import "swiper/css/navigation";
 import "swiper/css/pagination";
 
 // import "./styles.css";
 
 // import required modules
-import { EffectCoverflow, Pagination } from "swiper";
+import { Autoplay, EffectCoverflow, Pagination, Navigation } from "swiper";
 
 export const Events = () => {
   return (
-    <Box id="events" sx={{ padding: '21px 0', height: '65vh', background: '#111', width: '100%' }}>
+    <Box id="events" sx={{ padding: '21px 0', height: 'fit-content', background: '#111', width: '100%' }}>
 
       <Grid container>
-        <Grid xs={12} md={5} sx={{ padding: { xs: "12px 8px" } , textAlign:{ xs:"center" } , margin: "0px 0px 18px 0px", }} >
+        <Grid item xs={12} md={5} sx={{ padding: { xs: "12px 8px" }, textAlign: { xs: "center" }, margin: "0px 0px 18px 0px", }} >
           <Typography variant="p" width={"100%"} color={"#eee"} sx={{ fontSize: { xs: "32px", md: "54px", lg: "62px" } }} fontWeight={"600"}>Events & Gigs</Typography>
 
         </Grid>
 
-        <Grid xs={12} md={7} sx={{ display: 'flex', alignItems: 'center', background: '' }}>
+        <Grid item xs={12} md={7} sx={{ display: 'flex', alignItems: 'center', background: '' }}>
           <Swiper
             effect={"coverflow"}
             grabCursor={true}
             centeredSlides={true}
+            loop={true}
+            pagination={{
+              type: "progressbar",
+            }}
+            autoplay={{
+              delay: 2500,
+              disableOnInteraction: false,
+            }}
             slidesPerView={"auto"}
+            navigation={true}
             coverflowEffect={{
               rotate: 50,
               stretch: 0,
@@ -36,8 +46,7 @@ export const Events = () => {
               modifier: 1,
               slideShadows: true,
             }}
-            pagination={true}
-            modules={[EffectCoverflow, Pagination]}
+            modules={[EffectCoverflow, Pagination, Navigation , Autoplay]}
             className="mySwiper"
           >
             <SwiperSlide>

@@ -13,9 +13,25 @@ import MenuIcon from '@mui/icons-material/Menu';
 import Toolbar from '@mui/material/Toolbar';
 import Typography from '@mui/material/Typography';
 import Button from '@mui/material/Button';
+import HeadphonesIcon from '@mui/icons-material/Headphones';
+import CelebrationIcon from '@mui/icons-material/Celebration';
+import BookOnlineIcon from '@mui/icons-material/BookOnline';
 
 const drawerWidth = 240;
-const navItems = ['Artists', 'Events', 'Book Now'];
+const navItems = [
+    {
+        title: 'Artists',
+        icon: <HeadphonesIcon sx={{ fontSize: '16px', marginRight: '8px' }} />
+    },
+    {
+        title: 'Events',
+        icon: <CelebrationIcon sx={{ fontSize: '16px', marginRight: '8px' }} />
+    },
+    {
+        title: 'Book Now',
+        icon: <BookOnlineIcon sx={{ fontSize: '16px', marginRight: '8px' }} />
+    },
+];
 
 export const Navbar = (props) => {
     const { window } = props;
@@ -26,20 +42,25 @@ export const Navbar = (props) => {
     };
 
     const drawer = (
-        <Box onClick={handleDrawerToggle} sx={{ textAlign: 'center' }}>
-            <Typography variant="h6" sx={{ my: 2 }}>
-                MUI
-            </Typography>
-            <Divider />
-            <List>
-                {navItems.map((item) => (
-                    <ListItem key={item} disablePadding>
-                        <ListItemButton sx={{ textAlign: 'center' }}>
-                            <ListItemText primary={item} />
-                        </ListItemButton>
-                    </ListItem>
-                ))}
-            </List>
+        <Box onClick={handleDrawerToggle} sx={{ padding: "16px 0", textAlign: 'center', display: 'flex', flexDirection: 'column', justifyContent: 'space-between', height: '100%', background: '#111', color: '#eee' }}>
+            <Box>
+                <Typography variant="h6" sx={{ my: 2 }}>
+                    MUI
+                </Typography>
+                <Divider />
+                <List>
+                    {navItems.map((item) => (
+                        <ListItem key={item} disablePadding>
+                            <ListItemButton sx={{ textAlign: 'center', }}>
+                                {item.icon}
+                                <ListItemText primary={item.title} />
+                            </ListItemButton>
+                        </ListItem>
+                    ))}
+                </List>
+            </Box>
+
+            <Typography fontSize={12}>2022 Misguided Original</Typography>
         </Box>
     );
 
@@ -68,8 +89,9 @@ export const Navbar = (props) => {
                     </Typography>
                     <Box sx={{ display: { xs: 'none', sm: 'block' } }}>
                         {navItems.map((item) => (
-                            <Button key={item} sx={{ color: '#fff', margin: '0 8px' }}>
-                                {item}
+                            <Button key={item.title} sx={{ color: '#fff', margin: '0 8px', "&:hover": { color: "#40e0d0" } }}>
+                                {item.icon}
+                                {item.title}
                             </Button>
                         ))}
                     </Box>
@@ -86,6 +108,7 @@ export const Navbar = (props) => {
                     }}
                     sx={{
                         display: { xs: 'block', sm: 'none' },
+                        background: 'rgba(1,1,1,.3)', color: '#eee',
                         '& .MuiDrawer-paper': { boxSizing: 'border-box', width: drawerWidth },
                     }}
                 >

@@ -3,10 +3,7 @@ import React, { useRef, useState } from "react";
 // Import Swiper React components
 import { Swiper, SwiperSlide } from "swiper/react";
 import { Autoplay, EffectFade ,Pagination, Navigation } from "swiper";
-// import required modules
-// import { EffectFade, Navigation, Pagination } from "swiper";
 
-// Import Swiper styles
 import "swiper/css";
 import "swiper/css/effect-fade";
 import "swiper/css/navigation";
@@ -22,7 +19,7 @@ export const Banners = () => {
             name: "Dj Shadzo",
             img: "/shadzo-2.jpeg",
             embedItem: <iframe onLoad={() => setLoading(false)} style={{ borderRadius: "12px", margin: '18px 0' }} src="https://open.spotify.com/embed/artist/5JuA3291INTaMk0R8xMkZK?utm_source=generator" width="100%" height="315" frameBorder="0" allowFullScreen="" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe>,
-            slogan: "If your girl dont know Shadzo don't dala"
+            slogan: "If your girl don't know Shadzo don't dala."
         },
         {
             name: "YKM THEE MC",
@@ -34,7 +31,7 @@ export const Banners = () => {
             name: "Karlo Dj",
             img: "/Karlo-1.jpeg",
             embedItem: <iframe onLoad={() => setLoading(false)} style={{ borderRadius: "12px", margin: '18px 0' }} width="100%" height="315" src="https://www.youtube.com/embed/-J0fR8UMfIc" title="YouTube video player" frameBorder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowFullScreen></iframe>,
-            slogan: "If your girl dont know Shadzo don't dala"
+            slogan: "Founder of Misguided."
         }];
     const [active, setActive] = useState("");
 
@@ -80,7 +77,7 @@ export const Banners = () => {
                             // </Box>
                             <SquadSlides />
                         ) : (
-                            <Fade in={active} sx={{ width: '100%', background: 'rgba(255,255,255,.1)', height: '100%', padding: { lg: "16px" } }} >
+                            <Fade in={active} sx={{ width: '100%', background: 'rgba(1,1,1,.3)', height: '100%', padding: { lg: "16px" } }} >
                                 <Box sx={{ padding: { lg: "2px 16px" } }}>
                                     <Box sx={{ display: 'flex', alignItems: 'center', padding: { xs: "16px 12px", md: "0px" } }}>
 

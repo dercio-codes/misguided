@@ -59,11 +59,12 @@ a {
   width: 100%;
 }
 
-.swiper-button-next,
-.swiper-rtl .swiper-button-prev {
-  color: #111;
+html body .swiper-button-next:after, .swiper-rtl .swiper-button-prev:after , .swiper-button-prev:after, .swiper-rtl .swiper-button-next:after{
+  color:#555 !important;
 }
-
+.swiper-pagination-progressbar .swiper-pagination-progressbar-fill{
+  background:#555 !important;
+}
 
 /* Media Queries */
 /* /////////////////////////////////////////// */

@@ -3,12 +3,12 @@ import Link from "next/link"
 import { useState, useEffect } from "react"
 import { artistData } from "../../artist-data"
 export const Socials = ({ artist }) => {
-    const [item, setItem] = useState( {
-        spotify : 'https://open.spotify.com/artist/5JuA3291INTaMk0R8xMkZK',
-        apple : 'https://music.apple.com/za/artist/dj-shadzo/1521951814' ,
-        instagram : 'https://www.instagram.com/its.dj_shadzo/?hl=en',
-        facebook : '' ,
-        tiktok:'https://www.tiktok.com/@dj_shadzo_sa'
+    const [item, setItem] = useState({
+        spotify: 'https://open.spotify.com/artist/5JuA3291INTaMk0R8xMkZK',
+        apple: 'https://music.apple.com/za/artist/dj-shadzo/1521951814',
+        instagram: 'https://www.instagram.com/its.dj_shadzo/?hl=en',
+        facebook: '',
+        tiktok: 'https://www.tiktok.com/@dj_shadzo_sa'
     })
 
     useEffect(() => {

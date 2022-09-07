@@ -8,11 +8,11 @@ import { ParallaxEffect } from "../components/parallax-effect";
 
 export default function Home() {
   return (
-    <Box sx={{ overflowY:'auto' }}>
+    <Box sx={{ overflowY:'auto' , background:'#111' }}>
 
     <Navbar />
     <Banners />
-    <ParallaxEffect img={"/parallax-3.jpg"} />
+    <ParallaxEffect img={"/ykm-x-fest-1.jpg"} />
     <Events />
     <ParallaxEffect img={"/parallax-1.jpg"} />
     <BookNow />

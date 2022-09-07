@@ -8,17 +8,19 @@ export const ParallaxEffect = ({ img }) => {
     return (
         
         <Box sx={{
-            width: '100%',
-            height: '120px',
+            // width: {md:'60%' ,lg:'45%'},
+            margin:'0 auto',
+            width: '100v%',
+            height: '70px',
             backgroundImage: `url(${img})`,
             backgroundAttachment: "fixed",
-            backgroundPosition: "top",
+            backgroundPosition: "top center",
             backgroundRepeat: "no-repeat",
             backgroundSize: "cover",
         }}>
         <Box sx={{ background:'rgba(1,1,1,.5)' ,height:'100%' , width:'100%'}}>
 
-hi
+
         </Box>
             </Box>
     )

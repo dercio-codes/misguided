@@ -1,7 +1,8 @@
 import React, { useRef, useState } from "react";
 // Import Swiper React components
 import { Swiper, SwiperSlide } from "swiper/react";
-import { Box, Grid, Typography } from "@mui/material"
+import { Box, Grid, Button, Typography } from "@mui/material"
+import useMediaQuery from '@mui/material/useMediaQuery';
 
 // Import Swiper styles
 import "swiper/css";
@@ -14,9 +15,12 @@ import "swiper/css/pagination";
 // import required modules
 import { Autoplay, EffectCoverflow, Pagination, Navigation } from "swiper";
 import { EventModal } from "./event-modal";
+import { TableBookings } from "./table-bookings";
 
 export const Events = () => {
   const [open, setOpen] = useState(false);
+  const matches = useMediaQuery('(max-width:900px)');
+  const [openTableBooking, setOpenTableBooking] = useState(false);
   const [openImage, setOpenImage] = useState("");
   const eventImages = [
     "/run-the-city.jpeg",
@@ -26,6 +30,11 @@ export const Events = () => {
 
   const handleEventClick = (event_img) => {
     setOpen(true)
+    setOpenImage(event_img)
+  }
+
+  const handleTableBookingClick = (event_img) => {
+    setOpenTableBooking(true)
     setOpenImage(event_img)
   }
 
@@ -51,7 +60,7 @@ export const Events = () => {
               delay: 2500,
               disableOnInteraction: false,
             }}
-            slidesPerView={2}
+            slidesPerView={matches ? 1 : 2}
             navigation={true}
             coverflowEffect={{
               rotate: 50,
@@ -64,12 +73,27 @@ export const Events = () => {
             className="mySwiper"
           >
             {
-              eventImages.map((event_img , index)=>{
-                return(
+              eventImages.map((event_img, index) => {
+                return (
 
-            <SwiperSlide onClick={() => handleEventClick(event_img)} key={index}>
-              <Box sx={{ height: '300px', width: '300px', backgroundSize: "contain", backgroundPosition: 'center', backgroundRepeat: 'no-repeat', backgroundImage: `url(${event_img})` }} />
-            </SwiperSlide>
+                  <SwiperSlide data-zoomable
+
+                    key={index}>
+                    <Box onClick={() => handleEventClick(event_img)} sx={{ height: {xs:'250px' ,  md: '300px'}, width: { xs:'100%' , md:'300px' }, backgroundSize: "contain", backgroundPosition: 'center', backgroundRepeat: 'no-repeat', backgroundImage: `url(${event_img})` }} />
+                   <Typography fontWeight={"500"} fontSize={"12px"} sx={{ margin:'8px 0' }} color={"#eee"}>Click to zoom</Typography>
+                    <Button sx={{
+                      width: { xs: "100%", md: '300px' },
+                      fontWeight: '500',
+                      fontSize: { xs: '16px', sm: '16px' },
+                      padding: { xs: '12px 0' , md:'16px 0' },
+                      margin: '18px auto',
+                      background: '#eee',
+                      color: '#111', "&:hover": { color: '#eee' }
+                    }}
+                    onClick={()=> handleTableBookingClick(event_img)}
+                    >Book Table</Button>
+
+                  </SwiperSlide>
                 )
               })
             }
@@ -77,6 +101,7 @@ export const Events = () => {
 
           </Swiper>
           <EventModal openImage={openImage} state={{ open, setOpen }} />
+          <TableBookings openImage={openImage} state={{ openTableBooking, setOpenTableBooking }} />
         </Grid>
       </Grid>
     </Box>

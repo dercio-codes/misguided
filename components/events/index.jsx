@@ -17,7 +17,7 @@ import { Autoplay, EffectCoverflow, Pagination, Navigation } from "swiper";
 import { EventModal } from "./event-modal";
 import { TableBookings } from "./table-bookings";
 
-export const Events = () => {
+export const Events = ({ artist }) => {
   const [open, setOpen] = useState(false);
   const matches = useMediaQuery('(max-width:900px)');
   const [openTableBooking, setOpenTableBooking] = useState(false);
@@ -39,10 +39,10 @@ export const Events = () => {
   }
 
   return (
-    <Box id="events" sx={{ padding: '21px 0', height: 'fit-content', background: '#111', width: '100%' }}>
+    <Box id="events" sx={{ padding: '21px 0', height: { xs: 'fit-content' ,md:artist ? '100vh':'fit-content'}, background: '#111', width: '100%' }}>
 
       <Grid container>
-        <Grid item xs={12} sx={{ padding: { xs: "12px 8px" }, textAlign: { xs: "center" }, margin: "32px 0", }} >
+        <Grid item xs={12} sx={{ padding: { xs: "12px 8px" }, textAlign: { xs: "center" }, margin: { xs:'12px 0' , md :"32px 0"}, }} >
           <Typography variant="p" width={"100%"} color={"#eee"} sx={{ fontSize: { xs: "32px", md: "54px" } }} fontWeight={"600"}>Events </Typography>
 
         </Grid>
@@ -60,7 +60,8 @@ export const Events = () => {
               delay: 2500,
               disableOnInteraction: false,
             }}
-            slidesPerView={matches ? 1 : 2}
+            slidesPerView={matches ? 1 : artist ? 1 : 2}
+            // slidesPerView={1 }
             navigation={true}
             coverflowEffect={{
               rotate: 50,
@@ -79,19 +80,26 @@ export const Events = () => {
                   <SwiperSlide data-zoomable
 
                     key={index}>
-                    <Box onClick={() => handleEventClick(event_img)} sx={{ height: {xs:'250px' ,  md: '300px'}, width: { xs:'100%' , md:'300px' }, backgroundSize: "contain", backgroundPosition: 'center', backgroundRepeat: 'no-repeat', backgroundImage: `url(${event_img})` }} />
-                   <Typography fontWeight={"500"} fontSize={"12px"} sx={{ margin:'8px 0' }} color={"#eee"}>Click to zoom</Typography>
-                    <Button sx={{
-                      width: { xs: "100%", md: '300px' },
-                      fontWeight: '500',
-                      fontSize: { xs: '16px', sm: '16px' },
-                      padding: { xs: '12px 0' , md:'16px 0' },
-                      margin: '18px auto',
-                      background: '#eee',
-                      color: '#111', "&:hover": { color: '#eee' }
-                    }}
-                    onClick={()=> handleTableBookingClick(event_img)}
-                    >Book Table</Button>
+                    <Box onClick={() => handleEventClick(event_img)} sx={{ height: { xs: '350px', md: '300px' }, width: { xs: '100%', md: '300px' }, backgroundSize: "contain", backgroundPosition: 'center', backgroundRepeat: 'no-repeat', backgroundImage: `url(${event_img})` }} />
+                    <Typography fontWeight={"500"} fontSize={"12px"} sx={{ margin: '8px 0' }} color={"#eee"}>Click to zoom</Typography>
+                    {
+                      artist ?
+                        <></>
+                        :
+                        (
+                          <Button sx={{
+                            width: { xs: "100%", md: '300px' },
+                            fontWeight: '500',
+                            fontSize: { xs: '16px', sm: '16px' },
+                            padding: { xs: '12px 0', md: '16px 0' },
+                            margin: '18px auto',
+                            background: '#eee',
+                            color: '#111', "&:hover": { color: '#eee' }
+                          }}
+                            onClick={() => handleTableBookingClick(event_img)}
+                          >Book Table</Button>
+                        )
+                    }
 
                   </SwiperSlide>
                 )

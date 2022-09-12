@@ -107,7 +107,7 @@ export const BookNow = () => {
                             "& .MuiOutlinedInput-root.Mui-focused": { "& > fieldset": { border: '3px solid white', color: '#40e0d0' } }
                         }} />
 
-                        <Typography variant="p" width={"100%"} color={"#eee"} sx={{ fontSize: { xs: "18px", md: "21px" } }} fontWeight={"300"}>Event Date : </Typography>
+                        <Typography variant="p" width={"100%"} color={"#eee"} sx={{ fontSize: { xs: "18px", md: "21px" } }} fontWeight={"300"}>Set Time : </Typography>
                         <TextField onChange={handleFieldChange} name="event_time" helperText="Artist Set Time" type="time" placeholder="01/01/2023 , 00:00" fullWidth sx={{
                             background: '', padding: "0", margin: '12px 0',
                             "& .MuiOutlinedInput-root": { border: '2px solid white' },

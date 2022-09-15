@@ -17,11 +17,13 @@ import { Autoplay, EffectCoverflow, Pagination, Navigation } from "swiper";
 import { EventModal } from "./event-modal";
 import { TableBookings } from "./table-bookings";
 
-export const Events = ({ artist }) => {
+export const Events = (props ) => {
+  const { artist , text} = props; 
   const [open, setOpen] = useState(false);
   const matches = useMediaQuery('(max-width:900px)');
   const [openTableBooking, setOpenTableBooking] = useState(false);
   const [openImage, setOpenImage] = useState("");
+
   const eventImages = [
     "/run-the-city.jpeg",
     "/girls-do-it-better.jpeg",
@@ -39,11 +41,13 @@ export const Events = ({ artist }) => {
   }
 
   return (
-    <Box id="events" sx={{ padding: '21px 0', height: { xs: 'fit-content' ,md:artist ? '100vh':'fit-content'}, background: '#111', width: '100%' }}>
+    <Box id="events" sx={{ padding: {lg:artist ? "0" :'105px 0'}, height: { xs: 'fit-content' ,md:artist ? '100vh':'fit-content'}, background: artist ? "" : '#111', width: '100%', }}>
 
       <Grid container>
         <Grid item xs={12} sx={{ padding: { xs: "12px 8px" }, textAlign: { xs: "center" }, margin: { xs:'12px 0' , md :"32px 0"}, }} >
-          <Typography variant="p" width={"100%"} color={"#eee"} sx={{ fontSize: { xs: "32px", md: "54px" } }} fontWeight={"600"}>Events </Typography>
+          <Typography variant="h4" width={"100%"} color={"#eee"} 
+          // sx={{ fontSize: { xs: "32px", md: "40px" } }} 
+          fontWeight={"600"}>{text} </Typography>
 
         </Grid>
 

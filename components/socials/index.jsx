@@ -2,7 +2,7 @@ import { Box } from "@mui/material"
 import Link from "next/link"
 import { useState, useEffect } from "react"
 import { artistData } from "../../artist-data"
-export const Socials = ({ artist }) => {
+export const Socials = ({ artistPage,artist }) => {
     const [item, setItem] = useState({
         spotify: 'https://open.spotify.com/artist/5JuA3291INTaMk0R8xMkZK',
         apple: 'https://music.apple.com/za/artist/dj-shadzo/1521951814',
@@ -23,7 +23,7 @@ export const Socials = ({ artist }) => {
 
     return (
 
-        <Box sx={{ width: '40%', height: '100%', display: 'flex', justifyContent: 'space-evenly', alignItems: 'center' }}>
+        <Box sx={{ width: artistPage ? "100%" : '40%', height: '100%', display: 'flex', justifyContent: 'space-evenly', alignItems: 'center' }}>
             {item.spotify === "" ? ("") : (
                 <Link href={item.spotify}>
                     <a target="_blank">

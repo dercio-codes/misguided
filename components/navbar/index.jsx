@@ -44,17 +44,20 @@ const artistLinks = [
   {
     title:"Dj ShadzO",
     url:"/shadzo",
-    icon:'/dj-2.png'
+    icon:'https://cdn-icons-png.flaticon.com/512/2564/2564922.png'
+    // icon:'/dj-2.png'
   },
   {
     title:"Karlo",
     url:"/karlo",
-    icon:'/dj.png'
+    icon:'https://cdn-icons-png.flaticon.com/512/11/11145.png'
+    // icon:'/dj.png'
   },
   {
     title:"Ykm Thee Mc",
     url:"/ykm",
-    icon:'/mic.png'
+    icon:'https://cdn-icons-png.flaticon.com/512/26/26615.png'
+    // icon:'/mic.png'
   },
 ]
 
@@ -82,6 +85,9 @@ export const Navbar = (props) => {
     >
       <Box>
         <Typography variant="h6" sx={{ my: 2 }}>
+          <Link href="/">
+          <a>
+
           <Box
             sx={{
               height: "100px",
@@ -93,18 +99,16 @@ export const Navbar = (props) => {
               backgroundImage: 'url("/misguided-logo.jpg")',
               backgroundSize: "contain",
             }}
-          />
+            />
+            </a>
+            </Link>
         </Typography>
         <Divider />
         <List>
           {navItems.map((item) => (
             <Link
               key={item.title}
-              href={
-                item.title === "Book Now"
-                  ? "#book-now"
-                  : "#" + item.title.toLowerCase()
-              }
+              href={`/${item.title === "Book Now" ? "#book-now" : "#" + item.title.toLowerCase()}`}
             >
               <a>
                 <ListItem disablePadding>
@@ -207,17 +211,23 @@ export const Navbar = (props) => {
             component="div"
             sx={{ display: { xs: "flex", sm: "block" } }}
           >
-            <Box
-              sx={{
-                height: "100px",
-                filter: "invert(1)",
-                backgroundPosition: "center",
-                backgroundRepeat: "no-repeat",
-                width: {xs:"120px"},
-                backgroundImage: 'url("/misguided-logo.jpg")',
-                backgroundSize: "contain",
-              }}
+              <Link href="/">
+          <a>
+
+          <Box
+            sx={{
+              height: "100px",
+              backgroundPosition: "center",
+              filter: "invert(1)",
+              backgroundRepeat: "no-repeat",
+              margin:"0 auto",
+              width: "70%",
+              backgroundImage: 'url("/misguided-logo.jpg")',
+              backgroundSize: "contain",
+            }}
             />
+            </a>
+            </Link>
           </Typography>
           </Box>
           <Box sx={{ display: { xs: "none", sm: "block" } }}>

@@ -7,8 +7,8 @@ import { useState } from 'react';
 export const TableBookings = ({ state, openImage }) => {
     const { openTableBooking, setOpenTableBooking } = state;
     return (
-        <Modal open={openTableBooking} onBackdropClick={() => { setOpenTableBooking(false) }} sx={{ border: 'none', display: 'flex', alignItems: 'center' }}>
-            <Box sx={{ background: '', height: '100vh', overflow: 'auto', padding: '21px', margin: 'auto 0', border: 'none', width: '100%', display: 'flex', alignItems: 'center' }}>
+        <Modal open={openTableBooking} onBackdropClick={() => { setOpenTableBooking(false) }} sx={{ border: 'none', display: 'flex', alignItems: 'center' , justifyContent:'center' }}>
+            <Box sx={{ background: '', height: '100vh', overflow: 'auto', padding: '21px', margin: 'auto 0', border: 'none', width: '100%', display: 'flex', alignItems: 'center' , justifyContent:'center' }}>
                 {/* <CloseOutlined sx={{ color:'white' , fontSize:'50px' ,position:'absolute' , float:'right' }}/>
                 <Box sx={{
                     height: '75vh',

@@ -9,6 +9,7 @@ const Shadzo = () => {
       <Navbar />
       <Box
         sx={{
+          marginTop:{ xs:'10vh' },
           height: { xs: "30vh" , md: "40vh"},
           backgroundImage: 'url("/shadzo-logo-dark.jpg")',
           backgroundSize: "contain",

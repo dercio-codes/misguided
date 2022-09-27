@@ -9,6 +9,7 @@ const YKM = () => {
       <Navbar />
       <Box
         sx={{
+          marginTop:{ xs:'10vh' },
           height: { xs: "30vh" , md: "40vh"},
           backgroundImage: 'url("/ykm-logo.jpeg")',
           backgroundSize: "contain",
@@ -150,12 +151,14 @@ const YKM = () => {
             <Grid
               item
               xs={12}
+              md={4.5}
               sx={{
                 display: "flex",
                 alignItems: "center",
                 justifyContent:'center',
+                margin:"0 auto",
                 background: "",
-                height: "50vh",
+                height: "fit-content",
               }}
             >
               <iframe

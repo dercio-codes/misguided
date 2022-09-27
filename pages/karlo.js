@@ -9,7 +9,7 @@ const Karlo = () => {
       <Navbar />
       <Box
         sx={{
-          height: "60vh",
+          height: { xs: "30vh" , md: "40vh"},
           backgroundImage: 'url("/karlo-logo.jpg")',
           backgroundSize: "contain",
           backgroundPosition: "bottom",
@@ -18,7 +18,7 @@ const Karlo = () => {
       ></Box>
       <Box
         sx={{
-          minHeight: "170vh",
+          // minHeight: "170vh",
           background: "#222",
           padding: { xs: "30px 8px", lg: "8px 48px" },
         }}
@@ -28,7 +28,7 @@ const Karlo = () => {
             item
             xs={12}
             sx={{
-              height: "fit-content",
+              // height: "fit-content",
               background: "",
               display: "flex",
               flexDirection: "column",
@@ -95,7 +95,7 @@ const Karlo = () => {
                 // margin: "0 auto",
               }}
             >
-              <Events text={"Catch me at."} artist={true} />
+              <Events text={"Catch Karlo at."} artist={true} />
             </Box>
           </Grid>
         </Grid>
@@ -108,7 +108,7 @@ const Karlo = () => {
             flexDirection: "column",
             justifyContent: "center",
             alignItems: "center",
-            height: "500px",
+            minHeight: "500px",
             background: "",
           }}
         >
@@ -118,7 +118,7 @@ const Karlo = () => {
             color={"#eee"}
             fontWeight={"600"}
             textAlign={"center"}
-            sx={{ marginTop: "48px", marginBottom: "21px" }}
+            sx={{ marginTop: "0", marginBottom: "21px" }}
           >
             Connect with Karlo
           </Typography>

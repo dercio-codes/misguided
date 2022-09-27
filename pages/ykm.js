@@ -9,7 +9,7 @@ const YKM = () => {
       <Navbar />
       <Box
         sx={{
-          height: "60vh",
+          height: { xs: "30vh" , md: "40vh"},
           backgroundImage: 'url("/ykm-logo.jpeg")',
           backgroundSize: "contain",
           backgroundPosition: "bottom",
@@ -74,7 +74,7 @@ const YKM = () => {
                 sx={{ textAlign: "center" }}
               >
                 {`Ykmtheemc Mr lovers and friends and if you don't know, now you
-                know niggaaa. <br />
+                know niggaaa.
                 Ykmtheemc is versatile Mc, life of the party,
                 people's favorite. An MC that can manoeuvre any given crowd,
                 with his splended personality that rubs off anyone and everyone

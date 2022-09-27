@@ -9,7 +9,7 @@ const Shadzo = () => {
       <Navbar />
       <Box
         sx={{
-          height: "60vh",
+          height: { xs: "30vh" , md: "40vh"},
           backgroundImage: 'url("/shadzo-logo-dark.jpg")',
           backgroundSize: "contain",
           backgroundPosition: "bottom",
@@ -70,7 +70,7 @@ const Shadzo = () => {
                 variant="p"
                 width={"90%"}
                 color={"#eee"}
-                fontWeight={"600"}
+                fontWeight={"350"}
                 sx={{ textAlign: "center" }}
               >
                 {`Areshad Thomas, age 22. Better known by his stage name DJ ShadzO, born in the year 2000 on the 20th of May and Grew up in Crown Gardens, johannesburg south. Shadzos journey as a Dj began in the year 2015, and in 2017 he decided to start learning how to produce his own music. He looked up to artists like DJ Kent, Shimza and Black coffee. He was constantly motivated to reach new levels in his music and DJ career. He keeps looking for ways to be different compared to any other artist, his goal is to give the people something that no one has ever given them.`}
@@ -95,7 +95,7 @@ const Shadzo = () => {
                 // margin: "0 auto",
               }}
             >
-              <Events text={"Catch me at."} artist={true} />
+              <Events text={"Catch Shadzo at."} artist={true} />
             </Box>
           </Grid>
         </Grid>
@@ -108,7 +108,7 @@ const Shadzo = () => {
             flexDirection: "column",
             justifyContent: "center",
             alignItems: "center",
-            height: "500px",
+            minHeight: "500px",
             background: "",
           }}
         >
@@ -118,7 +118,7 @@ const Shadzo = () => {
             color={"#eee"}
             fontWeight={"600"}
             textAlign={"center"}
-            sx={{ marginTop: "48px", marginBottom: "21px" }}
+            sx={{ marginTop: "0", marginBottom: "21px" }}
           >
             Connect with Artists
           </Typography>

@@ -21,6 +21,8 @@ import AccordionSummary from "@mui/material/AccordionSummary";
 import AccordionDetails from "@mui/material/AccordionDetails";
 import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
 import Link from "next/link";
+import MicExternalOnIcon from '@mui/icons-material/MicExternalOn';
+// impty 
 
 const drawerWidth = 240;
 const navItems = [
@@ -37,6 +39,24 @@ const navItems = [
     icon: <BookOnlineIcon sx={{ fontSize: "16px", marginRight: "8px" }} />,
   },
 ];
+
+const artistLinks = [
+  {
+    title:"Dj ShadzO",
+    url:"/shadzo",
+    icon:'/dj-2.png'
+  },
+  {
+    title:"Karlo",
+    url:"/karlo",
+    icon:'/dj.png'
+  },
+  {
+    title:"Ykm Thee Mc",
+    url:"/ykm",
+    icon:'/mic.png'
+  },
+]
 
 export const Navbar = (props) => {
   const { window } = props;
@@ -68,7 +88,8 @@ export const Navbar = (props) => {
               backgroundPosition: "center",
               filter: "invert(1)",
               backgroundRepeat: "no-repeat",
-              width: "250px",
+              margin:"0 auto",
+              width: "70%",
               backgroundImage: 'url("/misguided-logo.jpg")',
               backgroundSize: "contain",
             }}
@@ -95,20 +116,38 @@ export const Navbar = (props) => {
               </a>
             </Link>
           ))}
+          {artistLinks.map((item) => (
+            <Link
+              key={item.title}
+              href={item.url}
+            >
+              <a>
+                <ListItem disablePadding>
+                  <ListItemButton sx={{ textAlign: "center" }}>
+                    <Box sx={{ width:'21px' , filter:'invert(1)' , height:'21px' , backgroundImage:`url("${item.icon}")` , backgroundSize:"cover" }} />
+                    <ListItemText primary={item.title} />
+                  </ListItemButton>
+                </ListItem>
+              </a>
+            </Link>
+          ))}
         </List>
-        <Accordion>
+        {/* <Accordion sx={{ background: "transparent", color: "#eee" }}>
           <AccordionSummary
-            expandIcon={<ExpandMoreIcon />}
+            onClick={(e) => e.preventDefault()}
+            expandIcon={
+              <ExpandMoreIcon
+                sx={{ color: "#eee", fontSize: "16px", marginRight: "8px" }}
+              />
+            }
             aria-controls="panel2a-content"
             id="panel2a-header"
           >
+            <HeadphonesIcon sx={{ fontSize: "16px", marginRight: "8px" }} />
             <Typography>Artists</Typography>
           </AccordionSummary>
           <AccordionDetails>
-          <Link
-            
-              href={"/shadzo"}
-            >
+            <Link href={"/shadzo"}>
               <a>
                 <ListItem disablePadding>
                   <ListItemButton sx={{ textAlign: "center" }}>
@@ -117,33 +156,26 @@ export const Navbar = (props) => {
                 </ListItem>
               </a>
             </Link>
-            <Link
-            
-            href={"/karlo"}
-          >
-            <a>
-              <ListItem disablePadding>
-                <ListItemButton sx={{ textAlign: "center" }}>
-                  <ListItemText primary={"Karlo"} />
-                </ListItemButton>
-              </ListItem>
-            </a>
-          </Link>
-          <Link
-            
-            href={"/ykm"}
-          >
-            <a>
-              <ListItem disablePadding>
-                <ListItemButton sx={{ textAlign: "center" }}>
-                  <ListItemText primary={"YKM THE MC"} />
-                </ListItemButton>
-              </ListItem>
-            </a>
-          </Link>
-            
+            <Link href={"/karlo"}>
+              <a>
+                <ListItem disablePadding>
+                  <ListItemButton sx={{ textAlign: "center" }}>
+                    <ListItemText primary={"Karlo"} />
+                  </ListItemButton>
+                </ListItem>
+              </a>
+            </Link>
+            <Link href={"/ykm"}>
+              <a>
+                <ListItem disablePadding>
+                  <ListItemButton sx={{ textAlign: "center" }}>
+                    <ListItemText primary={"YKM THE MC"} />
+                  </ListItemButton>
+                </ListItem>
+              </a>
+            </Link>
           </AccordionDetails>
-        </Accordion>
+        </Accordion> */}
       </Box>
 
       <Typography fontSize={12}>2022 Misguided Original</Typography>
@@ -155,8 +187,9 @@ export const Navbar = (props) => {
 
   return (
     <Box sx={{ display: "flex" }}>
-      <AppBar sx={{ background: "#000", color: "#fff" }} component="nav">
-        <Toolbar>
+      <AppBar sx={{ background: "#000", color: "#fff" ,  }} component="nav">
+        <Toolbar sx={{display:{xs:'flex' , } , justifyContent:'space-between' , background:''}}>
+          <Box sx={{ background:'', flex:1, display: { sm: "none" }}}>
           <IconButton
             color="inherit"
             aria-label="open drawer"
@@ -166,10 +199,13 @@ export const Navbar = (props) => {
           >
             <MenuIcon />
           </IconButton>
+          </Box>
+          <Box sx={{ background:'' , flex:{xs:1 , sm:0},display:'flex' , justifyContent:{ xs:'flex-end' , md:'flex-start'} }}>
+
           <Typography
             variant="h6"
             component="div"
-            sx={{ flexGrow: 1, display: { xs: "none", sm: "block" } }}
+            sx={{ display: { xs: "flex", sm: "block" } }}
           >
             <Box
               sx={{
@@ -177,12 +213,13 @@ export const Navbar = (props) => {
                 filter: "invert(1)",
                 backgroundPosition: "center",
                 backgroundRepeat: "no-repeat",
-                width: "250px",
+                width: {xs:"120px"},
                 backgroundImage: 'url("/misguided-logo.jpg")',
                 backgroundSize: "contain",
               }}
             />
           </Typography>
+          </Box>
           <Box sx={{ display: { xs: "none", sm: "block" } }}>
             {navItems.map((item) => (
               <Link

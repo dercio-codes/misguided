@@ -4,28 +4,19 @@ import PhoneIcon from '@mui/icons-material/Phone';
 import { Box, Select, Modal, MenuItem, IconButton, Button, Grid, Typography, TextField, Stack } from "@mui/material"
 import { useState } from 'react';
 
-export const TableBookings = ({ state, openImage }) => {
+import SendIcon from "@mui/icons-material/Send";
+import { useSnackbar } from "notistack";
+import axios from "axios";
+import { GooSpinner } from "react-spinners-kit";
+import { PropagateLoader } from "react-spinners";
+
+export const TableBookings = ({ state, openEvent }) => {
     const { openTableBooking, setOpenTableBooking } = state;
     return (
         <Modal open={openTableBooking} onBackdropClick={() => { setOpenTableBooking(false) }} sx={{ border: 'none', display: 'flex', alignItems: 'center' , justifyContent:'center' }}>
             <Box sx={{ background: '', height: '100vh', overflow: 'auto', padding: '21px', margin: 'auto 0', border: 'none', width: '100%', display: 'flex', alignItems: 'center' , justifyContent:'center' }}>
-                {/* <CloseOutlined sx={{ color:'white' , fontSize:'50px' ,position:'absolute' , float:'right' }}/>
-                <Box sx={{
-                    height: '75vh',
-                    width: '100%',
-                    border:'none',
-                    backgroundImage: `url(${openImage})`,
-                    backgroundSize: 'contain',
-                    backgroundRepeat: 'no-repeat',
-                    // background:'red',
-                    backgroundPosition: 'center',
-                    margin: "auto 0",
-                }} />
-                <Box sx={{ width: '75%', border:'none' , margin: "0 auto", background: 'rgba(1,1,1,.9)' }}>
 
-                    <Typography className="heartbeat" textAlign={"center"} color={"#eee"}> Click outside the image to zoom out.</Typography>
-                </Box> */}
-                <BookTable openImage={openImage} setOpenTableBooking={setOpenTableBooking} />
+                <BookTable openEvent={openEvent} setOpenTableBooking={setOpenTableBooking} />
 
             </Box>
 
@@ -34,18 +25,15 @@ export const TableBookings = ({ state, openImage }) => {
 }
 
 
-const BookTable = ({ openImage, setOpenTableBooking }) => {
+const BookTable = ({ openEvent, setOpenTableBooking }) => {
 
+    const enqueueSnackbar = useSnackbar();
+    const [isProcessing,setIsProcessing] = useState(false)
     const [booking, setBooking] = useState({
+        event_name: openEvent.title,
+        indoor_or_outdoor: "",
         name: "",
-        requested_artist: "Dj Karlo",
-        event_date: "",
-        event_name: "",
-        event_location: "",
-        rider: "",
-        guestlist_amount: "",
-        event_time: "",
-        how_many_hours: "",
+        num_of_people:0
     });
 
     const handleFieldChange = (e) => {
@@ -56,6 +44,60 @@ const BookTable = ({ openImage, setOpenTableBooking }) => {
 
         console.log(booking)
     }
+
+    // const handleSubmit = ()  =>  console.log(booking)
+    const handleSubmit = (e) => {
+        e.preventDefault();
+        setIsProcessing(true);
+    
+        const bookingValues = Object.values(booking);
+    
+        if (bookingValues.includes("")) {
+          enqueueSnackbar("please fill in all fields", {
+            variant: "warning",
+          });
+          setIsProcessing(false);
+        } else {
+          axios
+            .post("/api/email", {
+              cell: booking.number,
+              email: booking.email,
+              message: booking.query,
+              name: booking.name,
+            })
+            .then((res) => {
+              if (res.data.message == "MAIL_SENT") {
+                enqueueSnackbar("Email successfully sent", {
+                  variant: "success",
+                });
+    
+                setBooking({
+                    event_name: openEvent.title,
+                    indoor_or_outdoor: "",
+                    name: "",
+                    num_of_people:0
+                });
+    
+                setIsProcessing(false);
+              } else {
+                enqueueSnackbar(`Failed to send email : ${res.data.err.message}`, {
+                  variant: "error",
+                });
+    
+                setIsProcessing(false);
+              }
+            })
+            .catch((err) => {
+                console.log(err)
+                alert(err.mesage)
+            //   enqueueSnackbar(`Failed to send email : ${err.message}`, {
+            //     variant: "error",
+            //   });
+    
+              setIsProcessing(false);
+            });
+        }
+      };
 
     return (
         <Box id="book-now" sx={{ background: '#111', margin: 'suto 0', padding: "32px", minHeight: '50vh' }}>
@@ -68,7 +110,7 @@ const BookTable = ({ openImage, setOpenTableBooking }) => {
                     <Typography variant="p" width={"100%"} color={"#eee"} sx={{ margin: '0 16px', fontSize: { xs: "32px", md: "54px" }, textAlign: '' }} fontWeight={"600"}>Book Table</Typography>
 
                 </Box>
-                <Box sx={{ width: '120px', height: '120px', background: '', backgroundPostion: 'center', backgroundImage: `url(${openImage})`, backgroundSize: 'contain' }} />
+                <Box sx={{ width: '150px', height: '150px', background: '', backgroundRepeat:'no-repeat' , backgroundPostion: 'center', backgroundImage: `url(${openEvent.img})`, backgroundSize: 'contain' }} />
             </Box>
             <Stack sx={{ padding: '21px 4px', background: '' }}>
                 <Typography variant="p" width={"100%"} color={"#eee"} sx={{ margin: '12px 0 28px 0 ', fontSize: { xs: "18px", md: "18px" }, textAlign: '' }} fontWeight={"400"}>Fill in the form below and we will respond back to you.</Typography>
@@ -84,7 +126,7 @@ const BookTable = ({ openImage, setOpenTableBooking }) => {
                         }} />
 
                         <Typography variant="p" width={"100%"} color={"#eee"} sx={{ fontSize: { xs: "18px", md: "21px" } }} fontWeight={"300"}>Indoor or Outdoor : </Typography>
-                        <Select onChange={handleFieldChange} name="requested_artist" value={booking.requested_artist} fullWidth sx={{
+                        <Select onChange={handleFieldChange} name="indoor_or_outdoor" value={booking.indoor_or_outdoor} fullWidth sx={{
                             padding: "0", margin: '12px 0',
                             "& .MuiOutlinedSelect-root": { border: '2px solid white' },
                             "& .MuiOutlinedSelect-root.Mui-focused": { "& > fieldset": { border: '3px solid white', color: '#40e0d0' } },
@@ -93,14 +135,6 @@ const BookTable = ({ openImage, setOpenTableBooking }) => {
                             <MenuItem value="Indoor">Indoor </MenuItem>
                             <MenuItem value="Outdoor">Outdoor </MenuItem>
                         </Select>
-                        {/* <Typography variant="p" width={"100%"} color={"#eee"} sx={{ fontSize: { xs: "18px", md: "21px" } }} fontWeight={"300"}>Event Date : </Typography>
-                        <TextField onChange={handleFieldChange} name="event_date" helperText="Artist Set Time" type="date" placeholder="01/01/2023 , 00:00" fullWidth sx={{ background: '', padding: "0", margin: '12px 0', "& .MuiOutlinedInput-root.Mui-focused": { "& > fieldset": { border: '3px solid #40e0d0', color: '#40e0d0' } } }} />
-
-                        <Typography variant="p" width={"100%"} color={"#eee"} sx={{ fontSize: { xs: "18px", md: "21px" } }} fontWeight={"300"}>Event Name : </Typography>
-                        <TextField onChange={handleFieldChange} name="event_name" helperText="Please enter your event name" placeholder="Old School Fridays" fullWidth sx={{ padding: "0", margin: '12px 0', "& .MuiOutlinedInput-root.Mui-focused": { "& > fieldset": { border: '3px solid #40e0d0', color: '#40e0d0' } } }} />
-
-                        <Typography variant="p" width={"100%"} color={"#eee"} sx={{ fontSize: { xs: "18px", md: "21px" } }} fontWeight={"300"}>Event Location : </Typography>
-                        <TextField onChange={handleFieldChange} name="event_location" placeholder="Roodeport Johanessburg." fullWidth sx={{ padding: "0", margin: '12px 0', "& .MuiOutlinedInput-root.Mui-focused": { "& > fieldset": { border: '3px solid #40e0d0', color: '#40e0d0' } } }} /> */}
 
 
 
@@ -115,14 +149,6 @@ const BookTable = ({ openImage, setOpenTableBooking }) => {
                             "& .MuiOutlinedInput-root.Mui-focused": { "& > fieldset": { border: '3px solid white', color: '#40e0d0' } }
                         }} />
 
-                        {/* <Typography variant="p" width={"100%"} color={"#eee"} sx={{ fontSize: { xs: "18px", md: "21px" } }} fontWeight={"300"}>Guestlist Amount : </Typography>
-                        <TextField onChange={handleFieldChange} name="guestlist_amount" type="number" placeholder="4 People ( Excluding Artist. )" fullWidth sx={{ padding: "0", margin: '12px 0', "& .MuiOutlinedInput-root.Mui-focused": { "& > fieldset": { border: '3px solid #40e0d0', color: '#40e0d0' } } }} />
-
-                        <Typography variant="p" width={"100%"} color={"#eee"} sx={{ fontSize: { xs: "18px", md: "21px" } }} fontWeight={"300"}>Event Date : </Typography>
-                        <TextField onChange={handleFieldChange} name="event_time" helperText="Artist Set Time" type="time" placeholder="01/01/2023 , 00:00" fullWidth sx={{ background: '', padding: "0", margin: '12px 0', "& .MuiOutlinedInput-root.Mui-focused": { "& > fieldset": { border: '3px solid #40e0d0', color: '#40e0d0' } } }} />
-
-                        <Typography variant="p" width={"100%"} color={"#eee"} sx={{ fontSize: { xs: "18px", md: "21px" } }} fontWeight={"300"}>How Many Hours : </Typography>
-                        <TextField onChange={handleFieldChange} name="how_many_hours" type="number" helperText="How long would you like to book the artist" placeholder="2 Hours" fullWidth sx={{ padding: "0", margin: '12px 0', "& .MuiOutlinedInput-root.Mui-focused": { "& > fieldset": { border: '3px solid #40e0d0', color: '#40e0d0' } } }} /> */}
 
                         <Typography variant="p" width={"100%"} color={"transparent"} sx={{ fontSize: { xs: "18px", md: "21px" } }} fontWeight={"300"}>How Many Hours : </Typography>
                         <Box sx={{ height: '58px', margin: '12px 0', display: 'flex', justifyContent: 'space-between' }}>
@@ -151,7 +177,7 @@ const BookTable = ({ openImage, setOpenTableBooking }) => {
                                     color: '#eee',
                                     background: '#111',
                                 }
-                            }}> Submit Request </Button>
+                            }} onClick={handleSubmit}> { isProcessing ? <PropagateLoader /> : "Submit Request"} </Button>
                         </Box>
 
 

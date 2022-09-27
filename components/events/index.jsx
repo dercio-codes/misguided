@@ -22,23 +22,27 @@ export const Events = (props) => {
   const [open, setOpen] = useState(false);
   const matches = useMediaQuery("(max-width:900px)");
   const [openTableBooking, setOpenTableBooking] = useState(false);
-  const [openImage, setOpenImage] = useState("");
+  const [openEvent, setopenEvent] = useState("");
 
-  const eventImages = [
-    "/3-man-show.jpeg",
-    // "/run-the-city.jpeg",
-    // "/girls-do-it-better.jpeg",
-    "/spring-fling-oct.jpeg",
+  const events = [
+    {
+      title:'3 Man Show',
+      img:"/3-man-show.jpeg",
+    },
+    {
+      title:'Spring Fling',
+      img:"/spring-fling-oct.jpeg",      
+    }
   ];
 
-  const handleEventClick = (event_img) => {
+  const handleEventClick = (item) => {
     setOpen(true);
-    setOpenImage(event_img);
+    setopenEvent(item);
   };
 
-  const handleTableBookingClick = (event_img) => {
+  const handleTableBookingClick = (item) => {
     setOpenTableBooking(true);
-    setOpenImage(event_img);
+    setopenEvent(item);
   };
 
   return (
@@ -109,18 +113,18 @@ export const Events = (props) => {
             modules={[EffectCoverflow, Pagination, Navigation, Autoplay]}
             className="mySwiper"
           >
-            {eventImages.map((event_img, index) => {
+            {events.map((item, index) => {
               return (
                 <SwiperSlide data-zoomable key={index}>
                   <Box
-                    onClick={() => handleEventClick(event_img)}
+                    onClick={() => handleEventClick(item)}
                     sx={{
                       height: { xs: "350px", md: "300px" },
                       width: { xs: "100%", md: "300px" },
                       backgroundSize: "contain",
                       backgroundPosition: "center",
                       backgroundRepeat: "no-repeat",
-                      backgroundImage: `url(${event_img})`,
+                      backgroundImage: `url(${item.img})`,
                     }}
                   />
                   <Typography
@@ -145,7 +149,7 @@ export const Events = (props) => {
                         color: "#111",
                         "&:hover": { color: "#eee" },
                       }}
-                      onClick={() => handleTableBookingClick(event_img)}
+                      onClick={() => handleTableBookingClick(item)}
                     >
                       Book Table
                     </Button>
@@ -154,9 +158,9 @@ export const Events = (props) => {
               );
             })}
           </Swiper>
-          <EventModal openImage={openImage} state={{ open, setOpen }} />
+          <EventModal openEvent={openEvent} state={{ open, setOpen }} />
           <TableBookings
-            openImage={openImage}
+            openEvent={openEvent}
             state={{ openTableBooking, setOpenTableBooking }}
           />
         </Grid>

@@ -191,7 +191,7 @@ export const Navbar = (props) => {
 
   return (
     <Box sx={{ display: "flex" }}>
-      <AppBar sx={{ background: "#000", color: "#fff" ,  }} component="nav">
+      <AppBar variant="sticky" sx={{ background: "#000", color: "#fff" ,  }} component="nav">
         <Toolbar sx={{display:{xs:'flex' , } , justifyContent:'space-between' , background:''}}>
           <Box sx={{ background:'', flex:1, display: { sm: "none" }}}>
           <IconButton

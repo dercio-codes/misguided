@@ -1,7 +1,7 @@
 import { CloseOutlined } from "@mui/icons-material";
 import { Box, Modal, Typography, IconButton } from "@mui/material"
 
-export const EventModal = ({ state, openImage }) => {
+export const EventModal = ({ state, openEvent }) => {
     const { open, setOpen } = state;
     return (
         <Modal open={open} onBackdropClick={() => { setOpen(false) }} sx={{ border: 'none', display: 'flex', alignItems: 'center' }}>
@@ -15,7 +15,7 @@ export const EventModal = ({ state, openImage }) => {
                     height: '70vh',
                     width: '100%',
                     border: 'none',
-                    backgroundImage: `url(${openImage})`,
+                    backgroundImage: `url(${openEvent.img})`,
                     backgroundSize: 'contain',
                     backgroundRepeat: 'no-repeat',
                     // background:'red',

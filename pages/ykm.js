@@ -73,7 +73,7 @@ const YKM = () => {
                 fontWeight={"350"}
                 sx={{ textAlign: "center" }}
               >
-                Ykmtheemc Mr lovers and friends and if you don't know, now you
+                {`Ykmtheemc Mr lovers and friends and if you don't know, now you
                 know niggaaa. <br />
                 Ykmtheemc is versatile Mc, life of the party,
                 people's favorite. An MC that can manoeuvre any given crowd,
@@ -86,7 +86,7 @@ const YKM = () => {
                 love he has for rnb/hiphop and how effective it is to have him
                 on an rnb/hiphop set which will turn into endless singalongs.
                 All in all any given genre, trust ykm to turn up with the whole
-                crowd vibing, screaming and dancing till the night falls
+                crowd vibing, screaming and dancing till the night falls`}
               </Typography>
             </Box>
           </Grid>

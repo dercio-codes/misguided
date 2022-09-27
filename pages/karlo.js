@@ -73,13 +73,7 @@ const Karlo = () => {
                 fontWeight={"350"}
                 sx={{ textAlign: "center" }}
               >
-                An authentic dj that brings a nostalgic vibe like no other, with
-                over ten years experience in the industry his versatile style
-                takes you on a journey filled with soulful vibes. Karl "Karlo"
-                Martin started his musical career at the tender age of 12 years
-                old. His humble beginnings are rooted in the house music genre
-                but over time he has evolved to become a RNB & Hip Hop
-                phenomenon.
+               {" An authentic dj that brings a nostalgic vibe like no other, with over ten years experience in the industry his versatile style takes you on a journey filled with soulful vibes. Karl 'Karlo' Martin started his musical career at the tender age of 12 years old. His humble beginnings are rooted in the house music genre but over time he has evolved to become a RNB & Hip Hop phenomenon."}
               </Typography>
             </Box>
           </Grid>

@@ -155,9 +155,9 @@ const Shadzo = () => {
                 height="380"
                 src="https://www.youtube.com/embed/videoseries?list=OLAK5uy_l5-VPNRmMyktsEG2A6Q4dGEdYXfiFXQfo"
                 title="YouTube video player"
-                frameborder="0"
+                frameBorder="0"
                 allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                allowfullscreen
+                allowFullScreen
               ></iframe>
             </Grid>
           </Grid>

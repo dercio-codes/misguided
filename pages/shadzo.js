@@ -73,16 +73,7 @@ const Shadzo = () => {
                 fontWeight={"600"}
                 sx={{ textAlign: "center" }}
               >
-                Lorem Ipsum is simply dummy text of the printing and typesetting
-                industry. Lorem Ipsum has been the industry's standard dummy
-                text ever since the 1500s, when an unknown printer took a galley
-                of type and scrambled it to make a type specimen book. It has
-                survived not only five centuries, but also the leap into
-                electronic typesetting, remaining essentially unchanged. It was
-                popularised in the 1960s with the release of Letraset sheets
-                containing Lorem Ipsum passages, and more recently with desktop
-                publishing software like Aldus PageMaker including versions of
-                Lorem Ipsum.
+                {`Areshad Thomas, age 22. Better known by his stage name DJ ShadzO, born in the year 2000 on the 20th of May and Grew up in Crown Gardens, johannesburg south. Shadzos journey as a Dj began in the year 2015, and in 2017 he decided to start learning how to produce his own music. He looked up to artists like DJ Kent, Shimza and Black coffee. He was constantly motivated to reach new levels in his music and DJ career. He keeps looking for ways to be different compared to any other artist, his goal is to give the people something that no one has ever given them.`}
               </Typography>
             </Box>
           </Grid>
@@ -131,14 +122,31 @@ const Shadzo = () => {
           >
             Connect with Artists
           </Typography>
-          <Box sx={{ width: "250px", background: ""  , margin:'21px 0' , background:''}}>
+          <Box
+            sx={{
+              width: "250px",
+              background: "",
+              margin: "21px 0",
+              background: "",
+            }}
+          >
             <Socials artistPage={true} artist={{ name: "Dj Shadzo" }} />
           </Box>
 
           <Grid container>
-            <Grid item xs={12} md={6} sx={{ display:'flex' , alignItems:'center' ,background:'' , height:'50vh'  }}>
+            <Grid
+              item
+              xs={12}
+              md={6}
+              sx={{
+                display: "flex",
+                alignItems: "center",
+                background: "",
+                height: "50vh",
+              }}
+            >
               <iframe
-                style={{margin:'0 auto', borderRadius: "12px" }}
+                style={{ margin: "0 auto", borderRadius: "12px" }}
                 src="https://open.spotify.com/embed/artist/5JuA3291INTaMk0R8xMkZK?utm_source=generator&theme=0"
                 width="95%"
                 height="380"
@@ -148,9 +156,19 @@ const Shadzo = () => {
                 loading="lazy"
               ></iframe>
             </Grid>
-            <Grid item xs={12} md={6} sx={{ display:'flex' , alignItems:'center' ,background:'' , height:'50vh'  }}>
+            <Grid
+              item
+              xs={12}
+              md={6}
+              sx={{
+                display: "flex",
+                alignItems: "center",
+                background: "",
+                height: "50vh",
+              }}
+            >
               <iframe
-                style={{margin:'0 auto', borderRadius: "12px" }}
+                style={{ margin: "0 auto", borderRadius: "12px" }}
                 width="95%"
                 height="380"
                 src="https://www.youtube.com/embed/videoseries?list=OLAK5uy_l5-VPNRmMyktsEG2A6Q4dGEdYXfiFXQfo"

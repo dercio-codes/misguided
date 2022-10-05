@@ -78,6 +78,7 @@ export const Navbar = (props) => {
         display: "flex",
         flexDirection: "column",
         justifyContent: "space-between",
+        zIndex:'10000000',
         height: "100%",
         background: "#000",
         color: "#eee",

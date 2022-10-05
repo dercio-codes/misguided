@@ -55,9 +55,9 @@ export const Banners = () => {
     }
 
     return (
-        <Box sx={{ marginTop: '4.5%', background: '#222' }} id="artists">
+        <Box sx={{ marginTop: '50px', background: '#222' }} id="artists">
             <Grid container >
-                <Grid item xs={12} md={5} sx={{ height: { lg: '91vh', xs: '50vh' }, padding: { lg: "52px 16px" }, background: '#111', display: 'flex', flexDirection: { xs: 'column', md: 'column' }, alignItems: 'center', justifyContent: 'space-evenly' }}>
+                <Grid item xs={12} lg={5} sx={{ height: { lg: '91vh', xs: '50vh' , md:'80vh' }, padding: { lg: "52px 16px" }, background: '#111', display: 'flex', flexDirection: { xs: 'column', md: 'column' }, alignItems: 'center', justifyContent: 'space-evenly' }}>
                     <Typography variant="h3" width={"100%"} color={"#eee"} fontWeight={"600"} textAlign={"center"} sx={{ marginTop: { xs: '50px' } }}>Meet The Artists</Typography>
                     <Button onClick={() => setActive("")} sx={{ fontWeight: '600', fontSize: '16px', padding: '32px 0', padding: '18px auto 0px auto', margin: '18px auto', color: '#111', background: '#eee' }}>All</Button>
 
@@ -76,7 +76,7 @@ export const Banners = () => {
                         })}
                     </Grid>
                 </Grid>
-                <Grid item xs={12} md={7} sx={{ height: { lg: 'fit-content', xs: 'fit-content' }, padding: { lg: "24px 16px" }, margin: 'auto 0' }}>
+                <Grid item xs={12} lg={7} sx={{ height: { lg: 'fit-content', xs: 'fit-content' }, padding: { lg: "24px 16px" }, margin: 'auto 0' }}>
                     {
                         active === "" ? (
                             <Box sx={{ height: { xs: '50vh', md: 'fit-content' }, background: '' }}>
@@ -91,20 +91,31 @@ export const Banners = () => {
                                         <Avatar src={active.img} alt={active.name} sx={{ width: { lg: '120px', xs: "80px" }, height: { lg: '120px', xs: "80px" }, filter: "blur(0.3px)" }} ></Avatar>
                                         <Stack sx={{ margin: { xs: '0px 21px' } , width:'100%' }}>
                                             <Typography variant="h6" color={"#eee"} fontWeight={"600"} textAlign={"start"}>{active.name}</Typography>
-                                            <Box sx={{ display:'flex' , alignItems:'center' , justifyContent:'space-between' , width:'100%' , background:''}}>
-
+                                           
+                                           <Grid container>
+                                           <Grid item xs={12} lg={6} >
                                             <Typography variant="p" color={"#eee"} fontWeight={"300"} >{active.slogan}</Typography>
-                                            <Typography textAlign={"end"} color={"#eee"} fontSize={"16px"} fontWeight={"300"}  >
+
+                                           </Grid>
+                                           <Grid item xs={12} lg={6} sx={{ alignItems:'flex-end'  , margin:{ xs:"8px 0 0" , md:'0'} , height:{ xs:'fit-content' , md:'60px'} , display:'flex' , justifyContent:'flex-end'  }}>
+
+                                            <Typography textAlign={"end"} fontSize={"13px"} fontWeight={"300"} sx={{ scale:'0.9',transition:'100ms',color:"#eee"  , "&:hover":{ scale:'0.95' , textDecoration:'underline' ,color:"#40e0d0"  } }} >
                                                 <Link href={active.artistPageLink}>
                                                     <a style={{  display:'flex' , alignItems:'center' , }}>
-                                                       <p style={{ margin:'0 8px' }}>
+                                                       <Typography sx={{ margin:{ xs:0, md:'0 8px'} }}>
                                                          See more about {active.name}
-                                                        </p>
+                                                        </Typography>
                                                         <EastIcon sx-={{ color:'#eee' , fontWeight:600 , margin:'0 8px' }} />
                                                     </a>
                                                 </Link>
                                             </Typography  >
-                                            </Box>
+                                           </Grid>
+
+                                           </Grid>
+                                           
+                                            {/* <Box sx={{ display:'flex' , alignItems:{ xs:"flex-start", md:'center'} , justifyContent:'space-between' , width:'100%' , background:'' , flexDirection:{xs:'column' , md:'row'}}}>
+
+                                            </Box> */}
                                         </Stack>
                                     </Box>
 

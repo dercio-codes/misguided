@@ -139,7 +139,7 @@ export const BookNow = () => {
                         }} />
 
                         <Typography variant="p" width={"100%"} color={"#eee"} sx={{ fontSize: { xs: "18px", md: "21px" } }} fontWeight={"300"}>Requested Artist : </Typography>
-                        <Select onChange={handleFieldChange} name="requested_artist" helperText="Example : Dj Shadzo or YKM + Karlo" value={booking.requested_artist} fullWidth sx={{
+                        <Select onChange={handleFieldChange} name="requested_artist"  value={booking.requested_artist} fullWidth sx={{
                             padding: "0", margin: '12px 0 36px',
                             "& .MuiOutlinedInput-root": { border: '2px solid white' },
                             "& .MuiOutlinedInput-root.Mui-focused": { "& > fieldset": { border: '3px solid white', color: '#40e0d0' } },

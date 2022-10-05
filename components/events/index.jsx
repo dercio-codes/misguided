@@ -117,6 +117,7 @@ export const Events = (props) => {
             {events.map((item, index) => {
               return (
                 <SwiperSlide data-zoomable key={index}>
+                  <Typography sx={{ textAlign:'center',fontWeight:600 ,color:'#eee' , fontSize:'32px' , margin:'21px 0'  }}>{item.title}</Typography>
                   <Box
                     onClick={() => handleEventClick(item)}
                     sx={{
@@ -157,7 +158,7 @@ export const Events = (props) => {
                       </Button>
 
                       <Link href="https://www.howler.co.za/artists/5005?lang=en">
-                        <a>
+                        <a style={{width:'100%'}} >
                           <Button
                             sx={{
                               width: { xs: "100%", md: "300px" },

@@ -78,16 +78,16 @@ export const Navbar = (props) => {
         display: "flex",
         flexDirection: "column",
         justifyContent: "space-between",
-        zIndex:'10000000',
+        zIndex:'6',
         height: "100%",
         background: "#000",
         color: "#eee",
       }}
     >
       <Box>
-        <Typography variant="h6" sx={{ my: 2 }}>
+        <Typography variant="h6" sx={{ my: 2 , width:'100%' }}>
           <Link href="/">
-          <a>
+          <a style={{ width:'100%',   }}>
 
           <Box
             sx={{
@@ -192,7 +192,7 @@ export const Navbar = (props) => {
 
   return (
     <Box sx={{ display: "flex" }}>
-      <AppBar variant="sticky" sx={{ background: "#000", color: "#fff" , zIndex:'1000000' }} component="nav">
+      <AppBar variant="sticky" sx={{ position:'sticky',  background: "#000", color: "#fff" , zIndex:'5' }} component="nav">
         <Toolbar sx={{display:{xs:'flex' , } , justifyContent:'space-between' , background:''}}>
           <Box sx={{ background:'', flex:1, display: { sm: "none" }}}>
           <IconButton
@@ -205,15 +205,15 @@ export const Navbar = (props) => {
             <MenuIcon />
           </IconButton>
           </Box>
-          <Box sx={{ background:'' , flex:{xs:1 , sm:0},display:'flex' , justifyContent:{ xs:'flex-end' , md:'flex-start'} }}>
+          <Box sx={{ background:'' , width:'50%',display:'flex' , justifyContent:{ xs:'flex-end' , md:'flex-start'} }}>
 
           <Typography
             variant="h6"
             component="div"
-            sx={{ display: { xs: "flex", sm: "block" } }}
+            sx={{ display: { xs: "flex", sm: "flex" } ,width:'100%'}}
           >
               <Link href="/">
-          <a>
+          <a style={{ width:'100%' , display:'flex' , justifyContent:'flex-end' , scale:'0.7' }}>
 
           <Box
             sx={{
@@ -221,8 +221,8 @@ export const Navbar = (props) => {
               backgroundPosition: "center",
               filter: "invert(1)",
               backgroundRepeat: "no-repeat",
-              margin:"0 auto",
-              width: "70%",
+              // margin:"0 auto",
+              width: "200px",
               backgroundImage: 'url("/misguided-logo.jpg")',
               backgroundSize: "contain",
             }}

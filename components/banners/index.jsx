@@ -97,7 +97,7 @@ export const Banners = () => {
                                             <Typography variant="p" color={"#eee"} fontWeight={"300"} >{active.slogan}</Typography>
 
                                            </Grid>
-                                           <Grid item xs={12} lg={6} sx={{ alignItems:'flex-end'  , margin:{ xs:"8px 0 0" , md:'0'} , height:{ xs:'fit-content' , md:'60px'} , display:'flex' , justifyContent:'flex-end'  }}>
+                                           <Grid item xs={12} lg={6} sx={{ alignItems:'flex-end'  , margin:{ xs:"21px 0 0" , md:'0'} , height:{ xs:'fit-content' , md:'60px'} , display:'flex' , justifyContent:'flex-end'  }}>
 
                                             <Typography textAlign={"end"} fontSize={"13px"} fontWeight={"300"} sx={{ scale:'0.9',transition:'100ms',color:"#eee"  , "&:hover":{ scale:'0.95' , textDecoration:'underline' ,color:"#40e0d0"  } }} >
                                                 <Link href={active.artistPageLink}>

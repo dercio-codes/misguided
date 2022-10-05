@@ -16,6 +16,7 @@ import "swiper/css/pagination";
 import { Autoplay, EffectCoverflow, Pagination, Navigation } from "swiper";
 import { EventModal } from "./event-modal";
 import { TableBookings } from "./table-bookings";
+import Link from "next/link";
 
 export const Events = (props) => {
   const { artist, text } = props;
@@ -26,13 +27,13 @@ export const Events = (props) => {
 
   const events = [
     {
-      title:'3 Man Show',
-      img:"/3-man-show.jpeg",
+      title: "3 Man Show",
+      img: "/3-man-show.jpeg",
     },
     {
-      title:'Spring Fling',
-      img:"/spring-fling-oct.jpeg",      
-    }
+      title: "Spring Fling",
+      img: "/spring-fling-oct.jpeg",
+    },
   ];
 
   const handleEventClick = (item) => {
@@ -53,7 +54,7 @@ export const Events = (props) => {
         height: { xs: "fit-content" },
         background: artist ? "" : "#111",
         // width: { xs: "450px", md: "500px", lg: "100%" },
-        width: "100%" ,
+        width: "100%",
       }}
     >
       <Grid container>
@@ -138,21 +139,43 @@ export const Events = (props) => {
                   {artist ? (
                     <></>
                   ) : (
-                    <Button
-                      sx={{
-                        width: { xs: "100%", md: "300px" },
-                        fontWeight: "500",
-                        fontSize: { xs: "16px", sm: "16px" },
-                        padding: { xs: "12px 0", md: "16px 0" },
-                        margin: "18px auto",
-                        background: "#eee",
-                        color: "#111",
-                        "&:hover": { color: "#eee" },
-                      }}
-                      onClick={() => handleTableBookingClick(item)}
-                    >
-                      Book Table
-                    </Button>
+                    <>
+                      <Button
+                        sx={{
+                          width: { xs: "100%", md: "300px" },
+                          fontWeight: "500",
+                          fontSize: { xs: "16px", sm: "16px" },
+                          padding: { xs: "12px 0", md: "16px 0" },
+                          margin: "18px auto",
+                          background: "#eee",
+                          color: "#111",
+                          "&:hover": { color: "#eee" },
+                        }}
+                        onClick={() => handleTableBookingClick(item)}
+                      >
+                        Book Table
+                      </Button>
+
+                      <Link href="https://www.howler.co.za/artists/5005?lang=en">
+                        <a>
+                          <Button
+                            sx={{
+                              width: { xs: "100%", md: "300px" },
+                              fontWeight: "500",
+                              fontSize: { xs: "16px", sm: "16px" },
+                              padding: { xs: "12px 0", md: "16px 0" },
+                              margin: "18px auto",
+                              background: "#eee",
+                              color: "#111",
+                              "&:hover": { color: "#eee" },
+                            }}
+                            // onClick={() => handleTableBookingClick(item)}
+                          >
+                            Buy Tickets
+                          </Button>
+                        </a>
+                      </Link>
+                    </>
                   )}
                 </SwiperSlide>
               );

@@ -33,7 +33,7 @@ const BookTable = ({ openEvent, setOpenTableBooking }) => {
         event_name: openEvent.title,
         indoor_or_outdoor: "",
         name: "",
-        num_of_people:0
+        num_of_people:0,
     });
 
     const handleFieldChange = (e) => {
@@ -60,10 +60,11 @@ const BookTable = ({ openEvent, setOpenTableBooking }) => {
         } else {
           axios
             .post("/api/email", {
-              cell: booking.number,
-              email: booking.email,
-              message: booking.query,
+              event_name: booking.event_name,
+              indoor_or_outdoor: booking.indoor_or_outdoor,
               name: booking.name,
+              num_of_people: booking.num_of_people,
+              image_link:"https://misguided.vercel.app/" + openEvent.img
             })
             .then((res) => {
               if (res.data.message == "MAIL_SENT") {

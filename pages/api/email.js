@@ -2,14 +2,15 @@ import { format_email } from "../../lib/standard-email-html-template";
 import { send_email } from "../../lib/emailer";
 
 export default async function handler(req, res) {
-  const email = req.body["email"];
+  const indoor_or_outdoor = req.body["indoor_or_outdoor"];
   const name = req.body["name"];
-  const cell = req.body["cell"];
-  const message = req.body["message"];
+  const event_name = req.body["event_name"];
+  const num_of_people = req.body["num_of_people"];
+  const image_link = req.body["image_link"];
+  
+  const email_html = format_email(name, indoor_or_outdoor, event_name, num_of_people , image_link);
 
-  const email_html = format_email(name, email, cell, message);
-
-   const headline = `Contact Request from ${name}`
+   const headline = `Table Booking From ${name}`
 
   try {
     await send_email(headline, email_html);

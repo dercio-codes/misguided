@@ -162,19 +162,19 @@ html body .swiper-button-next:after,
 .css-11u53oe-MuiSelect-select-MuiInputBase-input-MuiOutlinedInput-input.css-11u53oe-MuiSelect-select-MuiInputBase-input-MuiOutlinedInput-input.css-11u53oe-MuiSelect-select-MuiInputBase-input-MuiOutlinedInput-input {
   border: 3px solid #eee;
   z-index: 100000;
-  color: #eee;
+  color:white ;
 }
 .css-md26zr-MuiInputBase-root-MuiOutlinedInput-root:focus,
 .css-11u53oe-MuiSelect-select-MuiInputBase-input-MuiOutlinedInput-input.css-11u53oe-MuiSelect-select-MuiInputBase-input-MuiOutlinedInput-input.css-11u53oe-MuiSelect-select-MuiInputBase-input-MuiOutlinedInput-input
   :focus {
   border: 3px solid #eee;
   /* border:2px solid pink; */
-  color: #eee;
+  color:white ;
 }
 
 .css-1t8l2tu-MuiInputBase-input-MuiOutlinedInput-input,
 .css-1wc848c-MuiFormHelperText-root {
-  color: #eee;
+  color:white ;
 }
 
 .mui-focused {
@@ -198,7 +198,7 @@ html body .swiper-button-next:after,
   .css-11u53oe-MuiSelect-select-MuiInputBase-input-MuiOutlinedInput-input.css-11u53oe-MuiSelect-select-MuiInputBase-input-MuiOutlinedInput-input.css-11u53oe-MuiSelect-select-MuiInputBase-input-MuiOutlinedInput-input {
     border: 3px solid rgba(251, 251, 251, 0.9);
     /* border:2px solid pink; */
-    color: #eee;
+    color:white ;
   }
   #events .swiper-slide {
     display: flex;

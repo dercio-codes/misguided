@@ -1,5 +1,6 @@
 import { Box, Typography, Avatar, Grid, Button, Fade, Stack } from "@mui/material"
 import React, { useRef, useState } from "react";
+import EastIcon from '@mui/icons-material/East';
 // Import Swiper React components
 import { Swiper, SwiperSlide } from "swiper/react";
 import { Autoplay, EffectFade, Pagination, Navigation } from "swiper";
@@ -11,6 +12,7 @@ import "swiper/css/pagination";
 
 import { PulseLoader } from "react-spinners";
 import { Socials } from "../socials";
+import Link from "next/link";
 
 export const Banners = () => {
     const [loading, setLoading] = useState(false);
@@ -18,18 +20,21 @@ export const Banners = () => {
         {
             name: "Dj Shadzo",
             img: "/shadzo-2.jpeg",
+            artistPageLink:'/shadzo',
             embedItem: <iframe onLoad={() => setLoading(false)} style={{ borderRadius: "12px", margin: '18px 0' }} src="https://open.spotify.com/embed/artist/5JuA3291INTaMk0R8xMkZK?utm_source=generator" width="100%" height="315" frameBorder="0" allowFullScreen="" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe>,
             slogan: "If your girl don't know Shadzo don't dala."
         },
         {
             name: "Karlo Dj",
             img: "/Karlo-1.jpeg",
+            artistPageLink:'/karlo',
             embedItem: <iframe onLoad={() => setLoading(false)} style={{ borderRadius: "12px", margin: '18px 0' }} width="100%" height="315" src="https://www.youtube.com/embed/-J0fR8UMfIc" title="YouTube video player" frameBorder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowFullScreen></iframe>,
             slogan: "Old School RnB and Classic Jams."
         },
         {
             name: "YKM THEE MC",
             img: "/ykm-2.jpeg",
+            artistPageLink:'/ykm',
             embedItem: <iframe onLoad={() => setLoading(false)} style={{ borderRadius: "12px", margin: '18px 0' }} width="100%" height="315" src="https://www.youtube.com/embed/gy6gGT-G6ak" title="YouTube video player" frameBorder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowFullScreen loading="lazy"></iframe>,
             slogan: "Mr Lovers and Friends."
         }];
@@ -81,13 +86,25 @@ export const Banners = () => {
                         ) : (
                             <Fade in={active} sx={{ width: '100%', background: 'rgba(1,1,1,.3)', height: '100%', padding: { lg: "16px" } }} >
                                 <Box sx={{ padding: { lg: "2px 16px" } }}>
-                                    <Box sx={{ display: 'flex', alignItems: 'center', padding: { xs: "16px 12px", md: "0px" } }}>
+                                    <Box sx={{ display: 'flex', alignItems: 'center', padding: { xs: "16px 12px", md: "0px" } , width:'100%' , background:'' }}>
 
                                         <Avatar src={active.img} alt={active.name} sx={{ width: { lg: '120px', xs: "80px" }, height: { lg: '120px', xs: "80px" }, filter: "blur(0.3px)" }} ></Avatar>
-                                        <Stack sx={{ margin: { xs: '0px 21px' } }}>
+                                        <Stack sx={{ margin: { xs: '0px 21px' } , width:'100%' }}>
                                             <Typography variant="h6" color={"#eee"} fontWeight={"600"} textAlign={"start"}>{active.name}</Typography>
-                                            <Typography variant="p" color={"#eee"} fontWeight={"300"} >{active.slogan}</Typography>
+                                            <Box sx={{ display:'flex' , alignItems:'center' , justifyContent:'space-between' , width:'100%' , background:''}}>
 
+                                            <Typography variant="p" color={"#eee"} fontWeight={"300"} >{active.slogan}</Typography>
+                                            <Typography textAlign={"end"} color={"#eee"} fontSize={"16px"} fontWeight={"300"}  >
+                                                <Link href={active.artistPageLink}>
+                                                    <a style={{  display:'flex' , alignItems:'center' , }}>
+                                                       <p style={{ margin:'0 8px' }}>
+                                                         See more about {active.name}
+                                                        </p>
+                                                        <EastIcon sx-={{ color:'#eee' , fontWeight:600 , margin:'0 8px' }} />
+                                                    </a>
+                                                </Link>
+                                            </Typography  >
+                                            </Box>
                                         </Stack>
                                     </Box>
 
@@ -105,6 +122,8 @@ export const Banners = () => {
                                                 </Box>
                                             )
                                     }
+
+                                    
                                     <Box sx={{
                                         height: '48px',
                                         background: { xs: 'rgba(255,255,255,.1)', md: 'transparent' },

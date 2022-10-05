@@ -1,9 +1,14 @@
 import PhoneIcon from '@mui/icons-material/Phone';
 import { Box, Select, MenuItem, IconButton, Button, Grid, Typography, TextField, Stack } from "@mui/material"
 import { useState } from 'react';
+import { useSnackbar } from "notistack";
+import axios from "axios";
+import { GooSpinner } from "react-spinners-kit";
+import { PropagateLoader } from "react-spinners";
 
 export const BookNow = () => {
-
+    const enqueueSnackbar = useSnackbar();
+    const [isProcessing,setIsProcessing] = useState(false)
     const [booking, setBooking] = useState({
         name: "",
         tel:"",
@@ -11,10 +16,11 @@ export const BookNow = () => {
         event_date: "",
         event_name: "",
         event_location: "",
-        rider: "",
+        hospitality: "",
         email: "",
-        event_time: "",
-        how_many_hours: "",
+        set_time: "",
+        duration: "",
+        budget:0
     });
 
     const handleFieldChange = (e) => {
@@ -26,7 +32,73 @@ export const BookNow = () => {
         console.log(booking)
     }
 
-    const handleSubmit = ()  =>  console.log(booking)
+    // const handleSubmit = ()  =>  console.log(booking)
+    const handleSubmit = (e) => {
+        e.preventDefault();
+        setIsProcessing(true);
+    
+        const bookingValues = Object.values(booking);
+    
+        if (bookingValues.includes("")) {
+          enqueueSnackbar("please fill in all fields", {
+            variant: "warning",
+          });
+          setIsProcessing(false);
+        } else {
+          axios
+            .post("/api/bookTable", {
+                name:booking.name,
+                tel:booking.tel,
+                requested_artist:booking.requested_artist,
+                event_date:booking.event_date,
+                event_name:booking.event_name,
+                event_location:booking.event_location,
+                hospitality:booking.hospitality,
+                email:booking.email,
+                set_time:booking.set_time,
+                duration:booking.duration,
+                budget:booking.budget,
+            })
+            .then((res) => {
+              if (res.data.message == "MAIL_SENT") {
+                enqueueSnackbar("Email successfully sent", {
+                  variant: "success",
+                });
+    
+                setBooking({
+                    name:"",
+                    tel:"",
+                    requested_artist:"",
+                    event_date:"",
+                    event_name:"",
+                    event_location:"",
+                    hospitality:"",
+                    email:"",
+                    set_time:"",
+                    duration:"",
+                    budget:""
+                });
+    
+                setIsProcessing(false);
+              } else {
+                enqueueSnackbar(`Failed to send email : ${res.data.err.message}`, {
+                  variant: "error",
+                });
+    
+                setIsProcessing(false);
+              }
+            })
+            .catch((err) => {
+                console.log(err)
+                alert(err.mesage)
+            //   enqueueSnackbar(`Failed to send email : ${err.message}`, {
+            //     variant: "error",
+            //   });
+    
+              setIsProcessing(false);
+            });
+        }
+      };
 
     return (
         <Box id="book-now" sx={{ background: '#111', padding: "32px", minHeight: '50vh' }}>
@@ -43,14 +115,14 @@ export const BookNow = () => {
                 <Grid container columnSpacing={12}>
                     <Grid item xs={12} md={6}>
                         <Typography variant="p" width={"100%"} color={"#eee"} sx={{ fontSize: { xs: "18px", md: "21px" } }} fontWeight={"300"}>Name : </Typography>
-                        <TextField onChange={handleFieldChange} name="name" placeholder="John Doe." fullWidth sx={{
+                        <TextField onChange={handleFieldChange} name="name" helperText="Example : Misguided Entertainment" placeholder="John Doe." fullWidth sx={{
                             padding: "0", margin: '12px 0',
                             "& .MuiOutlinedInput-root": { border: '2px solid white' },
                             "& .MuiOutlinedInput-root.Mui-focused": { "& > fieldset": { border: '3px solid white', color: '#40e0d0' } },
                             "& .MuiOutlinedInput-root.Mui-focused": { "& > fieldset": { border: '3px solid white', color: '#40e0d0' } }
                         }} />
 
-<Typography variant="p" width={"100%"} color={"#eee"} sx={{ fontSize: { xs: "18px", md: "21px" } }} fontWeight={"300"}>Email : </Typography>
+                        <Typography variant="p" width={"100%"} color={"#eee"} sx={{ fontSize: { xs: "18px", md: "21px" } }} fontWeight={"300"}>Email : </Typography>
                         <TextField onChange={handleFieldChange} name="email" type="email" helperText="bookings@misguidedsa.com" placeholder="Email" fullWidth sx={{
                             padding: "0", margin: '12px 0',
                             "& .MuiOutlinedInput-root": { border: '2px solid white' },
@@ -58,7 +130,7 @@ export const BookNow = () => {
                             "& .MuiOutlinedInput-root.Mui-focused": { "& > fieldset": { border: '3px solid white', color: '#40e0d0' } }
                         }} />
 
-<Typography variant="p" width={"100%"} color={"#eee"} sx={{ fontSize: { xs: "18px", md: "21px" } }} fontWeight={"300"}>Phone Number : </Typography>
+                        <Typography variant="p" width={"100%"} color={"#eee"} sx={{ fontSize: { xs: "18px", md: "21px" } }} fontWeight={"300"}>Phone Number : </Typography>
                         <TextField onChange={handleFieldChange} name="tel" type="tel" helperText="Contact Number" placeholder="Tel" fullWidth sx={{
                             padding: "0", margin: '12px 0',
                             "& .MuiOutlinedInput-root": { border: '2px solid white' },
@@ -68,7 +140,7 @@ export const BookNow = () => {
 
                         <Typography variant="p" width={"100%"} color={"#eee"} sx={{ fontSize: { xs: "18px", md: "21px" } }} fontWeight={"300"}>Requested Artist : </Typography>
                         <Select onChange={handleFieldChange} name="requested_artist" helperText="Example : Dj Shadzo or YKM + Karlo" value={booking.requested_artist} fullWidth sx={{
-                            padding: "0", margin: '12px 0',
+                            padding: "0", margin: '12px 0 36px',
                             "& .MuiOutlinedInput-root": { border: '2px solid white' },
                             "& .MuiOutlinedInput-root.Mui-focused": { "& > fieldset": { border: '3px solid white', color: '#40e0d0' } },
                             "& .MuiOutlinedInput-root.Mui-focused": { "& > fieldset": { border: '3px solid white', color: '#40e0d0' } }
@@ -89,7 +161,7 @@ export const BookNow = () => {
                             "& .MuiOutlinedInput-root.Mui-focused": { "& > fieldset": { border: '3px solid white', color: '#40e0d0' } }
                         }} />
 
-                        <Typography variant="p" width={"100%"} color={"#eee"} sx={{ fontSize: { xs: "18px", md: "21px" } }} fontWeight={"300"}>Event Name : </Typography>
+                    <Typography variant="p" width={"100%"} color={"#eee"} sx={{ fontSize: { xs: "18px", md: "21px" } }} fontWeight={"300"}>Event Name : </Typography>
                         <TextField onChange={handleFieldChange} name="event_name" helperText="Please enter your event name" placeholder="Old School Fridays" fullWidth sx={{
                             padding: "0", margin: '12px 0',
                             "& .MuiOutlinedInput-root": { border: '2px solid white' },
@@ -97,22 +169,20 @@ export const BookNow = () => {
                             "& .MuiOutlinedInput-root.Mui-focused": { "& > fieldset": { border: '3px solid white', color: '#40e0d0' } }
                         }} />
 
+                    </Grid>
+                    <Grid item xs={12} md={6}>
+
                         <Typography variant="p" width={"100%"} color={"#eee"} sx={{ fontSize: { xs: "18px", md: "21px" } }} fontWeight={"300"}>Event Location : </Typography>
-                        <TextField onChange={handleFieldChange} name="event_location" placeholder="Roodeport Johanessburg." fullWidth sx={{
+                        <TextField onChange={handleFieldChange} name="event_location" helperText="Example : Boksburg , The Classic Indiah Hookah Lounge " placeholder="Roodeport Johanessburg." fullWidth sx={{
                             padding: "0", margin: '12px 0',
                             "& .MuiOutlinedInput-root": { border: '2px solid white' },
                             "& .MuiOutlinedInput-root.Mui-focused": { "& > fieldset": { border: '3px solid white', color: '#40e0d0' } },
                             "& .MuiOutlinedInput-root.Mui-focused": { "& > fieldset": { border: '3px solid white', color: '#40e0d0' } }
                         }} />
 
-
-
-
-                    </Grid>
-                    <Grid item xs={12} md={6}>
                         
-                        <Typography variant="p" width={"100%"} color={"#eee"} sx={{ fontSize: { xs: "18px", md: "21px" } }} fontWeight={"300"}>Rider : </Typography>
-                        <TextField onChange={handleFieldChange} name="rider" placeholder="Diesel 500." fullWidth sx={{
+                        <Typography variant="p" width={"100%"} color={"#eee"} sx={{ fontSize: { xs: "18px", md: "21px" } }} fontWeight={"300"}>Hospitality : </Typography>
+                        <TextField onChange={handleFieldChange} name="hospitality" helperText="Hospitality for requested artist." placeholder="Hennesy , Jameson , Jagermeister " fullWidth sx={{
                             padding: "0", margin: '12px 0',
                             "& .MuiOutlinedInput-root": { border: '2px solid white' },
                             "& .MuiOutlinedInput-root.Mui-focused": { "& > fieldset": { border: '3px solid white', color: '#40e0d0' } },
@@ -121,38 +191,30 @@ export const BookNow = () => {
 
 
                         <Typography variant="p" width={"100%"} color={"#eee"} sx={{ fontSize: { xs: "18px", md: "21px" } }} fontWeight={"300"}>Set Time : </Typography>
-                        <TextField onChange={handleFieldChange} name="event_time" helperText="Artist Set Time" type="time" placeholder="01/01/2023 , 00:00" fullWidth sx={{
+                        <TextField onChange={handleFieldChange} name="set_time" helperText="Artist Set Time" type="time" placeholder="01/01/2023 , 00:00" fullWidth sx={{
                             background: '', padding: "0", margin: '12px 0',
                             "& .MuiOutlinedInput-root": { border: '2px solid white' },
                             "& .MuiOutlinedInput-root.Mui-focused": { "& > fieldset": { border: '3px solid white', color: '#40e0d0' } },
                             "& .MuiOutlinedInput-root.Mui-focused": { "& > fieldset": { border: '3px solid white', color: '#40e0d0' } }
                         }} />
 
-                        <Typography variant="p" width={"100%"} color={"#eee"} sx={{ fontSize: { xs: "18px", md: "21px" } }} fontWeight={"300"}>How Many Hours : </Typography>
-                        <TextField onChange={handleFieldChange} name="how_many_hours" type="number" helperText="How long would you like to book the artist" placeholder="2 Hours" fullWidth sx={{
+                        <Typography variant="p" width={"100%"} color={"#eee"} sx={{ fontSize: { xs: "18px", md: "21px" } }} fontWeight={"300"}>Duration : </Typography>
+                        <TextField onChange={handleFieldChange} name="duration" type="number" helperText="How long would you like to book the artist" placeholder="2 Hours" fullWidth sx={{
                             padding: "0", margin: '12px 0',
                             "& .MuiOutlinedInput-root": { border: '2px solid white' },
                             "& .MuiOutlinedInput-root.Mui-focused": { "& > fieldset": { border: '3px solid white', color: '#40e0d0' } },
                             "& .MuiOutlinedInput-root.Mui-focused": { "& > fieldset": { border: '3px solid white', color: '#40e0d0' } }
                         }} />
 
-                         <Typography variant="p" width={"100%"} color={"#eee"} sx={{ fontSize: { xs: "18px", md: "21px" } }} fontWeight={"300"}>How Many Hours : </Typography>
-                        <TextField onChange={handleFieldChange} name="how_many_hours" type="number" helperText="How long would you like to book the artist" placeholder="2 Hours" fullWidth sx={{
+                         <Typography variant="p" width={"100%"} color={"#eee"} sx={{ fontSize: { xs: "18px", md: "21px" } }} fontWeight={"300"}>Budget : </Typography>
+                        <TextField onChange={handleFieldChange} name="budget" type="number" helperText="What is your budget for the requested artist?" placeholder="Budget price exlcudes hospitality" fullWidth sx={{
                             padding: "0", margin: '12px 0',
-                            "& .MuiOutlinedInput-root": { border: '2px solid white' },
+                            "& .MuiOutlinedInput-root": { border: '2px solid white' , margin:"0px 0 5px" },
                             "& .MuiOutlinedInput-root.Mui-focused": { "& > fieldset": { border: '3px solid white', color: '#40e0d0' } },
                             "& .MuiOutlinedInput-root.Mui-focused": { "& > fieldset": { border: '3px solid white', color: '#40e0d0' } }
                         }} />
 
-                        <Typography variant="p" width={"100%"} color={"#eee"} sx={{ fontSize: { xs: "18px", md: "21px" } }} fontWeight={"300"}>How Many Hours : </Typography>
-                        <TextField onChange={handleFieldChange} name="how_many_hours" type="number" helperText="How long would you like to book the artist" placeholder="2 Hours" fullWidth sx={{
-                            padding: "0", margin: '12px 0',
-                            "& .MuiOutlinedInput-root": { border: '2px solid white' },
-                            "& .MuiOutlinedInput-root.Mui-focused": { "& > fieldset": { border: '3px solid white', color: '#40e0d0' } },
-                            "& .MuiOutlinedInput-root.Mui-focused": { "& > fieldset": { border: '3px solid white', color: '#40e0d0' } }
-                        }} />
-
-                        <Typography variant="p" width={"100%"} color={"transparent"} sx={{ fontSize: { xs: "18px", md: "21px" } }} fontWeight={"300"}>How Many Hours : </Typography>
+                        <Typography variant="p" width={"100%"} color={"transparent"} sx={{ fontSize: { xs: "18px", md: "21px" } }} fontWeight={"300"}>Duration : </Typography>
                         <Box sx={{ height: '58px', margin: '12px 0' }}>
                             <Button sx={{
                                 width: { xs: "100%", md: '100%' },

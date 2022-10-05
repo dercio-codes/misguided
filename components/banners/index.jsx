@@ -84,11 +84,11 @@ export const Banners = () => {
                                 <SquadSlides />
                             </Box>
                         ) : (
-                            <Fade in={active} sx={{ width: '100%', background: 'rgba(1,1,1,.3)', height: '100%', padding: { lg: "16px" } }} >
+                            <Fade in={active} sx={{ width: '100%', background: 'rgba(1,1,1,.3)', height: '100%', padding:  "21px 8px"  }} >
                                 <Box sx={{ padding: { lg: "2px 16px" } }}>
                                     <Box sx={{ display: 'flex', alignItems: 'center', padding: { xs: "16px 12px", md: "0px" } , width:'100%' , background:'' }}>
 
-                                        <Avatar src={active.img} alt={active.name} sx={{ width: { lg: '120px', xs: "80px" }, height: { lg: '120px', xs: "80px" }, filter: "blur(0.3px)" }} ></Avatar>
+                                        <Avatar src={active.img} alt={active.name} sx={{ width: { lg: '120px', xs: "90px" }, height: { lg: '120px', xs: "90px" }, filter: "blur(0.3px)" }} ></Avatar>
                                         <Stack sx={{ margin: { xs: '0px 21px' } , width:'100%' }}>
                                             <Typography variant="h6" color={"#eee"} fontWeight={"600"} textAlign={"start"}>{active.name}</Typography>
                                            

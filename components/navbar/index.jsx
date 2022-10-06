@@ -222,7 +222,7 @@ export const Navbar = (props) => {
               filter: "invert(1)",
               backgroundRepeat: "no-repeat",
               // margin:"0 auto",
-              width: "200px",
+              width: "150px",
               backgroundImage: 'url("/misguided-logo.jpg")',
               backgroundSize: "contain",
             }}

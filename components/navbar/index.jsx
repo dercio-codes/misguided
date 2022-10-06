@@ -210,7 +210,7 @@ export const Navbar = (props) => {
           <Typography
             variant="h6"
             component="div"
-            sx={{ display: { xs: "flex", sm: "flex" } ,width:'100%'}}
+            sx={{ display: { xs: "flex", sm: "flex" } ,width:{xs:'100%',lg:'fit-content'}}}
           >
               <Link href="/">
           <a style={{ width:'100%' , display:'flex' , justifyContent:'flex-end' , scale:'0.7' }}>
@@ -222,7 +222,7 @@ export const Navbar = (props) => {
               filter: "invert(1)",
               backgroundRepeat: "no-repeat",
               // margin:"0 auto",
-              width: "150px",
+              width: "120px",
               backgroundImage: 'url("/misguided-logo.jpg")',
               backgroundSize: "contain",
             }}

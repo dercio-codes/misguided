@@ -84,7 +84,7 @@ export const Banners = () => {
                                 <SquadSlides />
                             </Box>
                         ) : (
-                            <Fade in={active} sx={{ width: '100%', background: 'rgba(1,1,1,.3)', height: '100%', padding:  "21px 8px"  }} >
+                            <Fade in={active} sx={{ width: '100%', background: 'rgba(1,1,1,.3)', height: '100%', padding:  "21px 8px"  }} id="artists-bg" >
                                 <Box sx={{ padding: { lg: "2px 16px" } }}>
                                     <Box sx={{ display: 'flex', alignItems: 'center', padding: { xs: "16px 12px", md: "0px" } , width:'100%' , background:'' }}>
 

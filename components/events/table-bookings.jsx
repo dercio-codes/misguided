@@ -120,7 +120,7 @@ const BookTable = ({ openEvent, setOpenTableBooking }) => {
                     <Grid item xs={12} md={6}>
                         <Typography variant="p" width={"100%"} color={"#eee"} sx={{ fontSize: { xs: "18px", md: "21px" } }} fontWeight={"300"}>Name : </Typography>
                         <TextField onChange={handleFieldChange} name="name" placeholder="John Doe." fullWidth sx={{
-                            padding: "0", margin: '12px 0',
+                            padding: "0", margin: '12px 0',color:'white',
                             "& .MuiOutlinedInput-root": { border: '2px solid white' },
                             "& .MuiOutlinedInput-root.Mui-focused": { "& > fieldset": { border: '3px solid white', color: '#40e0d0' } },
                             "& .MuiOutlinedInput-root.Mui-focused": { "& > fieldset": { border: '3px solid white', color: '#40e0d0' } }
@@ -128,8 +128,7 @@ const BookTable = ({ openEvent, setOpenTableBooking }) => {
 
                         <Typography variant="p" width={"100%"} color={"#eee"} sx={{ fontSize: { xs: "18px", md: "21px" } }} fontWeight={"300"}>Indoor or Outdoor : </Typography>
                         <Select onChange={handleFieldChange} name="indoor_or_outdoor" value={booking.indoor_or_outdoor} fullWidth sx={{
-                            padding: "0", margin: '12px 0',
-                            "& .MuiOutlinedSelect-root": { border: '2px solid white' },
+                            padding: "0", margin: '12px 0', color:'white',                            "& .MuiOutlinedSelect-root": { border: '2px solid white' },
                             "& .MuiOutlinedSelect-root.Mui-focused": { "& > fieldset": { border: '3px solid white', color: '#40e0d0' } },
                             "& .MuiOutlinedSelect-root.Mui-focused": { "& > fieldset": { border: '3px solid white', color: '#40e0d0' } }
                         }}>
@@ -144,7 +143,7 @@ const BookTable = ({ openEvent, setOpenTableBooking }) => {
                     <Grid item xs={12} md={6}>
                         <Typography variant="p" width={"100%"} color={"#eee"} sx={{ fontSize: { xs: "18px", md: "21px" } }} fontWeight={"300"}>Number of People at Table : </Typography>
                         <TextField onChange={handleFieldChange} name="num_of_people" type="number" min={2} max={12} placeholder="6" fullWidth sx={{
-                            padding: "0", margin: '12px 0',
+                            padding: "0", margin: '12px 0',color:'white',
                             "& .MuiOutlinedInput-root": { border: '2px solid white' },
                             "& .MuiOutlinedInput-root.Mui-focused": { "& > fieldset": { border: '3px solid white', color: '#40e0d0' } },
                             "& .MuiOutlinedInput-root.Mui-focused": { "& > fieldset": { border: '3px solid white', color: '#40e0d0' } }

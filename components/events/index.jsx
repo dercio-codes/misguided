@@ -157,7 +157,7 @@ export const Events = (props) => {
                         Book Table
                       </Button>
 
-                      <Link href="https://www.howler.co.za/artists/5005?lang=en">
+                      {/* <Link href="https://www.howler.co.za/artists/5005?lang=en">
                         <a style={{width:'100%'}} >
                           <Button
                             sx={{
@@ -175,7 +175,7 @@ export const Events = (props) => {
                             Buy Tickets
                           </Button>
                         </a>
-                      </Link>
+                      </Link> */}
                     </>
                   )}
                 </SwiperSlide>

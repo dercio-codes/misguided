@@ -275,7 +275,7 @@ const BookTable = ({ openEvent, setOpenTableBooking }) => {
                         {
                          booking.names_of_people && booking.names_of_people.map((item , index)=>{
                                 return(
-                                    <Box sx={{  width:'100%' , padding:' 8px 8px' }}>
+                                    <Box key={index} sx={{  width:'100%' , padding:' 8px 8px' }}>
                                         <Box sx={{display:'flex' , alignItems:'center' , padding:'12px 0' , justifyContent:'space-between' ,}}>
 
                                         <Typography key={index} variant="p" width={"100%"} color={"#eee"} sx={{ width: "100%",fontSize: { xs: "18px", md: "21px" } }} fontWeight={"300"}>{item} </Typography>

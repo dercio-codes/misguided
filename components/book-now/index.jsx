@@ -5,6 +5,7 @@ import { useSnackbar } from "notistack";
 import axios from "axios";
 import { GooSpinner } from "react-spinners-kit";
 import { PropagateLoader } from "react-spinners";
+import { toast } from 'react-toastify';
 
 export const BookNow = () => {
     const enqueueSnackbar = useSnackbar();
@@ -40,9 +41,12 @@ export const BookNow = () => {
         const bookingValues = Object.values(booking);
     
         if (bookingValues.includes("")) {
-          enqueueSnackbar("please fill in all fields", {
-            variant: "warning",
-          });
+            toast.warning("Please fill in all fields.", {
+                theme:"dark",
+                position: "top-right",
+                autoClose: 5000,
+                hideProgressBar: false,
+              });
           setIsProcessing(false);
         } else {
           axios
@@ -61,9 +65,13 @@ export const BookNow = () => {
             })
             .then((res) => {
               if (res.data.message == "MAIL_SENT") {
-                enqueueSnackbar("Email successfully sent", {
-                  variant: "success",
-                });
+                toast.success("Email Succesfully sent to Misguided.", {
+                    theme:"dark",
+                    position: "top-right",
+                    icon:"🚀",
+                    autoClose: 5000,
+                    hideProgressBar: false,
+                  });
     
                 setBooking({
                     name:"",
@@ -81,20 +89,18 @@ export const BookNow = () => {
     
                 setIsProcessing(false);
               } else {
-                enqueueSnackbar(`Failed to send email : ${res.data.err.message}`, {
-                  variant: "error",
-                });
+                toast.error("Error booking Misguided.", {
+                    theme:"dark",
+                    position: "top-right",
+                    autoClose: 5000,
+                    hideProgressBar: false,
+                  });
     
                 setIsProcessing(false);
               }
             })
             .catch((err) => {
                 console.log(err)
-                alert(err.mesage)
-            //   enqueueSnackbar(`Failed to send email : ${err.message}`, {
-            //     variant: "error",
-            //   });
-    
               setIsProcessing(false);
             });
         }

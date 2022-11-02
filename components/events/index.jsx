@@ -26,14 +26,18 @@ export const Events = (props) => {
   const [openEvent, setopenEvent] = useState("");
 
   const events = [
-    {
-      title: "3 Man Show",
-      img: "/3-man-show.jpeg",
-    },
-    {
-      title: "Spring Fling",
-      img: "/spring-fling-oct.jpeg",
-    },
+   {
+    title:'Poppy`s Fridays',
+    img:"gig-1.jpeg"
+   },
+   {
+    title:'Ba Straata',
+    img:"gig-2.jpeg"
+   },
+   {
+    title:'Night of Classics',
+    img:"gig-3.jpeg"
+   },
   ];
 
   const handleEventClick = (item) => {

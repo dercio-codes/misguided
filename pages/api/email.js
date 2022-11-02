@@ -7,8 +7,11 @@ export default async function handler(req, res) {
   const event_name = req.body["event_name"];
   const num_of_people = req.body["num_of_people"];
   const image_link = req.body["image_link"];
+  const cell = req.body["cell"];
+  const email = req.body["email"];
+  const names_of_people = req.body["names_of_people"];
   
-  const email_html = format_email(name, indoor_or_outdoor, event_name, num_of_people , image_link);
+  const email_html = format_email(name, indoor_or_outdoor, event_name, num_of_people , image_link , email , cell , names_of_people);
 
    const headline = `Table Booking From ${name}`
 

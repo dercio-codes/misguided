@@ -132,7 +132,7 @@ const BookTable = ({ openEvent, setOpenTableBooking }) => {
               names_of_people: booking.names_of_people,
               cell: booking.cell,
               email: booking.email,
-              image_link:"https://misguided.vercel.app/" + openEvent.img
+              image_link:"https://misguidedsa.co.za/" + openEvent.img
             })
             .then((res) => {
               if (res.data.message == "MAIL_SENT") {

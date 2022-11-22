@@ -27,16 +27,8 @@ export const Events = (props) => {
 
   const events = [
    {
-    title:'Poppy`s Fridays',
-    img:"gig-1.jpeg"
-   },
-   {
-    title:'Ba Straata',
-    img:"gig-2.jpeg"
-   },
-   {
-    title:'Night of Classics',
-    img:"gig-3.jpeg"
+    title:'Old School Fridays',
+    img:"old-school.jpeg"
    },
   ];
 

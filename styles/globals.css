@@ -23,10 +23,7 @@ a {
 #instagram-icon {
   transform: scale(0.7);
 }
-#book-now{
-  background-image: url("/public/circles.png");
-  background-position:cover;
-}
+
 .swiper {
   width: 100%;
   padding-top: 50px;
@@ -57,9 +54,6 @@ a {
   padding: 21px;
   flex-direction: column;
   align-items: center;
-}
-#events .swiper-slide {
-  justify-content: space-evenly;
 }
 .heartbeat {
   -webkit-animation: heartbeat 1.5s ease-in-out infinite both;
@@ -163,33 +157,32 @@ html body .swiper-button-next:after,
 .swiper-pagination-progressbar .swiper-pagination-progressbar-fill {
   background: #555 !important;
 }
-.css-k9h6l9,
-.css-qiwgdb {
-  color: white;
-  border: 3px solid #eee;
-}
-.MuiFormHelperText-root
-  .MuiFormHelperText-sizeMedium
-  .MuiFormHelperText-contained {
-  color: white;
-}
+
 .css-md26zr-MuiInputBase-root-MuiOutlinedInput-root,
 .css-11u53oe-MuiSelect-select-MuiInputBase-input-MuiOutlinedInput-input.css-11u53oe-MuiSelect-select-MuiInputBase-input-MuiOutlinedInput-input.css-11u53oe-MuiSelect-select-MuiInputBase-input-MuiOutlinedInput-input {
   border: 3px solid #eee;
-  z-index: 3;
-  color: white;
+  /* border:2px solid pink; */
+  color: #eee;
 }
 .css-md26zr-MuiInputBase-root-MuiOutlinedInput-root:focus,
 .css-11u53oe-MuiSelect-select-MuiInputBase-input-MuiOutlinedInput-input.css-11u53oe-MuiSelect-select-MuiInputBase-input-MuiOutlinedInput-input.css-11u53oe-MuiSelect-select-MuiInputBase-input-MuiOutlinedInput-input
   :focus {
   border: 3px solid #eee;
   /* border:2px solid pink; */
-  color: white;
+  color: #eee;
 }
-
+.css-v7esy , .css-1x5jdmq{
+  color: #eee !important;
+}
+.css-19hsd7n{
+  border: 2px solid white !important;
+}
+.css-qiwgdb{
+  border: 2px solid #eee !important;
+}
 .css-1t8l2tu-MuiInputBase-input-MuiOutlinedInput-input,
 .css-1wc848c-MuiFormHelperText-root {
-  color: white;
+  color: #eee;
 }
 
 .mui-focused {
@@ -213,7 +206,7 @@ html body .swiper-button-next:after,
   .css-11u53oe-MuiSelect-select-MuiInputBase-input-MuiOutlinedInput-input.css-11u53oe-MuiSelect-select-MuiInputBase-input-MuiOutlinedInput-input.css-11u53oe-MuiSelect-select-MuiInputBase-input-MuiOutlinedInput-input {
     border: 3px solid rgba(251, 251, 251, 0.9);
     /* border:2px solid pink; */
-    color: white;
+    color: #eee;
   }
   #events .swiper-slide {
     display: flex;

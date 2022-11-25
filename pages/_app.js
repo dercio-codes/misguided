@@ -9,6 +9,7 @@ function MyApp({ Component, pageProps }) {
   return (
     <div>
       <Head>
+      <title>Misguided Ent.</title>
       </Head>
       <body>
       <Component {...pageProps} />

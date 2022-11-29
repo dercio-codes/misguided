@@ -10,7 +10,7 @@ function MyApp({ Component, pageProps }) {
     <div>
       <Head>
       <title>Misguided Ent.</title>
-      <link rel="icon" type="image/x-icon" href="/misguided-logo.jpg">
+      <link rel="icon" type="image/x-icon" href="/misguided-logo.jpg" />
       </Head>
       <body>
       <Component {...pageProps} />

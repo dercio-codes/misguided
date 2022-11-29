@@ -9,7 +9,9 @@ function MyApp({ Component, pageProps }) {
   return (
     <div>
       <Head>
-      <title>Misguided Ent.</title>
+      <title>Misguided Ent.
+      </title>
+        <link rel="icon" sizes="32x32" type="image/x-icon" href="/misguided-logo.ico"/>
       </Head>
       <body>
       <Component {...pageProps} />

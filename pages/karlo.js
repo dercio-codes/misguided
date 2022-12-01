@@ -2,10 +2,21 @@ import { Box, Avatar, Grid, Typography } from "@mui/material";
 import { Events } from "../components/events";
 import { Navbar } from "../components/navbar";
 import { Socials } from "../components/socials";
+import Head from 'next/head';
 
 const Karlo = () => {
   return (
     <Box sx={{ background: "#000" }}>
+          <Head>
+      <title>Misguided Ent. | Karlo
+      </title>
+      <meta
+          name="description"
+          content="An authentic dj that brings a nostalgic vibe like no other, with over ten years experience in the industry his versatile style takes you on a journey filled with soulful vibes."
+          key="desc"
+        />
+        <link rel="icon" sizes="32x32" type="image/x-icon" href="/misguided-logo.ico"/>
+      </Head>
       <Navbar />
       <Box
         sx={{

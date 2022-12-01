@@ -13,14 +13,14 @@ import { PropagateLoader } from "react-spinners";
 export const TableBookings = ({ state, openEvent }) => {
     const { openTableBooking, setOpenTableBooking } = state;
     return (
-        <Modal open={openTableBooking} onBackdropClick={() => { setOpenTableBooking(false) }} sx={{ border: 'none', display: 'flex', alignItems: 'center' , background:'transparent' ,justifyContent:'center' }}>
-            <Box sx={{ background: '', height: '100vh', overflow: 'auto', padding: '21px', margin: 'auto 0', border: 'none', width: '100%', display: 'flex', alignItems: 'center' , justifyContent:'center' }}>
+        <Drawer anchor={"bottom"} open={openTableBooking} onBackdropClick={() => { setOpenTableBooking(false) }} sx={{ border: 'none', display: 'flex', alignItems: 'center' , background:'rgba(1,1,1,.3)' ,justifyContent:'center' }}>
+            <Box sx={{ background: 'transparent', height: '80vh', overflow: 'auto', padding: '0', margin: 'auto 0', border: 'none', width: '100%', display: 'flex', alignItems: 'center' , justifyContent:'center' }}>
 
                 <BookTable openEvent={openEvent} setOpenTableBooking={setOpenTableBooking} />
 
             </Box>
 
-        </Modal>
+        </Drawer>
     )
 }
 
@@ -180,6 +180,9 @@ const BookTable = ({ openEvent, setOpenTableBooking }) => {
 
     return (
         <Box id="book-now" sx={{ background: '#111', margin: 'suto 0', padding: "32px", maxHeight:'80vh' , overflowY:'auto' }}>
+           <Box sx={{ width:'100%' , display:'flex' , justifyContent:'flex-end' }}>
+            <Button onClick={()=>setOpenTableBooking(false)} sx={{ margin:'21px 0' , fontSize:'32px' , color:'#eee' }} >X</Button>
+               </Box>
             <Box sx={{ background: '', width: { lg: '100%', xs: '100%' }, padding: '0', display: 'flex', alignItems: 'center', justifyContent: 'space-between' }}>
                 <Box sx={{ display: 'flex', alignItems: 'center', }}>
                     <IconButton sx={{ background: '', border: '3px solid #eee', width: '80px', height: '80px' }}>

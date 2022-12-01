@@ -2,10 +2,25 @@ import { Box, Avatar, Grid, Typography } from "@mui/material";
 import { Events } from "../components/events";
 import { Navbar } from "../components/navbar";
 import { Socials } from "../components/socials";
+import Head from 'next/head';
+
 
 const YKM = () => {
   return (
     <Box sx={{ background: "#000" }}>
+                 <Head>
+      <title>Misguided Ent. | YKM
+      </title>
+      <meta
+          name="description"
+          content="Ykmtheemc Mr lovers and friends and if you don't know, now you
+                know niggaaa.
+                Ykmtheemc is versatile Mc, life of the party,
+                people's favorite."
+          key="desc"
+        />
+        <link rel="icon" sizes="32x32" type="image/x-icon" href="/misguided-logo.ico"/>
+      </Head>
       <Navbar />
       <Box
         sx={{

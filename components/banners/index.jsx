@@ -169,19 +169,19 @@ export const SquadSlides = () => {
                 className="mySwiper"
             >
                 <SwiperSlide>
-                    <img src="/misguided-2.jpeg" />
+                    <img src="/misguided-2.jpeg" alt="Miguided Entertainment. Karlo , YKM and Dj Shadzo" />
                 </SwiperSlide>
                 <SwiperSlide>
-                    <img src="/misguided-3.jpeg" />
+                    <img src="/misguided-3.jpeg" alt="Miguided Entertainment. Karlo , YKM and Dj Shadzo" />
                 </SwiperSlide>
                 <SwiperSlide>
-                    <img src="/misguided-4.jpeg" />
+                    <img src="/misguided-4.jpeg" alt="Miguided Entertainment. Karlo , YKM and Dj Shadzo" />
                 </SwiperSlide>
                 <SwiperSlide>
-                    <img src="/misguided-5.jpeg" />
+                    <img src="/misguided-5.jpeg"  alt="Miguided Entertainment. Karlo , YKM and Dj Shadzo"/>
                 </SwiperSlide>
                 <SwiperSlide>
-                    <img src="/misguided-6.jpeg" />
+                    <img src="/misguided-6.jpeg" alt="Miguided Entertainment. Karlo , YKM and Dj Shadzo" />
                 </SwiperSlide>
 
 

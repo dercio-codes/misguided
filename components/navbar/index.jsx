@@ -205,7 +205,7 @@ export const Navbar = (props) => {
             <MenuIcon />
           </IconButton>
           </Box>
-          <Box sx={{ background:'' , width:'50%',display:'flex' , justifyContent:{ xs:'flex-end' , md:'flex-start'} }}>
+          <Box sx={{ background:'' , width:'50%',display:'flex' , justifyContent:{ xs:'flex-start' , md:'flex-start'} }}>
 
           <Typography
             variant="h6"

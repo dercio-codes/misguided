@@ -98,7 +98,7 @@ export const AudipPLayer = () => {
                    		height:'120px'
                    		 }} />
               </Grid>
-                                          <Grid item xs={10.5}>
+                                          <Grid item xs={8} lg={10.5} >
               <AudioPlayer 
               	style={{ height:'120px' }}
                 src={openSong.url}

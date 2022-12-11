@@ -161,7 +161,9 @@ const AudioItem = (props) => {
                 
                 <Grid item xs={1.5} lg={1} sx={{ display:'flex' , alignItems:'center' , justifyContent:'center' }} >  
                 	<Link href={url}>
-                	<CloudDownloadIcon sx={{ fontSize:{ xs:'2rem' , lg:'2.5rem'} , scale:'.9' , transition:'800ms' , cursor:'pointer' , "&:hover":{ scale:'1' } , color:'#eee' }} />
+                	<a>
+                  <CloudDownloadIcon sx={{ fontSize:{ xs:'2rem' , lg:'2.5rem'} , scale:'.9' , transition:'800ms' , cursor:'pointer' , "&:hover":{ scale:'1' } , color:'#eee' }} />
+                  </a>
                 	</Link>
                 </Grid>
                 

@@ -196,13 +196,12 @@ function Upload() {
                             "& .MuiOutlinedInput-root.Mui-focused": { "& > fieldset": { border: '1px solid white', color: '#40e0d0' } }
                         }} />
             <Button sx={{ width:'100%' , padding:'21px' , background:'rgba(1,1,1,.9)' }} onClick={handleFileUpload}>Upload</Button>
-            <p>{percent} "% done"</p>
+            <p>{percent} % done</p>
             </Grid>
                         <Grid item xs={12} lg={6}>
                 <ImageDropZone files={files} setFiles={setFiles} />
 
-                        <audio src={preview} alt="" style={{ width:"100%" , objectFit:'contain' }} />
-            
+                     
             </Grid>
              <Grid item xs={12} lg={12}>
             </Grid>
@@ -320,7 +319,7 @@ function ImageDropZone(props) {
           }}
         />
         <p style={{ fontSize: "12px", textTransform: "uppercase" }}>
-          Drag 'n' drop the songs thumbnail
+        {"  Drag 'n' drop the songs thumbnail"}
         </p>
         <p
           style={{

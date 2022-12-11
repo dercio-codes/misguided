@@ -151,7 +151,7 @@ const AudioItem = (props) => {
                    		 </Box>
                    		 </Box>
                 </Grid>
-                <Grid item xs={5.5} lg={8.5}>
+                <Grid item xs={5} lg={8.5}>
 
                    <Box sx={{ width:'100%' , height:'120px' , background:'' , display:'flex' , padding:'0 12px' , flexDirection:'column' , justifyContent:'center' }} >
                    	<Typography variant="h3" sx={{ fontSize:{ xs: '16px' , lg:'24px'} , color:'rgba( 200 , 200 , 200 , .9 )' , margin:'4px 0' , fontWeight:'600' }}> {title} </Typography>

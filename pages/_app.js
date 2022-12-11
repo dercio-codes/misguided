@@ -3,7 +3,7 @@ import Script from "next/script";
 import "../styles/globals.css";
 import 'react-toastify/dist/ReactToastify.css';
 import { ToastContainer, toast } from 'react-toastify';
-
+import { AudipPLayer } from "./../components/AudioPlayer"
 
 function MyApp({ Component, pageProps }) {
   return (
@@ -26,7 +26,7 @@ function MyApp({ Component, pageProps }) {
       <body>
       <Component {...pageProps} />
       <ToastContainer toastStyle={{ backgroundColor: "#eee" , color:'#eee' }} />
-
+      <AudipPLayer />
       </body>
     </main>
   );

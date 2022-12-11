@@ -238,3 +238,9 @@ html body .swiper-button-next:after,
     height: 400px;
   }
 }
+
+
+.rhap_container{
+  background: #111 !important;
+  color: #eee;
+}

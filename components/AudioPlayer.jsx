@@ -80,7 +80,7 @@ export const AudipPLayer = () => {
                 }
               </Box>
               </Grid>
-                            <Grid item xs={1.5}>
+                            <Grid item xs={4} lg={1.5}>
              {/* <Box sx={{ 
               			height:'120px' , 	
               			width:'100%' , 
@@ -133,7 +133,7 @@ const AudioItem = (props) => {
                   background:'rgba(1,1,1,.3)'
                    }}> 
                 <Grid container>
-                <Grid item xs={1.5}>
+                <Grid item xs={4} lg={1.5}>
                    <Box sx={{ 
                    		width:'100%' , 
                    		backgroundImage:`url("${artwork}")` ,
@@ -151,11 +151,11 @@ const AudioItem = (props) => {
                    		 </Box>
                    		 </Box>
                 </Grid>
-                <Grid item xs={7.5} lg={8.5}>
+                <Grid item xs={5.5} lg={8.5}>
 
                    <Box sx={{ width:'100%' , height:'120px' , background:'' , display:'flex' , padding:'0 12px' , flexDirection:'column' , justifyContent:'center' }} >
-                   	<Typography variant="h3" sx={{ fontSize:'24px' , color:'rgba( 200 , 200 , 200 , .9 )' , margin:'4px 0' , fontWeight:'600' }}> {title} </Typography>
-                   	<Typography variant="h3" sx={{ fontSize:'21px' , color:'rgba( 200 , 200 , 200 , .9 )' , margin:'4px 0' , fontWeight:'300' }}> {artist} </Typography>
+                   	<Typography variant="h3" sx={{ fontSize:{ xs: '16px' , lg:'24px'} , color:'rgba( 200 , 200 , 200 , .9 )' , margin:'4px 0' , fontWeight:'600' }}> {title} </Typography>
+                   	<Typography variant="h3" sx={{ fontSize:{ xs: '14px' , lg:'21px'} , color:'rgba( 200 , 200 , 200 , .9 )' , margin:'4px 0' , fontWeight:'300' }}> {artist} </Typography>
                    </Box>
                 </Grid>
                 

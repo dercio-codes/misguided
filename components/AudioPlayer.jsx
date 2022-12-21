@@ -8,6 +8,9 @@ import ExpandIcon from '@mui/icons-material/Expand';
 import ExpandLessIcon from '@mui/icons-material/ExpandLess';
 import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
 import Link from "next/link";
+import { OpenSongContext } from "./../pages/_app" 
+import { query, doc ,  collection, addDoc , setDoc, getDocs, where } from "firebase/firestore";
+import { storage , googleProvider , facebookProvider , auth , db } from "./../firebase/firebaseConfig";
 
 const DUMMY_DATA = [
   {
@@ -56,7 +59,26 @@ const DUMMY_DATA = [
 
 export const AudipPLayer = () => {
     const [openMusic, setOpenMusic] = React.useState(false);
-    const [openSong, setOpenSong] = React.useState(DUMMY_DATA[0]);
+    const {open, setOpen} = React.useContext(OpenSongContext);
+    const [songs, setSongs] = React.useState([]);
+    console.log(setOpen)
+
+  const getContent = async () => {
+    const local = []
+    const querySnapshot = await getDocs(collection(db, "songs"));
+
+    querySnapshot.forEach((item)=>{
+        local.push(item.data())
+    })
+    console.log(local)
+    setSongs(local)
+    // setLoading(false)
+  }
+
+     React.useEffect(async()=>{
+    getContent()
+  },[])
+
 
 	return(
    		<Box sx={{ 
@@ -91,7 +113,7 @@ export const AudipPLayer = () => {
                    	}} />*/}
                    	     <Box sx={{ 
                    		width:'100%' , 
-                   		backgroundImage:`url("${openSong.artwork}")` ,
+                   		backgroundImage:`url("${open.artwork}")` ,
                    		backgroundSize:'cover',
                    		backgroundPosition:'center',
                    		backgroundRepeat:'no-repeat', 
@@ -101,14 +123,14 @@ export const AudipPLayer = () => {
                                           <Grid item xs={8} lg={10.5} >
               <AudioPlayer 
               	style={{ height:'120px' }}
-                src={openSong.url}
+                src={open.url}
                />
               </Grid>
               
               </Grid>
               <Box sx={{ height:openMusic ? '250px' : "0px" , background:'#222' , padding:'0' , transition:'800ms' , overflowY:'auto' }}>
               {
-              	DUMMY_DATA.map((item)=>( <AudioItem key={item.id} activeSong={item.id === openSong.id} setOpenSong={setOpenSong} song={item} /> ))
+              	songs.map((item)=>( <AudioItem key={item.id} activeSong={item.id === open.id} setOpen={setOpen} song={item} /> ))
               }
 
 
@@ -168,7 +190,7 @@ const AudioItem = (props) => {
                 </Grid>
                 
                 <Grid item xs={1.5} lg={1} sx={{ display:'flex' , alignItems:'center' , justifyContent:'center' }} >  
-                	<PlayCircleIcon sx={{ fontSize:{ xs:'2rem' , lg:'2.5rem'} , scale:'.9' , transition:'800ms' , cursor:'pointer' , "&:hover":{ scale:'1' } , color:'#eee' }} onClick={()=>{props.setOpenSong(props.song)}} />
+                	<PlayCircleIcon sx={{ fontSize:{ xs:'2rem' , lg:'2.5rem'} , scale:'.9' , transition:'800ms' , cursor:'pointer' , "&:hover":{ scale:'1' } , color:'#eee' }} onClick={()=>{props.setOpen(props.song)}} />
                 </Grid>
                   
                 </Grid>

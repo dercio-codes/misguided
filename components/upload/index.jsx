@@ -1,29 +1,36 @@
 import { useState , useEffect } from "react";
 import { storage , googleProvider , facebookProvider , auth , db } from "./../../firebase/firebaseConfig";
 import { ref, uploadBytesResumable, getDownloadURL } from "firebase/storage";
-import { Box , LinearProgress , Grid } from '@mui/material';
+import { Box , LinearProgress , Grid , Paper , MenuItem } from '@mui/material';
 import Typography from '@mui/material/Typography';
-import { Button , CircularProgress ,Select ,Drawer ,OutlinedInput ,MenuItem,TextField } from '@mui/material';
+import { Button , IconButton , CircularProgress ,Select ,Drawer ,OutlinedInput,TextField } from '@mui/material';
 import InstagramIcon from '@mui/icons-material/Instagram';
-import { query, doc ,  collection, addDoc , setDoc, getDocs, where } from "firebase/firestore";
-
+import { query, doc ,  collection, addDoc , deleteDoc , setDoc, getDocs, where } from "firebase/firestore";
+import PlayCircleOutlineIcon from '@mui/icons-material/PlayCircleOutline';
 import SpeedDial from '@mui/material/SpeedDial';
 import SpeedDialIcon from '@mui/material/SpeedDialIcon';
 import React from "react";
 import { useDropzone } from "react-dropzone";
-
+import { OpenSongContext } from "./../../pages/_app" 
+import DeleteForeverOutlinedIcon from '@mui/icons-material/DeleteForeverOutlined';
 
 function Upload() {
 
     // State to store uploaded file
     const [files, setFiles] = useState([]);
+    const [songs, setSongs] = useState([]);
+    const [songFiles, setSongFiles] = useState([]);
     const [newImage, SetNewImage] = useState("");
-    const [newSongItem, setNewSongItem] = useState({
-      artist:"",
-    	songName:"",
-    	thumbnail:"",
-    });
+    const [newSongItem, setNewSongItem] = useState(  {
+    title: "",
+    artist: "",
+    artwork: "",
+    category: "",
+    url: "",
+    id: ""
+  });
     const [loading, setLoading] = useState(false);
+    const {open, setOpen} = React.useContext(OpenSongContext);
  
     // progress
     const [percent, setPercent] = useState(0);
@@ -31,7 +38,7 @@ function Upload() {
 
     // Handle file upload event and update state
     function handleFileChange(event) {
-        setFile(event.target.files[0]);
+        setFile(event.target.files);
     }
 
 	const [preview, setPreview] = useState()
@@ -46,38 +53,45 @@ function Upload() {
     
   }
 
+  const getContent = async () => {
+    const local = []
+    const querySnapshot = await getDocs(collection(db, "songs"));
 
- // useEffect(() => {
- //        if (!files) {
- //            setPreview(undefined)
- //            return
- //        }
+    querySnapshot.forEach((item)=>{
+        local.push(item.data())
+    })
+    console.log(local)
+    setSongs(local)
+    setLoading(false)
+  }
 
- //        const objectUrl = URL.createObjectURL(files)
- //        setPreview(objectUrl)
-
- //        // free memory when ever this component is unmounted
- //        return () => URL.revokeObjectURL(objectUrl)
- //    }, [files])
+  useEffect(async()=>{
+    getContent()
+  },[])
 
 
     const handleFileUpload = async () => {
-        const fileName = files.name
+        const fileName = files[0]["name"]
         const idxDot = fileName.lastIndexOf(".") + 1;
         const extFile = fileName.substr(idxDot, fileName.length).toLowerCase();
     
-        if (!file) {
+        if (!files) {
           alert("Please upload an image first!");
         }
+        console.log(newSongItem)
+        console.log(songFiles)
+        console.log(files[0])
     
-        if (extFile == "mp3" || extFile == "mp4" || extFile == "m4a" || extFile == "wav") {
-          const storageRef = ref(storage, `/songs/${file.name}`);
+        if (extFile == "jpg" || extFile == "gif" || extFile == "jpeg" || extFile == "png") {
+          // Create a referene of where the files will be stored
+          const storageRef = ref(storage, `/songs/${files[0]["name"]}`);
+          const audioStorageRef = ref(storage, `/songs/${songFiles["name"]}`);
     
           // progress can be paused and resumed. It also exposes progress updates.
-          // Receives the storage reference and the file to upload.
-          const uploadTask = uploadBytesResumable(storageRef, file);
-    
-          uploadTask.on(
+          const uploadArtworkTask =  uploadBytesResumable(storageRef, files[0]);
+          const uploadSongTask =  uploadBytesResumable(audioStorageRef, songFiles);
+          
+          uploadSongTask.on(
             "state_changed",
             (snapshot) => {
               const percent = Math.round(
@@ -86,73 +100,62 @@ function Upload() {
     
               // update progress
               setPercent(percent);
+              console.log(percent)
+              setLoading(true)
             },
             (err) => console.log(err),
-            () => {
+            async () => {
               // download url
-              getDownloadURL(uploadTask.snapshot.ref).then(async (url) => {
-                console.log(url);
-                try {
-                  await setDoc(doc(db, "songs", `${new Date().getTime()} `), {
-                    ...newSongItem,
-                    imageSource: url,
-                  });
-                 
-                } catch (err) {
-                  console.error(err);
-                  alert(err.message);
-                }
+              // Receives the storage reference and the file to upload.
+              const imageUrl = await getDownloadURL(uploadArtworkTask.snapshot.ref)
+        
+              getDownloadURL(uploadSongTask.snapshot.ref).then(async (url) => {
+                
+                 try {
+              console.log("GOing in")
+              await setDoc(doc(db, "songs", `${new Date().getTime()} `), {
+                ...newSongItem,
+                artwork:imageUrl,
+                url:url
+              });
+        getContent()
+
+              setLoading(false)
+
+          } catch (err) {
+              console.error(err);
+              alert(err.message);
+          }
+
+
               });
             }
           );
+
         } else {
           alert("Only jpg/jpeg and png files are allowed!");
         }
       };
 
-    // const handleFileUpload =  async() => {
+   
+    const deleteItem = async (song) => {
+      console.log(song)
+setLoading(true)
 
-    //      if (!file) {
-    //         alert("Please upload an image first!");
-    //     }
- 
-    //     const storageRef = ref(storage, `/products/${file.name}`);
- 
-    //     // progress can be paused and resumed. It also exposes progress updates.
-    //     // Receives the storage reference and the file to upload.
-    //     const uploadTask = uploadBytesResumable(storageRef, file);
- 
-    //     uploadTask.on(
-    //         "state_changed",
-    //         (snapshot) => {
-    //             const percent = Math.round(
-    //                 (snapshot.bytesTransferred / snapshot.totalBytes) * 100
-    //             );
- 
-    //             // update progress
-    //             setPercent(percent);
-    //         },
-    //         (err) => console.log(err),
-    //         () => {
-    //             // download url
-    //             getDownloadURL(uploadTask.snapshot.ref).then( async (url) => {
-    //                 console.log(url);
-    //                 try {
-    //                    await setDoc(doc(db, "images", `${new Date().getTime()} `), {
-    //                             ...newSongItem,
-    //                             imageSource:url,
-    //                     });
-    //                    	history.push("/all-images")
-    //                 } catch (err) {
-    //                   console.error(err);
-    //                   alert(err.message);
-    //                 }
+    const querySnapshot = await getDocs(collection(db, "songs"));
 
-    //             });
-    //         }
-    //     );
-    // };
+    querySnapshot.forEach(async (item) => {
+      console.log(item)
+      if (item.data().title === song.title) {
+        await deleteDoc(doc(db, "songs", item.id), {
+          ...song,
+        });
 
+        console.log("Done deleting")
+        getContent()
+      }
+    });
+  }
 
     
     return (
@@ -161,8 +164,30 @@ function Upload() {
         loading ? (
           <Box sx={{ height:'50vh' , background:'' , display:'flex' , justifyContent:'center' , alignItems
           :'center' , margin:'21px 0' }}>
-          <CircularProgress size={"12.5rem"} sx={{ margin:"25vh auto" }} />
-          </Box>
+         <Box sx={{ position: 'relative', display: 'inline-flex' , scale:'12rem' }}>
+      <CircularProgress size={"12rem"} variant="determinate" value={percent} sx={{ color:'' }} />
+      <Box
+        sx={{
+          top: 0,
+          left: 0,
+          bottom: 0,
+          right: 0,
+          position: 'absolute',
+          display: 'flex',
+          alignItems: 'center',
+          justifyContent: 'center',
+          color:"#eee"
+        }}
+      >
+        <Typography
+          variant="caption"
+          component="div"
+          color="text.secondary"
+          sx={{ color:'#eee', fontSize:'32px' }}
+        >{`${Math.round(percent)}%`}</Typography>
+      </Box>
+    </Box>
+         </Box>
           ) : (
           <>
         <Box sx={{ width:`${percent}%` , background:'rgba(1,1,1,.7)' , height:'8px' , position:'fixed' , top:0 , left:'0' }} />
@@ -178,7 +203,7 @@ function Upload() {
                         }} />
 
                         <Typography variant="p" width={"100%"} color={"#eee"} sx={{ fontSize: { xs: "18px", md: "21px" } }} fontWeight={"300"}>Song Name : </Typography>
-                        <TextField onChange={handleFieldChange} name="songName" type="text" helperText="Umlayezo or Ayayayayayaya" placeholder="Song Name" fullWidth sx={{
+                        <TextField onChange={handleFieldChange} name="title" type="text" helperText="Umlayezo or Ayayayayayaya" placeholder="Song Name" fullWidth sx={{
                             padding: "0", margin: '12px 0',
                             color:'white',
                             "& .MuiOutlinedInput-root": { border: '2px solid white' , color:'white' },
@@ -187,8 +212,21 @@ function Upload() {
                         }} />
 
 
+                        <Typography variant="p" width={"100%"} color={"#eee"} sx={{ fontSize: { xs: "18px", md: "21px" } }} fontWeight={"300"}>Category : </Typography>
+                        <TextField onChange={handleFieldChange} name="category" type="select" select helperText="Umlayezo or Ayayayayayaya" placeholder="Song Name" fullWidth sx={{
+                            padding: "0", margin: '12px 0',
+                            color:'white',
+                            "& .MuiOutlinedInput-root": { border: '2px solid white' , color:'white' },
+                            "& .MuiOutlinedInput-root.Mui-focused": { "& > fieldset": { border: '1px solid white', color: '#40e0d0' } },
+                            "& .MuiOutlinedInput-root.Mui-focused": { "& > fieldset": { border: '1px solid white', color: '#40e0d0' } }
+                        }}>
+                        <MenuItem value="Original" >Original</MenuItem>
+                        <MenuItem value="Remix" >Remix</MenuItem>
+                        <MenuItem value="Mix" >Mix</MenuItem>
+                        </TextField>
+
                         <Typography variant="p" width={"100%"} color={"#eee"} sx={{ fontSize: { xs: "18px", md: "21px" } }} fontWeight={"300"}>Upload Song : </Typography>
-                        <TextField onChange={handleFieldChange} name="songFile" type="file" helperText="Umlayezo or Ayayayayayaya" placeholder="Song Name" fullWidth sx={{
+                        <TextField onChange={(e)=>setSongFiles(e.target.files[0])} name="url" type="file" helperText="Umlayezo or Ayayayayayaya" placeholder="Song Name" fullWidth sx={{
                             padding: "0", margin: '12px 0',
                             color:'white',
                             "& .MuiOutlinedInput-root": { border: '2px solid white' , color:'white' },
@@ -196,7 +234,7 @@ function Upload() {
                             "& .MuiOutlinedInput-root.Mui-focused": { "& > fieldset": { border: '1px solid white', color: '#40e0d0' } }
                         }} />
             <Button sx={{ width:'100%' , padding:'21px' , background:'rgba(1,1,1,.9)' }} onClick={handleFileUpload}>Upload</Button>
-            <p>{percent} % done</p>
+            
             </Grid>
                         <Grid item xs={12} lg={6}>
                 <ImageDropZone files={files} setFiles={setFiles} />
@@ -204,7 +242,61 @@ function Upload() {
                      
             </Grid>
              <Grid item xs={12} lg={12}>
-            </Grid>
+             <Typography fontSize={"32px"} margin={"8px 0"} >Original</Typography>
+             <Grid container spacing={6}>
+
+             {
+              songs.map((song , index)=>{
+                if(song.category === "Original"){
+                return(
+              <Grid key={index} item xs={12} sm={6} md={4} lg={2}>
+                  <MusicItem deleteItem={deleteItem} song={song} setOpen={setOpen} />
+             </Grid>
+                  )
+                }
+              })
+             }
+             </Grid>
+
+             </Grid>
+
+                          <Grid item xs={12} lg={12}>
+             <Typography fontSize={"32px"} margin={"8px 0"} >Remixes</Typography>
+             <Grid container spacing={6}>
+
+             {
+              songs.map((song , index)=>{
+                if(song.category === "Remix"){
+                return(
+              <Grid key={index} item xs={12} sm={6} md={4} lg={2}>
+                  <MusicItem deleteItem={deleteItem} song={song} setOpen={setOpen} />
+             </Grid>
+                  )
+                }
+              })
+             }
+             </Grid>
+
+             </Grid>
+
+                          <Grid item xs={12} lg={12}>
+             <Typography fontSize={"32px"} margin={"8px 0"} >Mixes</Typography>
+             <Grid container spacing={6}>
+
+             {
+              songs.map((song , index)=>{
+                if(song.category === "Mix"){
+                return(
+              <Grid key={index} item xs={12} sm={6} md={4} lg={2}>
+                  <MusicItem deleteItem={deleteItem} song={song} setOpen={setOpen} />
+             </Grid>
+                  )
+                }
+              })
+             }
+             </Grid>
+
+             </Grid>
             </Grid>
 
 
@@ -262,6 +354,37 @@ const absolute = {
   position: "absolute",
   background: "red",
 };
+
+const MusicItem = (props) => {
+    const {open, setOpen} = React.useContext(OpenSongContext);
+    console.log(setOpen)
+  return(
+    <Box sx={{ width:'100%' }} >
+    <Paper elevation={3} sx={{ width:'100%' , height:'300px' , color:'#eee' , background:'rgba(200,200,200,.1)' , "&:hover":{ background:'rgba(200,200,200,.2)' , scale:'1.03' }, transition:'850ms' , scale:'1.00'  , padding:'0 12px' , display:'flex' , flexDirection:'column' , justifyContent:'space-evenly' }}>
+                <Box sx={{ height:'200px' , background:`url("${props.song.artwork}")` , backgroundSize:'cover' , backgroundRepeat:'no-repeat' , backgroundPostion:'center'  }}/>
+                <Box sx={{ display:'flex' , background:''  ,justifyContent:"center" }}>
+                <Box sx={{ display:'' , background:'' , flex:'8' , justifyContent:"center"}}>
+                <Typography noWrap={true} sx={{ fontSize:'16px' , fontWeight:'600' }} > {props.song.title} </Typography>
+                <Typography noWrap={true} sx={{ fontSize:'14px' , fontWeight:'300' }} > {props.song.artist} </Typography>
+                </Box>
+                <Box sx={{ display:'flex' , justifyContent:'center' , alignItems:'center' , background:'' , flex:'4' }}>
+                                  <IconButton sx={{ color:'#eee'}} onClick={()=> setOpen(props.song)} >
+                  <PlayCircleOutlineIcon sx={{ cursor:'pointer', fontSize:'21px' , scale:'1.15' , transition:'800ms' , "&:hover":{scale:'1.3'} }} />
+                </IconButton>
+
+</Box>
+                </Box>
+              </Paper>
+              <Box sx={{ height:'calc(32px + 12px)' , background:'rgba(200,200,200,.3)' , display:'flex' , justifyContent:'center' , alignItems:'center' }} >
+                <IconButton sx={{ color:'#eee'}} onClick={()=>props.deleteItem(props.song)} >
+                  <DeleteForeverOutlinedIcon sx={{ cursor:'pointer', fontSize:'21px' , scale:'1.15' , transition:'800ms' , "&:hover":{scale:'1.3'} }} />
+                </IconButton>
+
+              </Box>
+
+    </Box>
+    )
+}
 
 function ImageDropZone(props) {
   // fetch()

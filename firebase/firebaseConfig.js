@@ -25,12 +25,12 @@ import {
 
 // Your web app's Firebase configuration
 export const firebaseConfig = {
-  apiKey: "AIzaSyACdx44BrPMSTRgR7cM5quy7tWzP1W5YZ4",
-  authDomain: "galley-app-f32a6.firebaseapp.com",
-  projectId: "galley-app-f32a6",
-  storageBucket: "galley-app-f32a6.appspot.com",
-  messagingSenderId: "798591988964",
-  appId: "1:798591988964:web:8a9f12bb27e7f0ee7528f1"
+  apiKey: "AIzaSyB4-n-MDLbjfqoNt55KU9zuiAJbU1e_gT8",
+  authDomain: "misguided-79fcc.firebaseapp.com",
+  projectId: "misguided-79fcc",
+  storageBucket: "misguided-79fcc.appspot.com",
+  messagingSenderId: "189387423210",
+  appId: "1:189387423210:web:70c1a06279af92299d0693"
 };
 
 // Initialize Firebase

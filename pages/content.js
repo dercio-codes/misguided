@@ -8,9 +8,7 @@ const Content = () => {
   return (
     <Box sx={{ background: "#000" }}>
       <Navbar />
-      <Typography sx={{ color:"#eee" }}>
-      Upload Now
-      </Typography>
+     
 
       <Upload />
     </Box>

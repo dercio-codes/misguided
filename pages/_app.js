@@ -13,7 +13,7 @@ export const OpenSongContext = React.createContext({})
 function MyApp({ Component, pageProps }) {
 
   const [open , setOpen] = useState({})
-  console.log(setOpen)
+  
   return (
     <OpenSongContext.Provider value={{ open , setOpen }}>
     <main>

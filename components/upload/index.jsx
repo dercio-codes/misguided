@@ -43,7 +43,6 @@ function Upload() {
 
 	const [preview, setPreview] = useState()
 
-
   const handleFieldChange = (e) => {
       setNewSongItem({
           ...newSongItem,
@@ -75,12 +74,15 @@ function Upload() {
         const idxDot = fileName.lastIndexOf(".") + 1;
         const extFile = fileName.substr(idxDot, fileName.length).toLowerCase();
     
-        if (!files) {
-          alert("Please upload an image first!");
+        if (!files || files.length === 0 ) {
+           toast.error(`Please upload an image first!`, {
+                    theme:"dark",
+                    position: "top-right",
+                    autoClose: 5000,
+                    hideProgressBar: false,
+                  });  
         }
-        console.log(newSongItem)
-        console.log(songFiles)
-        console.log(files[0])
+
     
         if (extFile == "jpg" || extFile == "gif" || extFile == "jpeg" || extFile == "png") {
           // Create a referene of where the files will be stored
@@ -115,16 +117,27 @@ function Upload() {
               console.log("GOing in")
               await setDoc(doc(db, "songs", `${new Date().getTime()} `), {
                 ...newSongItem,
+                id:`${new Date().getTime()} `,
                 artwork:imageUrl,
                 url:url
               });
-        getContent()
-
+              getContent()
+              toast.success(`Successfully uploaded a new song..`, {
+                    theme:"dark",
+                    position: "top-right",
+                    autoClose: 5000,
+                    hideProgressBar: false,
+                  });  
               setLoading(false)
 
           } catch (err) {
               console.error(err);
-              alert(err.message);
+               toast.error(err.message, {
+                    theme:"dark",
+                    position: "top-right",
+                    autoClose: 5000,
+                    hideProgressBar: false,
+                  });  
           }
 
 
@@ -140,26 +153,42 @@ function Upload() {
    
     const deleteItem = async (song) => {
       console.log(song)
-setLoading(true)
+      setLoading(true)
 
-    const querySnapshot = await getDocs(collection(db, "songs"));
+      const querySnapshot = await getDocs(collection(db, "songs"));
 
-    querySnapshot.forEach(async (item) => {
-      console.log(item)
-      if (item.data().title === song.title) {
-        await deleteDoc(doc(db, "songs", item.id), {
-          ...song,
-        });
+      querySnapshot.forEach(async (item) => {
+        console.log(item)
+        if (item.data().title === song.title) {
+          await deleteDoc(doc(db, "songs", item.id), {
+            ...song,
+          });
+  
+            console.log("Done deleting")
+            getContent()
+          }
+      });
+    }
 
-        console.log("Done deleting")
-        getContent()
+    let Originals = []
+    let Mixes = []
+    let Remixes = []
+
+    songs.map((song)=>{
+      if(song.category === "Remix"){
+        Remixes.push(song)
       }
-    });
-  }
+      if(song.category === "Original"){
+        Originals.push(song)            
+      }
+      if(song.category === "Mix"){
+        Mixes.push(song)            
+      }
+    })
 
     
     return (
-        <Box sx={{ padding:'2.5rem' , color:'#eee' , minHeight:'200vh' }}>
+        <Box sx={{ padding:'2.5rem' , color:'#eee' , minHeight:'100vh' }}>
         {
         loading ? (
           <Box sx={{ height:'50vh' , background:'' , display:'flex' , justifyContent:'center' , alignItems
@@ -241,62 +270,60 @@ setLoading(true)
 
                      
             </Grid>
-             <Grid item xs={12} lg={12}>
+             <Grid item xs={12} lg={12} sx={{ display:Originals.length === 0 ? "none" : "block" }}>
              <Typography fontSize={"32px"} margin={"8px 0"} >Original</Typography>
              <Grid container spacing={6}>
 
-             {
-              songs.map((song , index)=>{
-                if(song.category === "Original"){
-                return(
-              <Grid key={index} item xs={12} sm={6} md={4} lg={2}>
-                  <MusicItem deleteItem={deleteItem} song={song} setOpen={setOpen} />
+
+              {
+                    Originals.map((song , index)=>{
+                      return(
+                       <Grid key={index} item xs={12} sm={6} md={4} lg={2} >
+                          <MusicItem deleteItem={deleteItem} song={song} setOpen={setOpen} />
+                        </Grid>
+                      ) 
+                    })
+              }
              </Grid>
-                  )
-                }
-              })
-             }
              </Grid>
 
-             </Grid>
-
-                          <Grid item xs={12} lg={12}>
-             <Typography fontSize={"32px"} margin={"8px 0"} >Remixes</Typography>
-             <Grid container spacing={6}>
-
-             {
-              songs.map((song , index)=>{
-                if(song.category === "Remix"){
-                return(
-              <Grid key={index} item xs={12} sm={6} md={4} lg={2}>
-                  <MusicItem deleteItem={deleteItem} song={song} setOpen={setOpen} />
-             </Grid>
-                  )
-                }
-              })
-             }
-             </Grid>
-
-             </Grid>
-
-                          <Grid item xs={12} lg={12}>
+             <Grid item xs={12} lg={12} sx={{ display:Mixes.length === 0 ? "none" : "block" }} >
              <Typography fontSize={"32px"} margin={"8px 0"} >Mixes</Typography>
              <Grid container spacing={6}>
 
-             {
-              songs.map((song , index)=>{
-                if(song.category === "Mix"){
-                return(
-              <Grid key={index} item xs={12} sm={6} md={4} lg={2}>
-                  <MusicItem deleteItem={deleteItem} song={song} setOpen={setOpen} />
+
+              { 
+                  Mixes.map((song , index)=>{
+                      return(
+                       <Grid key={index} item xs={12} sm={6} md={4} lg={2}>
+                          <MusicItem deleteItem={deleteItem} song={song} setOpen={setOpen} />
+                        </Grid>
+                      ) 
+                    })
+                 
+              }
              </Grid>
-                  )
-                }
-              })
-             }
              </Grid>
 
+             <Grid item xs={12} lg={12} sx={{ display:Remixes.length === 0 ? "none" : "block" }} >
+             <Typography fontSize={"32px"} margin={"8px 0"} >Remixes</Typography>
+             <Grid container spacing={6}>
+
+
+              { 
+                    Remixes.map((song , index)=>{
+                      return(
+                       <Grid key={index} item xs={12} sm={6} md={4} lg={2}>
+                          <MusicItem deleteItem={deleteItem} song={song} setOpen={setOpen} />
+                        </Grid>
+                      ) 
+                    })
+              }
              </Grid>
+             </Grid>
+
+
+
             </Grid>
 
 

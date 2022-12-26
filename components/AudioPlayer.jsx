@@ -11,6 +11,7 @@ import Link from "next/link";
 import { OpenSongContext } from "./../pages/_app" 
 import { query, doc ,  collection, addDoc , setDoc, getDocs, where } from "firebase/firestore";
 import { storage , googleProvider , facebookProvider , auth , db } from "./../firebase/firebaseConfig";
+import { Cancel, CloseOutlined } from "@mui/icons-material";
 
 const DUMMY_DATA = [
   {
@@ -61,7 +62,6 @@ export const AudipPLayer = () => {
     const [openMusic, setOpenMusic] = React.useState(false);
     const {open, setOpen} = React.useContext(OpenSongContext);
     const [songs, setSongs] = React.useState([]);
-    console.log(setOpen)
 
   const getContent = async () => {
     const local = []
@@ -88,12 +88,15 @@ export const AudipPLayer = () => {
                   left:0,
                   width:'100%' ,
                   margin:'0 auto', 
+                  display: JSON.stringify(open) === "{}" ? 'none' : 'block',
+                  transition:'800ms'
                   // background:'pink' ,
                   // padding:'0 2.5rem', 
                    }}>
               <Grid container>
-                            <Grid item xs={12}>
-              <Box onClick={()=> setOpenMusic(!openMusic)} sx={{ height:'50px' , background:'rgba(200,200,200,.1)' , display:'flex' , alignItems:'center' , justifyContent:'flex-end' , padding:'0 21px' }}>
+                            <Grid item xs={12} sx={{ display:'flex' , alignItems:'center' , justifyContent:'space-between' ,background:'#111' }} >
+
+              <Box onClick={()=> setOpenMusic(!openMusic)} sx={{ height:'50px' , background:'#111' , display:'flex' , alignItems:'center' , justifyContent:'space-between' , padding:'0 21px' }}>
                 {
 					openMusic ?	
 					<ExpandMoreIcon sx={{ fontSize:'2.5rem' , scale:'.9' , transition:'800ms' , cursor:'pointer' , "&:hover":{ scale:'1' } , color:'#eee' }} /> 
@@ -101,16 +104,13 @@ export const AudipPLayer = () => {
 					<ExpandLessIcon sx={{ fontSize:'2.5rem' , scale:'.9' , transition:'800ms' , cursor:'pointer' , "&:hover":{ scale:'1' } , color:'#eee' }} /> 
                 }
               </Box>
+
+              <Box onClick={()=> setOpen({})} sx={{ height:'50px' , background:'#111' , display:'flex' , alignItems:'center' , justifyContent:'space-between' , padding:'0 21px' }}>
+                         <CloseOutlined sx={{ fontSize:'2rem' , scale:'.9' , transition:'800ms' , cursor:'pointer' , "&:hover":{ scale:'1' } , color:'#eee' }} /> 
+              </Box>
+
               </Grid>
                             <Grid item xs={4} lg={1.5}>
-             {/* <Box sx={{ 
-              			height:'120px' , 	
-              			width:'100%' , 
-                   		backgroundImage:`url("${open.artwork}")` ,
-                   		backgroundSize:'cover',
-                   		backgroundPosition:'center',
-                   		backgroundRepeat:'no-repeat',
-                   	}} />*/}
                    	     <Box sx={{ 
                    		width:'100%' , 
                    		backgroundImage:`url("${open.artwork}")` ,
@@ -130,7 +130,7 @@ export const AudipPLayer = () => {
               </Grid>
               <Box sx={{ height:openMusic ? '250px' : "0px" , background:'#222' , padding:'0' , transition:'800ms' , overflowY:'auto' }}>
               {
-              	songs.map((item)=>( <AudioItem key={item.id} activeSong={item.id === open.id} setOpen={setOpen} song={item} /> ))
+              	songs.map((item)=>( <AudioItem key={item.id} activeSong={item.title === open.title} setOpen={setOpen} song={item} /> ))
               }
 
 

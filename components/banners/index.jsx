@@ -82,7 +82,7 @@ export const Banners = () => {
 
         <Grid container >
             
-            <Grid item lg={4} xs={12} sx={{  height:{ xs:'fit-content' , lg:'95vh'},  borderBottom:'12px solid rgba(180,180,180,.05)' , padding:{ xs:'1rem 0' , lg:'2.5rem 12px'}  , "&:hover":{ background:'rgba(180,180,180,.1)' }  ,  display:'flex' , flexDirection:'column' , alignItems:'center' ,  justifyContent:'space-between',  }} >
+            <Grid item lg={4} xs={12} sx={{  height:{ xs:'fit-content' , lg:'95vh'},  borderBottom:'12px solid rgba(180,180,180,.05)' , padding:{ xs:'1rem' , lg:'2.5rem 12px'}  , "&:hover":{ background:'rgba(180,180,180,.1)' }  ,  display:'flex' , flexDirection:'column' , alignItems:'center' ,  justifyContent:'space-between',  }} >
             <Box sx={{ width:'100%', scale:"0.8" , "&:hover":{ scale:'0.9' } , transition:'800ms' , display:'flex' ,flexDirection:'column' , alignItems:'center' }}>
             <Avatar src={"/shadzo-2.jpeg"} alt={"Dj Shadzo"} sx={{ width: { lg: '200px', xs: "180px" }, height: { lg: '200px', xs: "180px" }, filter: "blur(0.3px)" , margin:'0 auto' }} ></Avatar>
             <Grid container>
@@ -114,7 +114,7 @@ export const Banners = () => {
             </Grid>
             
             
-            <Grid item lg={4} xs={12} sx={{  height:'95vh',  borderBottom:'12px solid rgba(180,180,180,.05)' , padding:'2.5rem 12px'  , "&:hover":{ background:'rgba(180,180,180,.1)' }  ,  display:'flex' , flexDirection:'column' , alignItems:'center' ,  justifyContent:'space-between',  }} >
+            <Grid item lg={4} xs={12} sx={{  height:{ xs:'fit-content' , lg:'95vh'},  borderBottom:'12px solid rgba(180,180,180,.05)' , padding:{ xs:'1rem' , lg:'2.5rem 12px'}  , "&:hover":{ background:'rgba(180,180,180,.1)' }  ,  display:'flex' , flexDirection:'column' , alignItems:'center' ,  justifyContent:'space-between',  }} >
             <Box sx={{ width:'100%', scale:"0.8" , "&:hover":{ scale:'0.9' } , transition:'800ms' , display:'flex' ,flexDirection:'column' , alignItems:'center' }}>
             <Avatar src={"/Karlo-1.jpeg"} alt={"Dj Shadzo"} sx={{ width: { lg: '200px', xs: "180px" }, height: { lg: '200px', xs: "180px" }, filter: "blur(0.3px)" , margin:'0 auto' }} ></Avatar>
             <Grid container>
@@ -146,7 +146,7 @@ export const Banners = () => {
             </Grid>
             
 
-            <Grid item lg={4} xs={12} sx={{  height:'95vh',  borderBottom:'12px solid rgba(180,180,180,.05)' , padding:'2.5rem 12px'  , "&:hover":{ background:'rgba(180,180,180,.1)' }  ,  display:'flex' , flexDirection:'column' , alignItems:'center' ,  justifyContent:'space-between',  }} >
+            <Grid item lg={4} xs={12} sx={{  height:{ xs:'fit-content' , lg:'95vh'},  borderBottom:'12px solid rgba(180,180,180,.05)' , padding:{ xs:'1rem' , lg:'2.5rem 12px'}  , "&:hover":{ background:'rgba(180,180,180,.1)' }  ,  display:'flex' , flexDirection:'column' , alignItems:'center' ,  justifyContent:'space-between',  }} >
             <Box sx={{ width:'100%', scale:"0.8" , "&:hover":{ scale:'0.9' } , transition:'800ms' , display:'flex' ,flexDirection:'column' , alignItems:'center' }}>
             <Avatar src={"/ykm-2.jpeg"} alt={"Dj Shadzo"} sx={{ width: { lg: '200px', xs: "180px" }, height: { lg: '200px', xs: "180px" }, filter: "blur(0.3px)" , margin:'0 auto' }} ></Avatar>
             <Grid container>

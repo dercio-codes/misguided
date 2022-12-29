@@ -57,7 +57,7 @@ export const Banners = () => {
     return (
 
         <Box sx={{ padding:'0' }}>
-        <Box sx={{  height:'50vh' ,  background:'rgba(1,1,1,.05)' , width:'100%' , padding:'' }}>
+        <Box sx={{  minHeight:'50vh' ,  background:'rgba(1,1,1,.05)' , width:'100%' , padding:'' }}>
         <Box sx={{  height:'100%' ,  
                     backgroundImage:'url("/collage.jpg")' , 
                     backgroundPosition:'center' , 

@@ -1,4 +1,4 @@
-import { Box, Typography, Avatar, Grid, Button, Fade, Stack } from "@mui/material"
+import { Box, Typography, Avatar, Grid, Button, Fade, Stack , Divider } from "@mui/material"
 import React, { useRef, useState } from "react";
 import EastIcon from '@mui/icons-material/East';
 // Import Swiper React components
@@ -56,40 +56,43 @@ export const Banners = () => {
 
     return (
 
-        <Box>
-        <Box sx={{ height:'100vh' , background:'rgba(1,1,1,.05)' , width:'100%' , padding:'21px 12px'}}>
+        <Box sx={{ padding:'0' }}>
+        <Box sx={{  height:'50vh' ,  background:'rgba(1,1,1,.05)' , width:'100%' , padding:'' }}>
+        <Box sx={{  height:'100%' ,  
+                    backgroundImage:'url("/collage.jpg")' , 
+                    backgroundPosition:'center' , 
+                    width:'100%' , padding:'' , }}>
 
-        <Box sx={{ height:'100%' , background:'rgba(1,1,1,.3)' , width:'100%'}}>
+        <Box sx={{ height:'100%' , background:'rgba(1,1,1,.85)' , margin:'auto' , width:'100%' ,}}>
             <Grid container sx={{ height:'100%' }}>
-            <Grid item xs={6} sx={{ display:'flex' , padding:'21px' , flexDirection:'column' , alignItems:'' , justifyContent:'center' }} >
-                <Typography variant="h6" sx={{ fontSize:'52px' }} color={"#eee"} fontWeight={"600"} textAlign={"start"}>Old School Fridays</Typography>
-                <Typography variant="h6" sx={{ fontSize:'32px' }} color={"#eee"} fontWeight={"300"} textAlign={"start"}>The Classic Indiah Hookah Lounge</Typography>
-                <Typography variant="h6" sx={{ fontSize:'24px' }} color={"#eee"} fontWeight={"300"} textAlign={"start"}>24 January 2023</Typography>
+            <Grid item xs={12} sx={{ display:'flex' , padding:'2.5rem' , flexDirection:'column' , alignItems:'center' , justifyContent:'center' }} >
+                <Typography variant="h6" sx={{ fontSize:'60px' }} color={"#eee"} fontWeight={"600"} textAlign={"center"}>Old School Fridays</Typography>
+                <Typography variant="h6" sx={{ fontSize:'28px' }} color={"#eee"} fontWeight={"300"} textAlign={"center"}>The Classic Indiah Hookah Lounge</Typography>
+                <Typography variant="h6" sx={{ fontSize:'24px' }} color={"#eee"} fontWeight={"300"} textAlign={"center"}>24 January 2023</Typography>
+                <Button onClick={() => setActive("")} sx={{ fontWeight: '600', fontSize: '14px', padding: '12px 18px', margin: '18px auto', color: '#111', background: '#eee' , "&:hover":{color: '#111', background: '#eee'} }}>Book Table</Button>
 
             </Grid>
-            <Grid item xs={6} sx={{ height:'100%' }} >
-                <Box sx={{  height:'100%' , 
-                            backgroundImage:'url("/old-school.jpeg")' ,
-                            backgroundSize:'contain',
-                            backgroundRepeat:'no-repeat',
-                            scale:'0.7',
-                            backgroundPosition:'center', 
-                            width:'100%' }} />
-            </Grid>
             </Grid>
         </Box>
         </Box>
-        <Grid container>
-            <Grid item lg={4} xs={12} sx={{ height:'fit-content' , padding:'12px' , scale:"0.8" , "&:hover":{ scale:'0.9' } , background:"rgba(1,1,1,1)" , transition:'800ms' , display:'flex' , flexDirection:'column' , alignItems:'center' , background:'' }} >
-            <Avatar src={"/shadzo-2.jpeg"} alt={"Dj Shadzo"} sx={{ width: { lg: '120px', xs: "90px" }, height: { lg: '120px', xs: "90px" }, filter: "blur(0.3px)" }} ></Avatar>
+        </Box>
+        <Box sx={{ display:'flex' , alignItems:'center' , justifyContent:'center' }} >
+            <Typography variant="p" color={"#eee"} sx={{margin:"12px auto" , textAlign:'center', fontSize:'56px' , fontWeight:'600'}} textAlign={"center"} fontWeight={"300"} >{"Artists"}</Typography>
+        </Box>
+
+        <Grid container >
+            
+            <Grid item lg={4} xs={12} sx={{  height:{ xs:'fit-content' , lg:'95vh'},  borderBottom:'12px solid rgba(180,180,180,.05)' , padding:{ xs:'1rem 0' , lg:'2.5rem 12px'}  , "&:hover":{ background:'rgba(180,180,180,.1)' }  ,  display:'flex' , flexDirection:'column' , alignItems:'center' ,  justifyContent:'space-between',  }} >
+            <Box sx={{ width:'100%', scale:"0.8" , "&:hover":{ scale:'0.9' } , transition:'800ms' , display:'flex' ,flexDirection:'column' , alignItems:'center' }}>
+            <Avatar src={"/shadzo-2.jpeg"} alt={"Dj Shadzo"} sx={{ width: { lg: '200px', xs: "180px" }, height: { lg: '200px', xs: "180px" }, filter: "blur(0.3px)" , margin:'0 auto' }} ></Avatar>
             <Grid container>
             <Grid item xs={12} sx={{ margin:"21px 0" , background:'' , textAlign:'center'}} >
-             <Typography variant="p" color={"#eee"} sx={{margin:"12px 0" , textAlign:'center'}} fontWeight={"300"} >{"If your girl don't know Shadzo don't dala."}</Typography>
+            <Typography variant="p" color={"#eee"} sx={{margin:"12px 0" , textAlign:'center'}} fontWeight={"300"} >{"If your girl don't know Shadzo don't dala."}</Typography>
 
             </Grid>
             <Grid item xs={12} sx={{ alignItems:'center' , background:''  , margin:{ xs:"21px 0 0" , md:'0'} , height:{ xs:'fit-content' , md:''} , display:'flex' , justifyContent:'center'  }}>
 
-             <Typography textAlign={"end"} fontSize={"13px"} fontWeight={"300"} sx={{ scale:'0.9',transition:'100ms',color:"#eee"  , "&:hover":{ scale:'0.95' , textDecoration:'underline' ,color:"#40e0d0"  } }} >
+             <Typography textAlign={"end"} fontSize={"13px"} fontWeight={"300"} sx={{ scale:'0.9',transition:'100ms',color:"#eee"  , "&:hover":{ scale:'0.95' , textDecoration:'underline' ,color:"#800020"  } }} >
                  <Link href={"/shadzo"}>
                      <a style={{  display:'flex' , alignItems:'center' , }}>
                         <Typography sx={{ margin:{ xs:0, md:'0 8px'} }}>
@@ -102,24 +105,30 @@ export const Banners = () => {
             </Grid>
 
             </Grid>
-            <iframe onLoad={() => setLoading(false)} style={{ borderRadius: "12px", margin: '18px 0' , height:'500px' , width:'95%' }} src="https://open.spotify.com/embed/artist/5JuA3291INTaMk0R8xMkZK?utm_source=generator" width="100%" height="315" frameBorder="0" allowFullScreen="" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe>
+            <iframe onLoad={() => setLoading(false)} style={{ borderRadius: "12px", margin: '18px auto' , height:'500px' , width:'100%' }} src="https://open.spotify.com/embed/artist/5JuA3291INTaMk0R8xMkZK?utm_source=generator" width="100%" height="315" frameBorder="0" allowFullScreen="" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe>
+            <Box sx={{ display:'flex' , justifyContent:'center' , width:"100%" }} >
             <Socials artist={"Dj Shadzo"} />
-            
+            </Box>
+
+            </Box>
             </Grid>
-                      <Grid item lg={4} xs={12} sx={{ height:'fit-content' , padding:'12px' , scale:"0.85" , "&:hover":{ scale:'0.9' } , background:"rgba(1,1,1,1)" , transition:'800ms' , display:'flex' , flexDirection:'column' , alignItems:'center' , background:'' }} >
-            <Avatar src={"/Karlo-1.jpeg"} alt={"Dj Shadzo"} sx={{ width: { lg: '120px', xs: "90px" }, height: { lg: '120px', xs: "90px" }, filter: "blur(0.3px)" }} ></Avatar>
+            
+            
+            <Grid item lg={4} xs={12} sx={{  height:'95vh',  borderBottom:'12px solid rgba(180,180,180,.05)' , padding:'2.5rem 12px'  , "&:hover":{ background:'rgba(180,180,180,.1)' }  ,  display:'flex' , flexDirection:'column' , alignItems:'center' ,  justifyContent:'space-between',  }} >
+            <Box sx={{ width:'100%', scale:"0.8" , "&:hover":{ scale:'0.9' } , transition:'800ms' , display:'flex' ,flexDirection:'column' , alignItems:'center' }}>
+            <Avatar src={"/Karlo-1.jpeg"} alt={"Dj Shadzo"} sx={{ width: { lg: '200px', xs: "180px" }, height: { lg: '200px', xs: "180px" }, filter: "blur(0.3px)" , margin:'0 auto' }} ></Avatar>
             <Grid container>
             <Grid item xs={12} sx={{ margin:"21px 0" , background:'' , textAlign:'center'}} >
-             <Typography variant="p" color={"#eee"} sx={{margin:"12px 0" , textAlign:'center'}} fontWeight={"300"} >{"If your girl don't know Shadzo don't dala."}</Typography>
+             <Typography variant="p" color={"#eee"} sx={{margin:"12px 0" , textAlign:'center'}} fontWeight={"300"} >{"Old School RnB and Classic Jams."}</Typography>
 
             </Grid>
             <Grid item xs={12} sx={{ alignItems:'center' , background:''  , margin:{ xs:"21px 0 0" , md:'0'} , height:{ xs:'fit-content' , md:''} , display:'flex' , justifyContent:'center'  }}>
 
-             <Typography textAlign={"end"} fontSize={"13px"} fontWeight={"300"} sx={{ scale:'0.9',transition:'100ms',color:"#eee"  , "&:hover":{ scale:'0.95' , textDecoration:'underline' ,color:"#40e0d0"  } }} >
+             <Typography textAlign={"end"} fontSize={"13px"} fontWeight={"300"} sx={{ scale:'0.9',transition:'100ms',color:"#eee"  , "&:hover":{ scale:'0.95' , textDecoration:'underline' ,color:"#FFC300"  } }} >
                  <Link href={"/shadzo"}>
                      <a style={{  display:'flex' , alignItems:'center' , }}>
                         <Typography sx={{ margin:{ xs:0, md:'0 8px'} }}>
-                          See more about {"Dj Shadzo"}
+                          See more about {"Karlo Dj"}
                          </Typography>
                          <EastIcon sx-={{ color:'#eee' , fontWeight:600 , margin:'0 8px' }} />
                      </a>
@@ -129,14 +138,20 @@ export const Banners = () => {
 
             </Grid>
             <iframe onLoad={() => setLoading(false)} style={{ borderRadius: "12px", margin: '18px 0' , height:'500px' , width:'95%' }} src="https://www.youtube.com/embed/-J0fR8UMfIc" width="100%" height="315" frameBorder="0" allowFullScreen="" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe>
-            <Socials artist={"Dj Shadzo"} />
-            
+            <Box sx={{ display:'flex' , justifyContent:'center' , width:"100%" }} >
+            <Socials artist={"Karlo Dj"} />
+            </Box>
+
+            </Box>
             </Grid>
-                        <Grid item lg={4} xs={12} sx={{ height:'fit-content' , padding:'12px' , scale:"0.8" , "&:hover":{ scale:'0.9' } , background:"rgba(1,1,1,1)" , transition:'800ms' , display:'flex' , flexDirection:'column' , alignItems:'center' , background:'' }} >
-            <Avatar src={"/ykm-2.jpeg"} alt={"Dj Shadzo"} sx={{ width: { lg: '120px', xs: "90px" }, height: { lg: '120px', xs: "90px" }, filter: "blur(0.3px)" }} ></Avatar>
+            
+
+            <Grid item lg={4} xs={12} sx={{  height:'95vh',  borderBottom:'12px solid rgba(180,180,180,.05)' , padding:'2.5rem 12px'  , "&:hover":{ background:'rgba(180,180,180,.1)' }  ,  display:'flex' , flexDirection:'column' , alignItems:'center' ,  justifyContent:'space-between',  }} >
+            <Box sx={{ width:'100%', scale:"0.8" , "&:hover":{ scale:'0.9' } , transition:'800ms' , display:'flex' ,flexDirection:'column' , alignItems:'center' }}>
+            <Avatar src={"/ykm-2.jpeg"} alt={"Dj Shadzo"} sx={{ width: { lg: '200px', xs: "180px" }, height: { lg: '200px', xs: "180px" }, filter: "blur(0.3px)" , margin:'0 auto' }} ></Avatar>
             <Grid container>
             <Grid item xs={12} sx={{ margin:"21px 0" , background:'' , textAlign:'center'}} >
-             <Typography variant="p" color={"#eee"} sx={{margin:"12px 0" , textAlign:'center'}} fontWeight={"300"} >{"If your girl don't know Shadzo don't dala."}</Typography>
+             <Typography variant="p" color={"#eee"} sx={{margin:"12px 0" , textAlign:'center'}} fontWeight={"300"} >{"Mr Lovers and Friends."}</Typography>
 
             </Grid>
             <Grid item xs={12} sx={{ alignItems:'center' , background:''  , margin:{ xs:"21px 0 0" , md:'0'} , height:{ xs:'fit-content' , md:''} , display:'flex' , justifyContent:'center'  }}>
@@ -145,7 +160,7 @@ export const Banners = () => {
                  <Link href={"/shadzo"}>
                      <a style={{  display:'flex' , alignItems:'center' , }}>
                         <Typography sx={{ margin:{ xs:0, md:'0 8px'} }}>
-                          See more about {"Dj Shadzo"}
+                          See more about {"YKM"}
                          </Typography>
                          <EastIcon sx-={{ color:'#eee' , fontWeight:600 , margin:'0 8px' }} />
                      </a>
@@ -155,8 +170,11 @@ export const Banners = () => {
 
             </Grid>
             <iframe onLoad={() => setLoading(false)} style={{ borderRadius: "12px", margin: '18px 0' , height:'500px' , width:'95%' }} src="https://www.youtube.com/embed/gy6gGT-G6ak" width="100%" height="315" frameBorder="0" allowFullScreen="" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe>
-            <Socials artist={"Dj Shadzo"} />
-            
+            <Box sx={{ display:'flex' , justifyContent:'center' , width:"100%" }} >
+            <Socials artist={"YKM"} />
+            </Box>
+
+            </Box>
             </Grid>
         </Grid>
 
@@ -235,7 +253,7 @@ export const SquadSlides = () => {
         //                         <Box sx={{ padding: { lg: "2px 16px" } }}>
         //                             <Box sx={{ display: 'flex', alignItems: 'center', padding: { xs: "16px 12px", md: "0px" } , width:'100%' , background:'' }}>
 
-        //                                 <Avatar src={active.img} alt={active.name} sx={{ width: { lg: '120px', xs: "90px" }, height: { lg: '120px', xs: "90px" }, filter: "blur(0.3px)" }} ></Avatar>
+        //                                 <Avatar src={active.img} alt={active.name} sx={{ width: { lg: '120px', xs: "100px" }, height: { lg: '120px', xs: "90px" }, filter: "blur(0.3px)" }} ></Avatar>
         //                                 <Stack sx={{ margin: { xs: '0px 21px' } , width:'100%' }}>
         //                                     <Typography variant="h6" color={"#eee"} fontWeight={"600"} textAlign={"start"}>{active.name}</Typography>
                                            

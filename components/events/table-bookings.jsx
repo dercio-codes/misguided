@@ -192,7 +192,7 @@ const BookTable = ({ openEvent, setOpenTableBooking }) => {
                     <Typography variant="p" width={"100%"} color={"#eee"} sx={{ margin: '0 16px', fontSize: { xs: "32px", md: "54px" }, textAlign: '' }} fontWeight={"600"}>Book Table</Typography>
 
                 </Box>
-                <Box sx={{ width: '150px', height: '150px', background: '', backgroundRepeat:'no-repeat' , backgroundPostion: 'center', backgroundImage: `url(${openEvent.img})`, backgroundSize: 'contain' }} />
+                <Box sx={{ width: '150px', height: '150px', background: '', backgroundRepeat:'no-repeat' , backgroundPostion: 'center', backgroundImage: `url(${openEvent.image})`, backgroundSize: 'contain' }} />
             </Box>
             <Stack sx={{ padding: '21px 4px', background: '' }}>
                 <Typography variant="p" width={"100%"} color={"#eee"} sx={{ margin: '12px 0 28px 0 ', fontSize: { xs: "18px", md: "18px" }, textAlign: '' }} fontWeight={"400"}>Fill in the form below and we will respond back to you.</Typography>

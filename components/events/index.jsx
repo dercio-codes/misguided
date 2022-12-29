@@ -1,4 +1,4 @@
-import React, { useRef, useState } from "react";
+import React, { useRef, useState , useEffect } from "react";
 // Import Swiper React components
 import { Swiper, SwiperSlide } from "swiper/react";
 import { Box, Grid, Button, Typography } from "@mui/material";
@@ -9,6 +9,10 @@ import "swiper/css";
 import "swiper/css/effect-coverflow";
 import "swiper/css/navigation";
 import "swiper/css/pagination";
+import { storage , googleProvider , facebookProvider , auth , db } from "./../../firebase/firebaseConfig";
+import { query, doc ,  collection, addDoc , deleteDoc , setDoc, getDocs, where } from "firebase/firestore";
+
+import { ref, uploadBytesResumable, getDownloadURL } from "firebase/storage";
 
 // import "./styles.css";
 
@@ -20,17 +24,29 @@ import Link from "next/link";
 
 export const Events = (props) => {
   const { artist, text } = props;
+  const [events, setEvents] = useState([]);
   const [open, setOpen] = useState(false);
   const matches = useMediaQuery("(max-width:900px)");
   const [openTableBooking, setOpenTableBooking] = useState(false);
   const [openEvent, setopenEvent] = useState("");
 
-  const events = [
-   {
-    title:'Old School Fridays',
-    img:"old-school.jpeg"
-   },
-  ];
+
+  const getContent = async () => {
+    const local = []
+    const querySnapshot = await getDocs(collection(db, "events"));
+
+    querySnapshot.forEach((item)=>{
+        local.push(item.data())
+    })
+    console.log(local)
+    setEvents(local)
+  }
+
+  useEffect(async()=>{
+    getContent()
+  },[])
+
+  
 
   const handleEventClick = (item) => {
     setOpen(true);
@@ -122,7 +138,7 @@ export const Events = (props) => {
                       backgroundSize: "contain",
                       backgroundPosition: "center",
                       backgroundRepeat: "no-repeat",
-                      backgroundImage: `url(${item.img})`,
+                      backgroundImage: `url(${item.image})`,
                     }}
                   />
                   <Typography
@@ -146,11 +162,13 @@ export const Events = (props) => {
                           margin: "18px auto",
                           background: "#eee",
                           color: "#111",
+                          cursor:item.number_of_table_bookings_accepted === "0" ? "not-allowed" : "pointer",
                           "&:hover": { color: "#eee" },
                         }}
+                        disabled={item.number_of_table_bookings_accepted === "0"}
                         onClick={() => handleTableBookingClick(item)}
                       >
-                        Book Table
+                       {item.number_of_table_bookings_accepted === "0" ? "Tables Fully Booked" : "Book Table" }
                       </Button>
 
                       {/* <Link href="https://www.howler.co.za/artists/5005?lang=en">

@@ -211,7 +211,7 @@ function UploadEvents() {
             	events.map((event , index)=>{
 
             		return(
-            			<Grid item kwy={index} xs={4} lg={2} sx={{ padding:'12px' , }} >
+            			<Grid item keey={index} xs={4} lg={2} sx={{ padding:'12px' , }} >
             		 <Box sx={{ width:'100%' , height:'300px' , color:'#eee' , background:'rgba(1,1,1,.1)' , "&:hover":{ background:'rgba(200,200,200,.2)' , scale:'1.03' }, transition:'850ms' , scale:'1.00'  , padding:'12px' , display:'flex' , flexDirection:'column' , justifyContent:'space-evenly' , alignItems:'center' }}>
                 <Box sx={{ minHeight:'200px' , width:'100%' , background:`url("${event.image}")` , backgroundSize:'contain' , backgroundRepeat:'no-repeat' , backgroundPosition:'center'  }}/>
                 <Box sx={{ display:'' , background:'' , flex:'8' , margin:'12px 0' , justifyContent:"center"}}>

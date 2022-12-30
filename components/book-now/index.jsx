@@ -195,7 +195,7 @@ export const BookNow = () => {
 
                         
                         <Typography variant="p" width={"100%"} color={"#eee"} sx={{ fontSize: { xs: "18px", md: "21px" } }} fontWeight={"300"}>Hospitality : </Typography>
-                        <TextField onChange={handleFieldChange} name="hospitality" helperText="Hospitality for requested artist." placeholder="Hennesy , Jameson , Jagermeister " fullWidth sx={{
+                        <TextField onChange={handleFieldChange} name="hospitality" helperText="Hospitality for requested artist." placeholder="Hennessy , Jameson , Jagermeister " fullWidth sx={{
                             padding: "0", margin: '12px 0',
                             color:'white',
                             "& .MuiOutlinedInput-root": { border: '2px solid white' , color:'white' },

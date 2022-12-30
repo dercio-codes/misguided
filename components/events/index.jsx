@@ -130,7 +130,7 @@ export const Events = (props) => {
               return (
             <Box data-aos="zoom-in" key={index} data-aos-duration="2000">
                 <SwiperSlide data-zoomable key={index}>
-                  <Typography sx={{ textAlign:'center',fontWeight:600 ,color:'#eee' , fontSize:'32px' , margin:'21px 0'  }}>{item.title}</Typography>
+                  <Typography sx={{ textAlign:'center',fontWeight:600 ,color:'#eee' , fontSize:'32px' , margin:'21px 0'  }}>{item.event_name}</Typography>
                  
                   <Box
                     onClick={() => handleEventClick(item)}

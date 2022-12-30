@@ -12,11 +12,11 @@ export const Socials = ({ artistPage,artist }) => {
     })
 
     useEffect(() => {
-        if (artist.name === "Dj Shadzo") {
+        if (artist === "Dj Shadzo") {
             setItem(artistData[0])
-        } else if (artist.name === "YKM THEE MC") {
+        } else if (artist === "YKM THEE MC") {
             setItem(artistData[1])
-        } else if (artist.name === "Karlo Dj") {
+        } else if (artist === "Karlo Dj") {
             setItem(artistData[2])
         }
     }, [artist])
@@ -70,7 +70,7 @@ export const Socials = ({ artistPage,artist }) => {
             {
                 item.tiktok === "" ? ("") : (
                     <Link href={item.tiktok}>
-                        <a target="_blank">
+                        <a target="_blank" style={{ filter:"invert(1)" }}>
                             <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="radial-gradient(circle at 30% 107%, #fdf497 0%, #fdf497 5%, #fd5949 45%,#d6249f 60%,#285AEB 90%)" className="bi bi-tiktok" viewBox="0 0 16 16">
                                 <path d="M9 0h1.98c.144.715.54 1.617 1.235 2.512C12.895 3.389 13.797 4 15 4v2c-1.753 0-3.07-.814-4-1.829V11a5 5 0 1 1-5-5v2a3 3 0 1 0 3 3V0Z" />
                             </svg>

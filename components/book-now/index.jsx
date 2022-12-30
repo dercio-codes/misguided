@@ -108,12 +108,12 @@ export const BookNow = () => {
 
     return (
         <Box id="book-now" sx={{ backgroundSize:'cover' ,padding: "32px", minHeight: '50vh' }}>
-            <Box sx={{ background: '', width: { lg: '40%', xs: '50%' }, padding: '0', display: 'flex', alignItems: 'center', justifyContent: 'space-evenly' }}>
+            <Box sx={{ background: '', width: { xs: '100%' }, padding: '0', display: 'flex', alignItems: 'center', justifyContent: '' }}>
                 <IconButton sx={{ background: '', border: '3px solid #eee', width: '80px', height: '80px' }}>
 
                     <PhoneIcon sx={{ fontSize: '32px', color: '#eee' }} />
                 </IconButton >
-                <Typography variant="p" width={"100%"} color={"#eee"} sx={{ margin: '0 16px', fontSize: { xs: "32px", md: "54px" }, textAlign: '' }} fontWeight={"600"}>Book Now</Typography>
+                <Typography variant="p" width={"100%"} color={"#eee"} sx={{ margin: '0 32px', fontSize: { xs: "32px", md: "54px" }, textAlign: '' }} fontWeight={"600"}>Book Now</Typography>
             </Box>
             <Stack sx={{ padding: '21px 4px', background: '' }}>
                 <Typography variant="p" width={"100%"} color={"#eee"} sx={{ margin: '12px 0 28px 0 ', fontSize: { xs: "18px", md: "18px" }, textAlign: '' }} fontWeight={"400"}>Fill in the form below and we will respond back to you.</Typography>

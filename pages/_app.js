@@ -8,12 +8,18 @@ import { AudipPLayer } from "./../components/AudioPlayer"
 // import { ref, uploadBytesResumable, getDownloadURL } from "firebase/storage";
 // import { query, doc ,  collection, addDoc , setDoc, getDocs, where } from "firebase/firestore";
 import React , {useState} from "react";
+import AOS from 'aos';
+import 'aos/dist/aos.css';
 
 export const OpenSongContext = React.createContext({})
 function MyApp({ Component, pageProps }) {
 
   const [open , setOpen] = useState({})
   
+  React.useEffect(() => {
+    AOS.init();
+  }, [])
+
   return (
     <OpenSongContext.Provider value={{ open , setOpen }}>
     <main>
@@ -22,15 +28,15 @@ function MyApp({ Component, pageProps }) {
       <meta name="viewport" content="width=device-width, initial-scale=1"/>
       <meta property="og:type" content="article" />
 
-<meta property="og:title" content="Misguided Ent." />
+      <meta property="og:title" content="Misguided Ent." />
 
-<meta property="og:description" content="Misguided Entertainment is a company able to assist in planning, organizing, and aiding in all the small details that assist in making your event successful." />
+      <meta property="og:description" content="Misguided Entertainment is a company able to assist in planning, organizing, and aiding in all the small details that assist in making your event successful." />
 
-<meta property="og:image" content="www.misgudedsa.co.za/misguided-logo.jpg" />
+      <meta property="og:image" content="www.misgudedsa.co.za/misguided-logo.jpg" />
 
-<meta property="og:url" content="www.misgudedsa.co.za" />
+      <meta property="og:url" content="www.misgudedsa.co.za" />
 
-<meta property="og:site_name" content="Misguided Ent." />
+      <meta property="og:site_name" content="Misguided Ent." />
       </Head>
       <body>
       <Component {...pageProps} />

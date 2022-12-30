@@ -128,8 +128,10 @@ export const Events = (props) => {
           >
             {events.map((item, index) => {
               return (
+            <Box data-aos="zoom-in" key={index} data-aos-duration="2000">
                 <SwiperSlide data-zoomable key={index}>
                   <Typography sx={{ textAlign:'center',fontWeight:600 ,color:'#eee' , fontSize:'32px' , margin:'21px 0'  }}>{item.title}</Typography>
+                 
                   <Box
                     onClick={() => handleEventClick(item)}
                     sx={{
@@ -193,6 +195,8 @@ export const Events = (props) => {
                     </>
                   )}
                 </SwiperSlide>
+                  </Box>
+                
               );
             })}
           </Swiper>

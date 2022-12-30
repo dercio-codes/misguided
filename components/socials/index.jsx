@@ -23,7 +23,7 @@ export const Socials = ({ artistPage,artist }) => {
 
     return (
 
-        <Box sx={{ width: artistPage ? "100%" : '40%', height: '100%', display: 'flex', justifyContent: 'space-evenly', alignItems: 'center' }}>
+        <Box sx={{ width: artistPage ? "100%" : '40%', height: 'auto', display: 'flex', justifyContent: 'space-evenly', alignItems: 'center' }}>
             {item.spotify === "" ? ("") : (
                 <Link href={item.spotify}>
                     <a target="_blank">

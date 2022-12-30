@@ -13,7 +13,7 @@ export const BookNow = () => {
     const [booking, setBooking] = useState({
         name: "",
         tel:"",
-        requested_artist: "Dj Karlo",
+        requested_artist: "",
         event_date: "",
         event_name: "",
         event_location: "",

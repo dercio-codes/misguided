@@ -3,6 +3,7 @@ import { Banners } from "../components/banners";
 import { BookNow } from "../components/book-now";
 import { Events } from "../components/events";
 import { Navbar } from "../components/navbar";
+import { Music } from "./../components/music";
 import { ParallaxEffect } from "../components/parallax-effect";
 import Head from 'next/head';
 
@@ -21,7 +22,8 @@ export default function Home() {
       </Head>
     <Navbar />
     <Banners />
-    <ParallaxEffect img={"/ykm-x-fest-1.jpg"} />
+    <Music />
+    <ParallaxEffect img={"/parallax-1.jpg"} />
     <Events />
     <ParallaxEffect img={"/parallax-1.jpg"} />
     <BookNow />

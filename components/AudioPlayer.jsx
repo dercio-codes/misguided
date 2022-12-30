@@ -136,6 +136,7 @@ export const AudipPLayer = () => {
 
 
 
+
               </Box>
          </Box>
 		)
@@ -181,16 +182,19 @@ const AudioItem = (props) => {
                    </Box>
                 </Grid>
                 
-                <Grid item xs={1.5} lg={1} sx={{ display:'flex' , alignItems:'center' , justifyContent:'center' }} >  
+                <Grid item xs={1.5} lg={1} sx={{ display:'flex' , alignItems:'center' , flexDirection:'column' , justifyContent:'center' }} >  
                 	<Link href={url}>
                 	<a>
                   <CloudDownloadIcon sx={{ fontSize:{ xs:'2rem' , lg:'2.5rem'} , scale:'.9' , transition:'800ms' , cursor:'pointer' , "&:hover":{ scale:'1' } , color:'#eee' }} />
                   </a>
                 	</Link>
+                  <Typography variant="h3" sx={{ margin:'12px 0 0 0' , fontSize:{ xs: '14px' , lg:'16px'} , color:'rgba( 200 , 200 , 200 , .9 )' , margin:'4px 0' , fontWeight:'300' }}> Download</Typography>
+
                 </Grid>
                 
-                <Grid item xs={1.5} lg={1} sx={{ display:'flex' , alignItems:'center' , justifyContent:'center' }} >  
+                <Grid item xs={1.5} lg={1} sx={{ display:'flex' , alignItems:'center' , flexDirection:'column' , justifyContent:'center' }} >  
                 	<PlayCircleIcon sx={{ fontSize:{ xs:'2rem' , lg:'2.5rem'} , scale:'.9' , transition:'800ms' , cursor:'pointer' , "&:hover":{ scale:'1' } , color:'#eee' }} onClick={()=>{props.setOpen(props.song)}} />
+                  <Typography variant="h3" sx={{ margin:'12px 0 0 0' , fontSize:{ xs: '14px' , lg:'16px'} , color:'rgba( 200 , 200 , 200 , .9 )' , margin:'4px 0' , fontWeight:'300' }}> Play</Typography>
                 </Grid>
                   
                 </Grid>

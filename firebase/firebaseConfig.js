@@ -30,7 +30,7 @@ export const firebaseConfig = {
   projectId: "misguided-79fcc",
   storageBucket: "misguided-79fcc.appspot.com",
   messagingSenderId: "189387423210",
-  appId: "1:189387423210:web:70c1a06279af92299d0693"
+  appId: "1:189387423210:web:70c1a06279af92299d0693",
 };
 
 // Initialize Firebase
@@ -40,4 +40,4 @@ export const auth = getAuth(app);
 export const db = getFirestore(app);
 export const facebookProvider = new FacebookAuthProvider();
 export const googleProvider = new GoogleAuthProvider();
-googleProvider.setCustomParameters({ prompt: 'select_account' });
+googleProvider.setCustomParameters({ prompt: "select_account" });

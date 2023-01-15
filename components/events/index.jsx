@@ -1,4 +1,4 @@
-import React, { useRef, useState , useEffect } from "react";
+import React, { useRef, useState, useEffect } from "react";
 // Import Swiper React components
 import { Swiper, SwiperSlide } from "swiper/react";
 import { Box, Grid, Button, Typography } from "@mui/material";
@@ -9,8 +9,23 @@ import "swiper/css";
 import "swiper/css/effect-coverflow";
 import "swiper/css/navigation";
 import "swiper/css/pagination";
-import { storage , googleProvider , facebookProvider , auth , db } from "./../../firebase/firebaseConfig";
-import { query, doc ,  collection, addDoc , deleteDoc , setDoc, getDocs, where } from "firebase/firestore";
+import {
+  storage,
+  googleProvider,
+  facebookProvider,
+  auth,
+  db,
+} from "./../../firebase/firebaseConfig";
+import {
+  query,
+  doc,
+  collection,
+  addDoc,
+  deleteDoc,
+  setDoc,
+  getDocs,
+  where,
+} from "firebase/firestore";
 
 import { ref, uploadBytesResumable, getDownloadURL } from "firebase/storage";
 
@@ -30,23 +45,20 @@ export const Events = (props) => {
   const [openTableBooking, setOpenTableBooking] = useState(false);
   const [openEvent, setopenEvent] = useState("");
 
-
   const getContent = async () => {
-    const local = []
+    const local = [];
     const querySnapshot = await getDocs(collection(db, "events"));
 
-    querySnapshot.forEach((item)=>{
-        local.push(item.data())
-    })
-    console.log(local)
-    setEvents(local)
-  }
+    querySnapshot.forEach((item) => {
+      local.push(item.data());
+    });
+    console.log(local);
+    setEvents(local);
+  };
 
-  useEffect(async()=>{
-    getContent()
-  },[])
-
-  
+  useEffect(async () => {
+    getContent();
+  }, []);
 
   const handleEventClick = (item) => {
     setOpen(true);
@@ -128,52 +140,69 @@ export const Events = (props) => {
           >
             {events.map((item, index) => {
               return (
-            <Box data-aos="zoom-in" key={index} data-aos-duration="2000">
-                <SwiperSlide data-zoomable key={index}>
-                  <Typography sx={{ textAlign:'center',fontWeight:600 ,color:'#eee' , fontSize:'32px' , margin:'21px 0'  }}>{item.event_name}</Typography>
-                 
-                  <Box
-                    onClick={() => handleEventClick(item)}
-                    sx={{
-                      height: { xs: "350px", md: "300px" },
-                      width: { xs: "100%", md: "300px" },
-                      backgroundSize: "contain",
-                      backgroundPosition: "center",
-                      backgroundRepeat: "no-repeat",
-                      backgroundImage: `url(${item.image})`,
-                    }}
-                  />
-                  <Typography
-                    fontWeight={"500"}
-                    fontSize={"12px"}
-                    sx={{ margin: "8px 0" }}
-                    color={"#eee"}
-                  >
-                    Click to zoom
-                  </Typography>
-                  {artist ? (
-                    <></>
-                  ) : (
-                    <>
-                      <Button
-                        sx={{
-                          width: { xs: "100%", md: "300px" },
-                          fontWeight: "500",
-                          fontSize: { xs: "16px", sm: "16px" },
-                          padding: { xs: "12px 0", md: "16px 0" },
-                          margin: "18px auto",
-                          background: "#eee",
-                          color: "#111",
-                          cursor:item.number_of_table_bookings_accepted === "0" ? "not-allowed" : "pointer",
-                          "&:hover": { color: "#eee" },
-                        }}
-                        disabled={item.number_of_table_bookings_accepted === "0"}
-                        onClick={() => handleTableBookingClick(item)}
-                      >
-                       {item.number_of_table_bookings_accepted === "0" ? "Tables Fully Booked" : "Book Table" }
-                      </Button>
+                <Box data-aos="zoom-in" key={index} data-aos-duration="2000">
+                  <SwiperSlide data-zoomable key={index}>
+                    <Typography
+                      sx={{
+                        textAlign: "center",
+                        fontWeight: 600,
+                        color: "#eee",
+                        fontSize: "32px",
+                        margin: "21px 0",
+                      }}
+                    >
+                      {item.event_name}
+                    </Typography>
 
-                      {/* <Link href="https://www.howler.co.za/artists/5005?lang=en">
+                    <Box
+                      onClick={() => handleEventClick(item)}
+                      sx={{
+                        height: { xs: "350px", md: "300px" },
+                        width: { xs: "100%", md: "300px" },
+                        backgroundSize: "contain",
+                        backgroundPosition: "center",
+                        backgroundRepeat: "no-repeat",
+                        backgroundImage: `url(${item.image})`,
+                      }}
+                    />
+                    <Typography
+                      fontWeight={"500"}
+                      fontSize={"12px"}
+                      sx={{ margin: "8px 0" }}
+                      color={"#eee"}
+                    >
+                      Click to zoom
+                    </Typography>
+                    {artist ? (
+                      <></>
+                    ) : (
+                      <>
+                        {item.number_of_table_bookings_accepted !== "0" && (
+                          <Button
+                            sx={{
+                              width: { xs: "100%", md: "300px" },
+                              fontWeight: "500",
+                              fontSize: { xs: "16px", sm: "16px" },
+                              padding: { xs: "12px 0", md: "16px 0" },
+                              margin: "18px auto",
+                              background: "#eee",
+                              color: "#111",
+                              cursor:
+                                item.number_of_table_bookings_accepted === "0"
+                                  ? "not-allowed"
+                                  : "pointer",
+                              "&:hover": { color: "#eee" },
+                            }}
+                            disabled={
+                              item.number_of_table_bookings_accepted === "0"
+                            }
+                            onClick={() => handleTableBookingClick(item)}
+                          >
+                            {"Book Table"}
+                          </Button>
+                        )}
+
+                        {/* <Link href="https://www.howler.co.za/artists/5005?lang=en">
                         <a style={{width:'100%'}} >
                           <Button
                             sx={{
@@ -192,11 +221,10 @@ export const Events = (props) => {
                           </Button>
                         </a>
                       </Link> */}
-                    </>
-                  )}
-                </SwiperSlide>
-                  </Box>
-                
+                      </>
+                    )}
+                  </SwiperSlide>
+                </Box>
               );
             })}
           </Swiper>

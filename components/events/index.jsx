@@ -1,7 +1,7 @@
-import React, { useRef, useState , useEffect } from "react";
+import React, { useRef, useState, useEffect } from "react";
 // Import Swiper React components
 import { Swiper, SwiperSlide } from "swiper/react";
-import { Box, Grid, Button, Typography } from "@mui/material";
+import { Box, Grid, Button, Typography, Divider } from "@mui/material";
 import useMediaQuery from "@mui/material/useMediaQuery";
 
 // Import Swiper styles
@@ -9,8 +9,23 @@ import "swiper/css";
 import "swiper/css/effect-coverflow";
 import "swiper/css/navigation";
 import "swiper/css/pagination";
-import { storage , googleProvider , facebookProvider , auth , db } from "./../../firebase/firebaseConfig";
-import { query, doc ,  collection, addDoc , deleteDoc , setDoc, getDocs, where } from "firebase/firestore";
+import {
+  storage,
+  googleProvider,
+  facebookProvider,
+  auth,
+  db,
+} from "./../../firebase/firebaseConfig";
+import {
+  query,
+  doc,
+  collection,
+  addDoc,
+  deleteDoc,
+  setDoc,
+  getDocs,
+  where,
+} from "firebase/firestore";
 
 import { ref, uploadBytesResumable, getDownloadURL } from "firebase/storage";
 
@@ -30,23 +45,20 @@ export const Events = (props) => {
   const [openTableBooking, setOpenTableBooking] = useState(false);
   const [openEvent, setopenEvent] = useState("");
 
-
   const getContent = async () => {
-    const local = []
+    const local = [];
     const querySnapshot = await getDocs(collection(db, "events"));
 
-    querySnapshot.forEach((item)=>{
-        local.push(item.data())
-    })
-    console.log(local)
-    setEvents(local)
-  }
+    querySnapshot.forEach((item) => {
+      local.push(item.data());
+    });
+    console.log(local);
+    setEvents(local);
+  };
 
-  useEffect(async()=>{
-    getContent()
-  },[])
-
-  
+  useEffect(async () => {
+    getContent();
+  }, []);
 
   const handleEventClick = (item) => {
     setOpen(true);
@@ -62,8 +74,8 @@ export const Events = (props) => {
     <Box
       id="events"
       sx={{
-        padding: { lg: artist ? "0" : "105px 0" },
-        height: { xs: "fit-content" },
+        // padding: { xs: "1rem 2.5rem", lg: artist ? "0" : "105px 0" },
+        minHeight: { xs: "100vh" },
         background: artist ? "" : "#111",
         // width: { xs: "450px", md: "500px", lg: "100%" },
         width: "100%",
@@ -74,20 +86,22 @@ export const Events = (props) => {
           item
           xs={12}
           sx={{
-            padding: { xs: "12px 8px" },
-            textAlign: { xs: "center" },
+            padding: { xs: "1.5rem 1rem 0 1rem" },
+            // textAlign: { xs: "center" },
             margin: { xs: "12px 0", md: "32px 0" },
           }}
         >
           <Typography
-            variant="h4"
-            width={"100%"}
-            color={"#eee"}
-            // sx={{ fontSize: { xs: "32px", md: "40px" } }}
+            fontSize={"42px"}
+            color={"#999"}
+            margin={"0px 0"}
             fontWeight={"600"}
           >
-            {text}{" "}
+            Events
           </Typography>
+          <Divider
+            sx={{ margin: "0px 0 21px 0", width: "32px", background: "#999" }}
+          />
         </Grid>
 
         <Grid
@@ -98,7 +112,7 @@ export const Events = (props) => {
             marginBottom: "54px",
             alignItems: "center",
             background: "",
-            padding: { xs: "0 12px", md: "0 48px" },
+            // padding: { xs: "0 12px", md: "0 48px" },
           }}
         >
           <Swiper
@@ -128,34 +142,44 @@ export const Events = (props) => {
           >
             {events.map((item, index) => {
               return (
-            <Box data-aos="zoom-in" key={index} data-aos-duration="2000">
-                <SwiperSlide data-zoomable key={index}>
-                  <Typography sx={{ textAlign:'center',fontWeight:600 ,color:'#eee' , fontSize:'32px' , margin:'21px 0'  }}>{item.title}</Typography>
-                 
-                  <Box
-                    onClick={() => handleEventClick(item)}
-                    sx={{
-                      height: { xs: "350px", md: "300px" },
-                      width: { xs: "100%", md: "300px" },
-                      backgroundSize: "contain",
-                      backgroundPosition: "center",
-                      backgroundRepeat: "no-repeat",
-                      backgroundImage: `url(${item.image})`,
-                    }}
-                  />
-                  <Typography
-                    fontWeight={"500"}
-                    fontSize={"12px"}
-                    sx={{ margin: "8px 0" }}
-                    color={"#eee"}
-                  >
-                    Click to zoom
-                  </Typography>
-                  {artist ? (
-                    <></>
-                  ) : (
-                    <>
-                      <Button
+                <Box data-aos="zoom-in" key={index} data-aos-duration="2000">
+                  <SwiperSlide data-zoomable key={index}>
+                    <Typography
+                      sx={{
+                        textAlign: "center",
+                        fontWeight: 600,
+                        color: "#eee",
+                        fontSize: "32px",
+                        // margin: "21px 0",
+                      }}
+                    >
+                      {item.event_name}
+                    </Typography>
+
+                    <Box
+                      onClick={() => handleEventClick(item)}
+                      sx={{
+                        height: { xs: "450px", md: "300px" },
+                        width: { xs: "100%", md: "300px" },
+                        backgroundSize: "contain",
+                        backgroundPosition: "center",
+                        backgroundRepeat: "no-repeat",
+                        backgroundImage: `url(${item.image})`,
+                      }}
+                    />
+                    <Typography
+                      fontWeight={"500"}
+                      fontSize={"12px"}
+                      // sx={{ margin: "8px 0" }}
+                      color={"#eee"}
+                    >
+                      Click to zoom
+                    </Typography>
+                    {artist ? (
+                      <></>
+                    ) : (
+                      <>
+                        {/* <Button
                         sx={{
                           width: { xs: "100%", md: "300px" },
                           fontWeight: "500",
@@ -171,9 +195,9 @@ export const Events = (props) => {
                         onClick={() => handleTableBookingClick(item)}
                       >
                        {item.number_of_table_bookings_accepted === "0" ? "Tables Fully Booked" : "Book Table" }
-                      </Button>
+                      </Button> */}
 
-                      {/* <Link href="https://www.howler.co.za/artists/5005?lang=en">
+                        {/* <Link href="https://www.howler.co.za/artists/5005?lang=en">
                         <a style={{width:'100%'}} >
                           <Button
                             sx={{
@@ -192,11 +216,10 @@ export const Events = (props) => {
                           </Button>
                         </a>
                       </Link> */}
-                    </>
-                  )}
-                </SwiperSlide>
-                  </Box>
-                
+                      </>
+                    )}
+                  </SwiperSlide>
+                </Box>
               );
             })}
           </Swiper>

@@ -2,31 +2,35 @@ import { Box, Avatar, Grid, Typography } from "@mui/material";
 import { Events } from "../components/events";
 import { Navbar } from "../components/navbar";
 import { Socials } from "../components/socials";
-import Head from 'next/head';
-
+import Head from "next/head";
 
 const Shadzo = () => {
   return (
     <Box sx={{ background: "#000" }}>
-             <Head>
-      <title>Misguided Ent. | DJ Shadzo
-      </title>
-      <meta
+      <Head>
+        <title>Misguided Ent. | DJ Shadzo</title>
+        <meta
           name="description"
           content="Areshad Thomas, age 22. Better known by his stage name DJ ShadzO, born in the year 2000 on the 20th of May and Grew up in Crown Gardens,"
           key="desc"
         />
-        <link rel="icon" sizes="32x32" type="image/x-icon" href="/misguided-logo.ico"/>
+        <link
+          rel="icon"
+          sizes="32x32"
+          type="image/x-icon"
+          href="/misguided-logo.ico"
+        />
       </Head>
       <Navbar />
       <Box
         sx={{
-          marginTop:{ xs:'10vh' },
-          height: { xs: "30vh" , md: "40vh"},
+          // marginTop: { xs: "10vh" },
+          height: { xs: "15vh", md: "40vh" },
           backgroundImage: 'url("/shadzo-logo-dark.jpg")',
-          backgroundSize: "contain",
-          backgroundPosition: "bottom",
+          // backgroundAttachment: "fixed",
+          backgroundPosition: "center",
           backgroundRepeat: "no-repeat",
+          backgroundSize: "cover",
         }}
       ></Box>
       <Box

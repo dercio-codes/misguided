@@ -1,7 +1,7 @@
 import React, { useRef, useState, useEffect } from "react";
 // Import Swiper React components
 import { Swiper, SwiperSlide } from "swiper/react";
-import { Box, Grid, Button, Typography } from "@mui/material";
+import { Box, Grid, Button, Typography, Divider } from "@mui/material";
 import useMediaQuery from "@mui/material/useMediaQuery";
 
 // Import Swiper styles
@@ -74,8 +74,8 @@ export const Events = (props) => {
     <Box
       id="events"
       sx={{
-        padding: { lg: artist ? "0" : "105px 0" },
-        height: { xs: "fit-content" },
+        // padding: { xs: "1rem 2.5rem", lg: artist ? "0" : "105px 0" },
+        minHeight: { xs: "100vh" },
         background: artist ? "" : "#111",
         // width: { xs: "450px", md: "500px", lg: "100%" },
         width: "100%",
@@ -86,20 +86,22 @@ export const Events = (props) => {
           item
           xs={12}
           sx={{
-            padding: { xs: "12px 8px" },
-            textAlign: { xs: "center" },
+            padding: { xs: "1.5rem 1rem 0 1rem" },
+            // textAlign: { xs: "center" },
             margin: { xs: "12px 0", md: "32px 0" },
           }}
         >
           <Typography
-            variant="h4"
-            width={"100%"}
-            color={"#eee"}
-            // sx={{ fontSize: { xs: "32px", md: "40px" } }}
+            fontSize={"42px"}
+            color={"#999"}
+            margin={"0px 0"}
             fontWeight={"600"}
           >
-            {text}{" "}
+            Events
           </Typography>
+          <Divider
+            sx={{ margin: "0px 0 21px 0", width: "32px", background: "#999" }}
+          />
         </Grid>
 
         <Grid
@@ -110,7 +112,7 @@ export const Events = (props) => {
             marginBottom: "54px",
             alignItems: "center",
             background: "",
-            padding: { xs: "0 12px", md: "0 48px" },
+            // padding: { xs: "0 12px", md: "0 48px" },
           }}
         >
           <Swiper
@@ -148,7 +150,7 @@ export const Events = (props) => {
                         fontWeight: 600,
                         color: "#eee",
                         fontSize: "32px",
-                        margin: "21px 0",
+                        // margin: "21px 0",
                       }}
                     >
                       {item.event_name}
@@ -157,7 +159,7 @@ export const Events = (props) => {
                     <Box
                       onClick={() => handleEventClick(item)}
                       sx={{
-                        height: { xs: "350px", md: "300px" },
+                        height: { xs: "450px", md: "300px" },
                         width: { xs: "100%", md: "300px" },
                         backgroundSize: "contain",
                         backgroundPosition: "center",
@@ -168,7 +170,7 @@ export const Events = (props) => {
                     <Typography
                       fontWeight={"500"}
                       fontSize={"12px"}
-                      sx={{ margin: "8px 0" }}
+                      // sx={{ margin: "8px 0" }}
                       color={"#eee"}
                     >
                       Click to zoom
@@ -177,30 +179,23 @@ export const Events = (props) => {
                       <></>
                     ) : (
                       <>
-                        {item.number_of_table_bookings_accepted !== "0" && (
-                          <Button
-                            sx={{
-                              width: { xs: "100%", md: "300px" },
-                              fontWeight: "500",
-                              fontSize: { xs: "16px", sm: "16px" },
-                              padding: { xs: "12px 0", md: "16px 0" },
-                              margin: "18px auto",
-                              background: "#eee",
-                              color: "#111",
-                              cursor:
-                                item.number_of_table_bookings_accepted === "0"
-                                  ? "not-allowed"
-                                  : "pointer",
-                              "&:hover": { color: "#eee" },
-                            }}
-                            disabled={
-                              item.number_of_table_bookings_accepted === "0"
-                            }
-                            onClick={() => handleTableBookingClick(item)}
-                          >
-                            {"Book Table"}
-                          </Button>
-                        )}
+                        {/* <Button
+                        sx={{
+                          width: { xs: "100%", md: "300px" },
+                          fontWeight: "500",
+                          fontSize: { xs: "16px", sm: "16px" },
+                          padding: { xs: "12px 0", md: "16px 0" },
+                          margin: "18px auto",
+                          background: "#eee",
+                          color: "#111",
+                          cursor:item.number_of_table_bookings_accepted === "0" ? "not-allowed" : "pointer",
+                          "&:hover": { color: "#eee" },
+                        }}
+                        disabled={item.number_of_table_bookings_accepted === "0"}
+                        onClick={() => handleTableBookingClick(item)}
+                      >
+                       {item.number_of_table_bookings_accepted === "0" ? "Tables Fully Booked" : "Book Table" }
+                      </Button> */}
 
                         {/* <Link href="https://www.howler.co.za/artists/5005?lang=en">
                         <a style={{width:'100%'}} >

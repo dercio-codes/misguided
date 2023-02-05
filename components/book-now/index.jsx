@@ -119,7 +119,11 @@ export const BookNow = () => {
   return (
     <Box
       id="book-now"
-      sx={{ backgroundSize: "cover", padding: "32px", minHeight: "50vh" }}
+      sx={{
+        backgroundSize: "cover",
+        padding: "2.5rem 1rem",
+        minHeight: "50vh",
+      }}
     >
       <Box
         sx={{

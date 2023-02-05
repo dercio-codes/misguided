@@ -105,7 +105,7 @@ export const Banners = () => {
     <Box id="Banners" sx={{ padding: "0" }}>
       <Box
         sx={{
-          minHeight: { xs: "50vh", lg: "65vh" },
+          //   minHeight: { xs: "50vh", lg: "65vh" },
           background: "rgba(1,1,1,.05)",
           width: "100%",
           padding: "",
@@ -113,7 +113,7 @@ export const Banners = () => {
       >
         <Box
           sx={{
-            minHeight: { xs: "50vh", lg: "65vh" },
+            // height: { xs: "50vh", lg: "65vh" },
             backgroundImage: 'url("/collage.jpg")',
             backgroundPosition: "center",
             backgroundAttachment: "fixed",
@@ -123,104 +123,80 @@ export const Banners = () => {
         >
           <Box
             sx={{
-              minHeight: { xs: "50vh", lg: "65vh" },
+              minHeight: { xs: "85vh", lg: "65vh" },
               background: "rgba(1,1,1,.85)",
               margin: "auto",
               width: "100%",
+              display: "flex",
+              flexDirection: "column",
+              alignItems: "center",
+              justifyContent: "center",
+              padding: "2.5rem 1rem",
             }}
           >
-            <Grid container sx={{ height: "100%" }}>
-              <Grid
-                item
-                xs={12}
-                sx={{
-                  display: "flex",
-                  padding: "2.5rem",
-                  flexDirection: "column",
-                  alignItems: "center",
-                  justifyContent: "center",
-                }}
-              >
+            <Typography
+              variant="p"
+              color={"#eee"}
+              sx={{
+                margin: "12px auto",
+                textAlign: "center",
+                fontSize: "21px",
+                lineHeight: "2rem",
+              }}
+              textAlign={"center"}
+              fontWeight={"400"}
+            >
+              {
+                "Misguided Entertainment is a company able to assist in planning, organizing, and aiding in all the small details that assist in making your event successful."
+              }
+            </Typography>
+            <Button
+              sx={{
+                width: { xs: "250px", md: "100%" },
+                height: "100%",
+                fontWeight: "600",
+                fontSize: "16px",
+                margin: "32px 0",
+                padding: { xs: "18px 0", md: "12px 0" },
+                background: "#eee",
+                color: "#111",
+                "&:hover": {
+                  color: "#eee",
+                },
+              }}
+              // onClick={handleSubmit}
+            >
+              {" "}
+              Contact{" "}
+            </Button>
+            {/* <Grid container sx={{ height: "100%" }}>
+              <Grid item xs={12} sx={{ display:'flex' , padding:'2.5rem' , flexDirection:'column' , alignItems:'center' , justifyContent:'center' }} >
                 <Box data-aos="zoom-in" data-aos-duration="3000">
-                  <Box
-                    sx={{
-                      display: "flex",
-                      justifyContent: "center",
-                      alignItems: "center",
-                      flexDirection: "column",
-                    }}
-                  >
-                    <Typography
-                      variant="h6"
-                      sx={{ fontSize: "60px" }}
-                      color={"#eee"}
-                      fontWeight={"600"}
-                      textAlign={"center"}
-                    >
-                      Officially Unemployed
-                    </Typography>
-                  </Box>
+                <Box sx={{ display:'flex' , justifyContent:'center' , alignItems:'center' , flexDirection:'column' }} >
+
+                <Typography variant="h6" sx={{ fontSize:'60px' }} color={"#eee"} fontWeight={"600"} textAlign={"center"}>Old School Fridays</Typography>
+               
+                </Box>
                 </Box>
                 <Box data-aos="fade-up" data-aos-duration="3000">
-                  <Box
-                    sx={{
-                      display: "flex",
-                      justifyContent: "center",
-                      alignItems: "center",
-                      flexDirection: "column",
-                    }}
-                  >
-                    <Typography
-                      variant="h6"
-                      sx={{ fontSize: "28px", margin: "12px 0 " }}
-                      color={"#eee"}
-                      fontWeight={"300"}
-                      textAlign={"center"}
-                    >
-                      BLOOM
-                    </Typography>
-                    <LocationOnIcon sx={{ margin: "0 auto", color: "#eee" }} />
-                  </Box>
+                <Box sx={{ display:'flex' , justifyContent:'center' , alignItems:'center' , flexDirection:'column' }} >
+
+                <Typography variant="h6" sx={{ fontSize:'28px' , margin:'12px 0 ' }} color={"#eee"} fontWeight={"300"} textAlign={"center"}>The Classic Indiah Hookah Lounge</Typography>
+                <LocationOnIcon sx={{ margin:'0 auto' , color:"#eee"}} />
+                </Box>
                 </Box>
 
                 <Box data-aos="fade-down" data-aos-duration="3000">
-                  <Box
-                    sx={{
-                      display: "flex",
-                      justifyContent: "center",
-                      alignItems: "center",
-                      flexDirection: "column",
-                    }}
-                  >
-                    <Typography
-                      variant="h6"
-                      sx={{ fontSize: "24px", margin: "12px 0 " }}
-                      color={"#eee"}
-                      fontWeight={"300"}
-                      textAlign={"center"}
-                    >
-                      20 January 2023
-                    </Typography>
-                    <EventIcon sx={{ margin: "0 auto", color: "#eee" }} />
-                  </Box>
+                <Box sx={{ display:'flex' , justifyContent:'center' , alignItems:'center' , flexDirection:'column' }} >
+
+                <Typography variant="h6" sx={{ fontSize:'24px' , margin:'12px 0 ' }} color={"#eee"} fontWeight={"300"} textAlign={"center"}>24 January 2023</Typography>
+                <EventIcon sx={{ margin:'0 auto' , color:"#eee"}} />
                 </Box>
-                <Button
-                  className={"jello-horizontal"}
-                  onClick={() => setActive("")}
-                  sx={{
-                    fontWeight: "600",
-                    fontSize: "14px",
-                    padding: "12px 18px",
-                    margin: "18px auto",
-                    color: "#111",
-                    background: "#eee",
-                    "&:hover": { color: "#111", background: "#eee" },
-                  }}
-                >
-                  Book Table
-                </Button>
-              </Grid>
+                </Box>
+                <Button className={"jello-horizontal"} onClick={() => setActive("")} sx={{ fontWeight: '600', fontSize: '14px', padding: '12px 18px', margin: '18px auto', color: '#111', background: '#eee' , "&:hover":{color: '#111', background: '#eee'} }}>Book Table</Button>
+
             </Grid>
+            </Grid> */}
           </Box>
         </Box>
       </Box>
@@ -229,14 +205,14 @@ export const Banners = () => {
           display: "flex",
           alignItems: "center",
           justifyContent: "center",
-          margin: "52px 0 0 0 ",
+          //   margin: "52px 0 0 0 ",
         }}
       >
         <Typography
           variant="p"
           color={"#eee"}
           sx={{
-            margin: "12px auto",
+            margin: "32px auto",
             textAlign: "center",
             fontSize: "56px",
             fontWeight: "600",
@@ -254,9 +230,9 @@ export const Banners = () => {
           lg={4}
           xs={12}
           sx={{
-            height: { xs: "fit-content", lg: "95vh" },
+            height: { xs: "fit-content" },
             borderBottom: "12px solid rgba(180,180,180,.05)",
-            padding: { xs: "1rem", lg: "2.5rem 12px" },
+            padding: { xs: "2.5rem 1rem", lg: "2.5rem 12px" },
             "&:hover": { background: "rgba(180,180,180,.1)" },
             display: "flex",
             flexDirection: "column",
@@ -266,14 +242,14 @@ export const Banners = () => {
         >
           <Box
             data-aos="fade-left"
-            data-aos-anchor-placement="top-center"
+            data-aos-anchor-placement="center"
             data-aos-duration="2000"
           >
             <Box
               sx={{
                 width: "100%",
-                scale: "0.8",
-                "&:hover": { scale: "0.9" },
+                scale: { xs: "1", lg: "0.8" },
+                "&:hover": { scale: { xs: 1, lg: "0.9" } },
                 transition: "800ms",
                 display: "flex",
                 flexDirection: "column",
@@ -295,7 +271,7 @@ export const Banners = () => {
                   item
                   xs={12}
                   sx={{
-                    margin: "32px 0 21px 0",
+                    margin: "21px 0",
                     background: "",
                     textAlign: "center",
                   }}
@@ -304,7 +280,8 @@ export const Banners = () => {
                     variant="p"
                     color={"#eee"}
                     sx={{
-                      margin: "21px 0 0 0",
+                      margin: "0",
+                      //   background: "yellow",
                       textAlign: "center",
                       fontSize: "21px",
                       fontWeight: "600",
@@ -320,7 +297,7 @@ export const Banners = () => {
                   sx={{
                     alignItems: "center",
                     background: "",
-                    margin: { xs: "21px 0 0", md: "0" },
+                    // margin: { xs: "21px 0 0", md: "0" },
                     height: { xs: "fit-content", md: "" },
                     display: "flex",
                     justifyContent: "center",
@@ -399,7 +376,7 @@ export const Banners = () => {
           sx={{
             height: { xs: "fit-content", lg: "95vh" },
             borderBottom: "12px solid rgba(180,180,180,.05)",
-            padding: { xs: "1rem", lg: "2.5rem 12px" },
+            padding: { xs: "2.5rem 1rem", lg: "2.5rem 12px" },
             "&:hover": {
               background: "rgba(180,180,180,.1)",
               color: "#FFC300 !important",
@@ -412,14 +389,14 @@ export const Banners = () => {
         >
           <Box
             data-aos="fade-up"
-            data-aos-anchor-placement="top-center"
+            data-aos-anchor-placement="center"
             data-aos-duration="2000"
           >
             <Box
               sx={{
                 width: "100%",
-                scale: "0.8",
-                "&:hover": { scale: "0.9" },
+                scale: { xs: "1", lg: "0.8" },
+                "&:hover": { scale: { xs: 1, lg: "0.9" } },
                 transition: "800ms",
                 display: "flex",
                 flexDirection: "column",
@@ -441,7 +418,7 @@ export const Banners = () => {
                   item
                   xs={12}
                   sx={{
-                    margin: "32px 0 21px 0",
+                    margin: "21px 0",
                     background: "",
                     textAlign: "center",
                   }}
@@ -450,7 +427,8 @@ export const Banners = () => {
                     variant="p"
                     color={"#eee"}
                     sx={{
-                      margin: "21px 0 0 0",
+                      margin: "0",
+                      //   background: "yellow",
                       textAlign: "center",
                       fontSize: "21px",
                       fontWeight: "600",
@@ -466,7 +444,7 @@ export const Banners = () => {
                   sx={{
                     alignItems: "center",
                     background: "",
-                    margin: { xs: "21px 0 0", md: "0" },
+                    // margin: { xs: "21px 0 0", md: "0" },
                     height: { xs: "fit-content", md: "" },
                     display: "flex",
                     justifyContent: "center",
@@ -487,7 +465,7 @@ export const Banners = () => {
                       },
                     }}
                   >
-                    <Link href={"/shadzo"}>
+                    <Link href={"/karlo"}>
                       <a style={{ display: "flex", alignItems: "center" }}>
                         <Typography
                           sx={{
@@ -545,7 +523,7 @@ export const Banners = () => {
           sx={{
             height: { xs: "fit-content", lg: "95vh" },
             borderBottom: "12px solid rgba(180,180,180,.05)",
-            padding: { xs: "1rem", lg: "2.5rem 12px" },
+            padding: { xs: "2.5rem 1rem", lg: "2.5rem 12px" },
             "&:hover": { background: "rgba(180,180,180,.1)" },
             display: "flex",
             flexDirection: "column",
@@ -555,14 +533,14 @@ export const Banners = () => {
         >
           <Box
             data-aos="fade-right"
-            data-aos-anchor-placement="top-center"
+            data-aos-anchor-placement="center"
             data-aos-duration="2000"
           >
             <Box
               sx={{
                 width: "100%",
-                scale: "0.8",
-                "&:hover": { scale: "0.9" },
+                scale: { xs: "1", lg: "0.8" },
+                "&:hover": { scale: { xs: 1, lg: "0.9" } },
                 transition: "800ms",
                 display: "flex",
                 flexDirection: "column",
@@ -584,7 +562,7 @@ export const Banners = () => {
                   item
                   xs={12}
                   sx={{
-                    margin: "32px 0 21px 0",
+                    margin: "21px 0",
                     background: "",
                     textAlign: "center",
                   }}
@@ -593,7 +571,8 @@ export const Banners = () => {
                     variant="p"
                     color={"#eee"}
                     sx={{
-                      margin: "21px 0 0 0",
+                      margin: "0",
+                      //   background: "yellow",
                       textAlign: "center",
                       fontSize: "21px",
                       fontWeight: "600",
@@ -609,7 +588,7 @@ export const Banners = () => {
                   sx={{
                     alignItems: "center",
                     background: "",
-                    margin: { xs: "21px 0 0", md: "0" },
+                    // margin: { xs: "21px 0 0", md: "0" },
                     height: { xs: "fit-content", md: "" },
                     display: "flex",
                     justifyContent: "center",
@@ -630,7 +609,7 @@ export const Banners = () => {
                       },
                     }}
                   >
-                    <Link href={"/shadzo"}>
+                    <Link href={"/ykm"}>
                       <a style={{ display: "flex", alignItems: "center" }}>
                         <Typography
                           sx={{

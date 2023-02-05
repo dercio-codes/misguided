@@ -231,7 +231,7 @@ html body .swiper-button-next:after,
   #events .swiper-slide {
     display: flex;
     flex-direction: column;
-    padding: 90px 12px 12px 12px;
+    padding: 56px 12px;
     /* padding:12px; */
     align-items: center;
     justify-content: space-evenly;

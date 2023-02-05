@@ -227,7 +227,7 @@ export const BookNow = () => {
               onChange={handleFieldChange}
               name="email"
               type="email"
-              helperText="bookings@misguidedsa.com"
+              helperText="bookings@misguidedsa.co.za"
               placeholder="Email"
               fullWidth
               sx={{
@@ -472,7 +472,7 @@ export const BookNow = () => {
               onChange={handleFieldChange}
               name="hospitality"
               helperText="Hospitality for requested artist."
-              placeholder="Hennesy , Jameson , Jagermeister "
+              placeholder="Hennessy , Jameson , Jagermeister "
               fullWidth
               sx={{
                 padding: "0",

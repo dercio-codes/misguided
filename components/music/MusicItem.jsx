@@ -48,7 +48,7 @@ export const MusicItem = (props) => {
         elevation={3}
         sx={{
           width: "100%",
-          height: "300px",
+          height: "250px",
           color: "#eee",
           background: "rgba(200,200,200,.1)",
           "&:hover": { background: "rgba(200,200,200,.2)", scale: "1.03" },
@@ -62,9 +62,10 @@ export const MusicItem = (props) => {
       >
         <Box
           sx={{
-            height: "200px",
+            height: "150px",
             background: `url("${props.song.artwork}")`,
-            backgroundSize: "cover",
+            backgroundColor: "#000",
+            backgroundSize: "contain",
             backgroundRepeat: "no-repeat",
             backgroundPostion: "center",
           }}
@@ -77,19 +78,15 @@ export const MusicItem = (props) => {
               background: "",
               flex: "10",
               justifyContent: "center",
+              overflow: "hidden",
+              textOverflow: "ellipsis",
             }}
           >
-            <Typography
-              noWrap={true}
-              sx={{ fontSize: "16px", fontWeight: "600" }}
-            >
+            <Typography noWrap sx={{ fontSize: "16px", fontWeight: "600" }}>
               {" "}
               {props.song.title}{" "}
             </Typography>
-            <Typography
-              noWrap={true}
-              sx={{ fontSize: "14px", fontWeight: "300" }}
-            >
+            <Typography noWrap sx={{ fontSize: "14px", fontWeight: "300" }}>
               {" "}
               {props.song.artist}{" "}
             </Typography>

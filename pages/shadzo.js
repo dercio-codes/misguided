@@ -2,6 +2,7 @@ import { Box, Avatar, Grid, Typography } from "@mui/material";
 import { Events } from "../components/events";
 import { Navbar } from "../components/navbar";
 import { Socials } from "../components/socials";
+import { BookNow } from "../components/book-now";
 import Head from "next/head";
 
 const Shadzo = () => {
@@ -198,6 +199,7 @@ const Shadzo = () => {
           </Grid>
         </Box>
       </Box>
+      <BookNow artist={"Dj Shadzo"} />
     </Box>
   );
 };

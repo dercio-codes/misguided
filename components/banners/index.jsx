@@ -25,6 +25,568 @@ import { PulseLoader } from "react-spinners";
 import { Socials } from "../socials";
 import Link from "next/link";
 
+import PropTypes from "prop-types";
+import Tabs from "@mui/material/Tabs";
+import Tab from "@mui/material/Tab";
+
+function TabPanel(props) {
+  const { children, value, index, ...other } = props;
+
+  return (
+    <div
+      role="tabpanel"
+      hidden={value !== index}
+      id={`simple-tabpanel-${index}`}
+      aria-labelledby={`simple-tab-${index}`}
+      {...other}
+    >
+      {value === index && (
+        <Box sx={{ p: 0 }}>
+          <Typography>{children}</Typography>
+        </Box>
+      )}
+    </div>
+  );
+}
+
+TabPanel.propTypes = {
+  children: PropTypes.node,
+  index: PropTypes.number.isRequired,
+  value: PropTypes.number.isRequired,
+};
+
+function a11yProps(index) {
+  return {
+    id: `simple-tab-${index}`,
+    "aria-controls": `simple-tabpanel-${index}`,
+  };
+}
+
+export default function MobileTabs() {
+  const [value, setValue] = React.useState(0);
+
+  const handleChange = (event, newValue) => {
+    setValue(newValue);
+  };
+
+  return (
+    <Box
+      sx={{
+        width: "100%",
+        display: { xs: "flex", lg: "none" },
+        flexDirection: "column",
+      }}
+    >
+      <Typography
+        variant="p"
+        color={"#eee"}
+        sx={{
+          margin: "32px auto",
+          textAlign: "center",
+          fontSize: "56px",
+          fontWeight: "600",
+          width: "100%",
+          display: "flex",
+          flexDirection: "column",
+          alignItems: "center",
+        }}
+        textAlign={"center"}
+        fontWeight={"300"}
+      >
+        {"Artists"}
+      </Typography>
+
+      <Box
+        sx={{
+          borderBottom: 1,
+          borderColor: "divider",
+          display: "flex",
+          justifyContent: "center",
+        }}
+      >
+        <Tabs
+          value={value}
+          onChange={handleChange}
+          aria-label="basic tabs example"
+          sx={{ display: "flex", justifyContent: "space-evenly" }}
+        >
+          <Tab
+            sx={{
+              "&.Mui-Selected": { color: "#eee" },
+              color: "#eee",
+              padding: "21px",
+              margin: "0 8px",
+            }}
+            label="DJ Shadzo"
+            {...a11yProps(0)}
+          />
+          <Tab
+            sx={{
+              "&.Mui-Selected": { color: "#eee" },
+              color: "#eee",
+              padding: "21px",
+              margin: "0 8px",
+            }}
+            label="Dj Karlo"
+            {...a11yProps(1)}
+          />
+          <Tab
+            sx={{
+              "&.Mui-Selected": { color: "#eee" },
+              color: "#eee",
+              padding: "21px",
+              margin: "0 8px",
+            }}
+            label="YKM THEE MC"
+            {...a11yProps(2)}
+          />
+        </Tabs>
+      </Box>
+      <TabPanel value={value} index={0}>
+        <Grid container>
+          <Grid
+            item
+            lg={4}
+            xs={12}
+            sx={{
+              minHeight: { xs: "fit-content", lg: "95vh" },
+              borderBottom: "12px solid rgba(180,180,180,.05)",
+              padding: { xs: "2.5rem 1rem", lg: "2.5rem 12px" },
+              "&:hover": { background: "rgba(180,180,180,.1)" },
+              display: "flex",
+              flexDirection: "column",
+              alignItems: "center",
+              justifyContent: "space-between",
+            }}
+          >
+            <Box
+              data-aos="fade-left"
+              data-aos-anchor-placement="center"
+              data-aos-duration="2000"
+            >
+              <Box
+                sx={{
+                  width: "100%",
+                  scale: { xs: "1", lg: "0.8" },
+                  "&:hover": { scale: { xs: 1, lg: "0.9" } },
+                  transition: "800ms",
+                  display: "flex",
+                  flexDirection: "column",
+                  alignItems: "center",
+                }}
+              >
+                <Avatar
+                  src={"/shadzo-2.jpeg"}
+                  alt={"Dj Shadzo"}
+                  sx={{
+                    width: { lg: "200px", xs: "180px" },
+                    height: { lg: "200px", xs: "180px" },
+                    filter: "blur(0.3px)",
+                    margin: "0 auto",
+                  }}
+                ></Avatar>
+                <Grid container>
+                  <Grid
+                    item
+                    xs={12}
+                    sx={{
+                      margin: "21px 0",
+                      background: "",
+                      textAlign: "center",
+                    }}
+                  >
+                    <Typography
+                      variant="p"
+                      color={"#eee"}
+                      sx={{
+                        margin: "0",
+                        //   background: "yellow",
+                        textAlign: "center",
+                        fontSize: "21px",
+                        fontWeight: "600",
+                      }}
+                      fontWeight={"300"}
+                    >
+                      {"If your girl don't know Shadzo don't dala."}
+                    </Typography>
+                  </Grid>
+                  <Grid
+                    item
+                    xs={12}
+                    sx={{
+                      alignItems: "center",
+                      background: "",
+                      // margin: { xs: "21px 0 0", md: "0" },
+                      height: { xs: "fit-content", md: "" },
+                      display: "flex",
+                      justifyContent: "center",
+                    }}
+                  >
+                    <Typography
+                      textAlign={"end"}
+                      fontSize={"21px"}
+                      fontWeight={"300"}
+                      sx={{
+                        scale: "0.9",
+                        transition: "100ms",
+                        color: "#eee",
+                        "&:hover": {
+                          scale: "0.95",
+                          textDecoration: "underline",
+                          color: "#800020",
+                        },
+                      }}
+                    >
+                      <Link href={"/shadzo"}>
+                        <a style={{ display: "flex", alignItems: "center" }}>
+                          <Typography
+                            sx={{
+                              fontSize: "21px",
+                              margin: { xs: 0, md: "0 8px" },
+                            }}
+                          >
+                            See more about {"Dj Shadzo"}
+                          </Typography>
+                          <EastIcon
+                            sx-={{
+                              color: "#eee",
+                              fontWeight: 600,
+                              margin: "0 8px",
+                            }}
+                          />
+                        </a>
+                      </Link>
+                    </Typography>
+                  </Grid>
+                </Grid>
+                <iframe
+                  style={{
+                    borderRadius: "12px",
+                    margin: "18px auto",
+                    height: "500px",
+                    width: "100%",
+                  }}
+                  src="https://open.spotify.com/embed/artist/5JuA3291INTaMk0R8xMkZK?utm_source=generator"
+                  width="100%"
+                  height="315"
+                  frameBorder="0"
+                  allowFullScreen=""
+                  allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture"
+                  loading="lazy"
+                ></iframe>
+                <Box
+                  sx={{
+                    display: "flex",
+                    justifyContent: "center",
+                    width: "100%",
+                  }}
+                >
+                  <Socials artist={"Dj Shadzo"} />
+                </Box>
+              </Box>
+            </Box>
+          </Grid>
+        </Grid>
+      </TabPanel>
+      <TabPanel value={value} index={1}>
+        <Grid container>
+          <Grid
+            item
+            lg={4}
+            xs={12}
+            sx={{
+              minHeight: { xs: "fit-content", lg: "95vh" },
+              borderBottom: "12px solid rgba(180,180,180,.05)",
+              padding: { xs: "2.5rem 1rem", lg: "2.5rem 12px" },
+              "&:hover": {
+                background: "rgba(180,180,180,.1)",
+                color: "#FFC300 !important",
+              },
+              display: "flex",
+              flexDirection: "column",
+              alignItems: "center",
+              justifyContent: "space-between",
+            }}
+          >
+            <Box
+              data-aos="fade-up"
+              data-aos-anchor-placement="center"
+              data-aos-duration="2000"
+            >
+              <Box
+                sx={{
+                  width: "100%",
+                  scale: { xs: "1", lg: "0.8" },
+                  "&:hover": { scale: { xs: 1, lg: "0.9" } },
+                  transition: "800ms",
+                  display: "flex",
+                  flexDirection: "column",
+                  alignItems: "center",
+                }}
+              >
+                <Avatar
+                  src={"/Karlo-1.jpeg"}
+                  alt={"Dj Shadzo"}
+                  sx={{
+                    width: { lg: "200px", xs: "180px" },
+                    height: { lg: "200px", xs: "180px" },
+                    filter: "blur(0.3px)",
+                    margin: "0 auto",
+                  }}
+                ></Avatar>
+                <Grid container>
+                  <Grid
+                    item
+                    xs={12}
+                    sx={{
+                      margin: "21px 0",
+                      background: "",
+                      textAlign: "center",
+                    }}
+                  >
+                    <Typography
+                      variant="p"
+                      color={"#eee"}
+                      sx={{
+                        margin: "0",
+                        //   background: "yellow",
+                        textAlign: "center",
+                        fontSize: "21px",
+                        fontWeight: "600",
+                      }}
+                      fontWeight={"300"}
+                    >
+                      {"Old School RnB and Classic Jams."}
+                    </Typography>
+                  </Grid>
+                  <Grid
+                    item
+                    xs={12}
+                    sx={{
+                      alignItems: "center",
+                      background: "",
+                      // margin: { xs: "21px 0 0", md: "0" },
+                      height: { xs: "fit-content", md: "" },
+                      display: "flex",
+                      justifyContent: "center",
+                    }}
+                  >
+                    <Typography
+                      textAlign={"end"}
+                      fontSize={"21px"}
+                      fontWeight={"300"}
+                      sx={{
+                        scale: "0.9",
+                        transition: "100ms",
+                        color: "#eee",
+                        "&:hover": {
+                          scale: "0.95",
+                          textDecoration: "underline",
+                          color: "#FFC300",
+                        },
+                      }}
+                    >
+                      <Link href={"/karlo"}>
+                        <a style={{ display: "flex", alignItems: "center" }}>
+                          <Typography
+                            sx={{
+                              fontSize: "21px",
+                              margin: { xs: 0, md: "0 8px" },
+                            }}
+                          >
+                            See more about {"Karlo Dj"}
+                          </Typography>
+                          <EastIcon
+                            sx-={{
+                              color: "#eee",
+                              fontWeight: 600,
+                              margin: "0 8px",
+                            }}
+                          />
+                        </a>
+                      </Link>
+                    </Typography>
+                  </Grid>
+                </Grid>
+                <iframe
+                  style={{
+                    borderRadius: "12px",
+                    margin: "18px 0",
+                    height: "500px",
+                    width: "100%",
+                  }}
+                  src="https://www.youtube.com/embed/-J0fR8UMfIc"
+                  width="100%"
+                  height="315"
+                  frameBorder="0"
+                  allowFullScreen=""
+                  allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture"
+                  loading="lazy"
+                ></iframe>
+                <Box
+                  sx={{
+                    display: "flex",
+                    justifyContent: "center",
+                    width: "100%",
+                  }}
+                >
+                  <Socials artist={"Karlo Dj"} />
+                </Box>
+              </Box>
+            </Box>
+          </Grid>
+        </Grid>
+      </TabPanel>
+      <TabPanel value={value} index={2}>
+        <Grid container>
+          <Grid
+            item
+            lg={4}
+            xs={12}
+            sx={{
+              minHeight: { xs: "fit-content", lg: "95vh" },
+              borderBottom: "12px solid rgba(180,180,180,.05)",
+              padding: { xs: "2.5rem 1rem", lg: "2.5rem 12px" },
+              "&:hover": { background: "rgba(180,180,180,.1)" },
+              display: "flex",
+              flexDirection: "column",
+              alignItems: "center",
+              justifyContent: "space-between",
+            }}
+          >
+            <Box
+              data-aos="fade-right"
+              data-aos-anchor-placement="center"
+              data-aos-duration="2000"
+            >
+              <Box
+                sx={{
+                  width: "100%",
+                  scale: { xs: "1", lg: "0.8" },
+                  "&:hover": { scale: { xs: 1, lg: "0.9" } },
+                  transition: "800ms",
+                  display: "flex",
+                  flexDirection: "column",
+                  alignItems: "center",
+                }}
+              >
+                <Avatar
+                  src={"/ykm-2.jpeg"}
+                  alt={"Dj Shadzo"}
+                  sx={{
+                    width: { lg: "200px", xs: "180px" },
+                    height: { lg: "200px", xs: "180px" },
+                    filter: "blur(0.3px)",
+                    margin: "0 auto",
+                  }}
+                ></Avatar>
+                <Grid container>
+                  <Grid
+                    item
+                    xs={12}
+                    sx={{
+                      margin: "21px 0",
+                      background: "",
+                      textAlign: "center",
+                    }}
+                  >
+                    <Typography
+                      variant="p"
+                      color={"#eee"}
+                      sx={{
+                        margin: "0",
+                        //   background: "yellow",
+                        textAlign: "center",
+                        fontSize: "21px",
+                        fontWeight: "600",
+                      }}
+                      fontWeight={"300"}
+                    >
+                      {"Mr Lovers and Friends."}
+                    </Typography>
+                  </Grid>
+                  <Grid
+                    item
+                    xs={12}
+                    sx={{
+                      alignItems: "center",
+                      background: "",
+                      // margin: { xs: "21px 0 0", md: "0" },
+                      height: { xs: "fit-content", md: "" },
+                      display: "flex",
+                      justifyContent: "center",
+                    }}
+                  >
+                    <Typography
+                      textAlign={"end"}
+                      fontSize={"21px"}
+                      fontWeight={"300"}
+                      sx={{
+                        scale: "0.9",
+                        transition: "100ms",
+                        color: "#eee",
+                        "&:hover": {
+                          scale: "0.95",
+                          textDecoration: "underline",
+                          color: "#40e0d0",
+                        },
+                      }}
+                    >
+                      <Link href={"/ykm"}>
+                        <a style={{ display: "flex", alignItems: "center" }}>
+                          <Typography
+                            sx={{
+                              fontSize: "21px",
+                              margin: { xs: 0, md: "0 8px" },
+                            }}
+                          >
+                            See more about {"YKM"}
+                          </Typography>
+                          <EastIcon
+                            sx-={{
+                              color: "#eee",
+                              fontWeight: 600,
+                              margin: "0 8px",
+                            }}
+                          />
+                        </a>
+                      </Link>
+                    </Typography>
+                  </Grid>
+                </Grid>
+                <iframe
+                  style={{
+                    borderRadius: "12px",
+                    margin: "18px 0",
+                    height: "500px",
+                    width: "95%",
+                  }}
+                  src="https://www.youtube.com/embed/gy6gGT-G6ak"
+                  width="100%"
+                  height="315"
+                  frameBorder="0"
+                  allowFullScreen=""
+                  allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture"
+                  loading="lazy"
+                ></iframe>
+                <Box
+                  sx={{
+                    display: "flex",
+                    justifyContent: "center",
+                    width: "100%",
+                  }}
+                >
+                  <Socials artist={"YKM THEE MC"} />
+                </Box>
+              </Box>
+            </Box>
+          </Grid>
+        </Grid>
+      </TabPanel>
+    </Box>
+  );
+}
+
 export const Banners = () => {
   const [loading, setLoading] = useState(false);
   const artists = [
@@ -152,7 +714,7 @@ export const Banners = () => {
             </Typography>
             <Button
               sx={{
-                width: { xs: "250px", md: "100%" },
+                width: { xs: "250px" },
                 height: "100%",
                 fontWeight: "600",
                 fontSize: "16px",
@@ -200,9 +762,10 @@ export const Banners = () => {
           </Box>
         </Box>
       </Box>
+      <MobileTabs />
       <Box
         sx={{
-          display: "flex",
+          display: { xs: "none", lg: "flex" },
           alignItems: "center",
           justifyContent: "center",
           //   margin: "52px 0 0 0 ",
@@ -224,13 +787,13 @@ export const Banners = () => {
         </Typography>
       </Box>
 
-      <Grid container>
+      <Grid container sx={{ display: { xs: "none", lg: "flex" } }}>
         <Grid
           item
           lg={4}
           xs={12}
           sx={{
-            height: { xs: "fit-content" },
+            minHeight: { xs: "fit-content", lg: "95vh" },
             borderBottom: "12px solid rgba(180,180,180,.05)",
             padding: { xs: "2.5rem 1rem", lg: "2.5rem 12px" },
             "&:hover": { background: "rgba(180,180,180,.1)" },
@@ -374,7 +937,7 @@ export const Banners = () => {
           lg={4}
           xs={12}
           sx={{
-            height: { xs: "fit-content", lg: "95vh" },
+            minHeight: { xs: "fit-content", lg: "95vh" },
             borderBottom: "12px solid rgba(180,180,180,.05)",
             padding: { xs: "2.5rem 1rem", lg: "2.5rem 12px" },
             "&:hover": {
@@ -521,7 +1084,7 @@ export const Banners = () => {
           lg={4}
           xs={12}
           sx={{
-            height: { xs: "fit-content", lg: "95vh" },
+            minHeight: { xs: "fit-content", lg: "95vh" },
             borderBottom: "12px solid rgba(180,180,180,.05)",
             padding: { xs: "2.5rem 1rem", lg: "2.5rem 12px" },
             "&:hover": { background: "rgba(180,180,180,.1)" },

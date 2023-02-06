@@ -24,13 +24,21 @@ import {
 // https://firebase.google.com/docs/web/setup#available-libraries
 
 // Your web app's Firebase configuration
+// export const firebaseConfig = {
+//   apiKey: "AIzaSyB4-n-MDLbjfqoNt55KU9zuiAJbU1e_gT8",
+//   authDomain: "misguided-79fcc.firebaseapp.com",
+//   projectId: "misguided-79fcc",
+//   storageBucket: "misguided-79fcc.appspot.com",
+//   messagingSenderId: "189387423210",
+//   appId: "1:189387423210:web:70c1a06279af92299d0693",
+// };
 export const firebaseConfig = {
-  apiKey: "AIzaSyB4-n-MDLbjfqoNt55KU9zuiAJbU1e_gT8",
-  authDomain: "misguided-79fcc.firebaseapp.com",
-  projectId: "misguided-79fcc",
-  storageBucket: "misguided-79fcc.appspot.com",
-  messagingSenderId: "189387423210",
-  appId: "1:189387423210:web:70c1a06279af92299d0693",
+  apiKey: "AIzaSyBeVBu9mS2bTOtvy_OUO7m6EAoRlyb_nnc",
+  authDomain: "misguided-946f0.firebaseapp.com",
+  projectId: "misguided-946f0",
+  storageBucket: "misguided-946f0.appspot.com",
+  messagingSenderId: "773134794746",
+  appId: "1:773134794746:web:776aafb7512825f72fae43",
 };
 
 // Initialize Firebase

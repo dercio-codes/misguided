@@ -17,13 +17,13 @@ import { GooSpinner } from "react-spinners-kit";
 import { PropagateLoader } from "react-spinners";
 import { toast } from "react-toastify";
 
-export const BookNow = () => {
+export const BookNow = ({ artist }) => {
   const enqueueSnackbar = useSnackbar();
   const [isProcessing, setIsProcessing] = useState(false);
   const [booking, setBooking] = useState({
     name: "",
     tel: "",
-    requested_artist: "",
+    requested_artist: artist === "Artists" ? "" : artist,
     event_date: "",
     event_name: "",
     event_location: "",
@@ -151,12 +151,12 @@ export const BookNow = () => {
           color={"#eee"}
           sx={{
             margin: "0 32px",
-            fontSize: { xs: "32px", md: "54px" },
+            fontSize: { xs: "28px", md: "54px" },
             textAlign: "",
           }}
           fontWeight={"600"}
         >
-          Book Now
+          Book {artist} Now
         </Typography>
       </Box>
       <Stack sx={{ padding: "21px 4px", background: "" }}>
@@ -330,7 +330,7 @@ export const BookNow = () => {
             >
               <MenuItem value="Dj Karlo">Dj Karlo </MenuItem>
               <MenuItem value="Dj Shadzo">Dj Shadzo </MenuItem>
-              <MenuItem value="YKM Thee">YKM Thee MC </MenuItem>
+              <MenuItem value="YKM Thee MC">YKM Thee MC </MenuItem>
               <MenuItem value="Dj Karlo + YKM Thee MC">
                 Dj Karlo + YKM Thee MC{" "}
               </MenuItem>

@@ -2,16 +2,16 @@ import { Box, Avatar, Grid, Typography } from "@mui/material";
 import { Events } from "../components/events";
 import { Navbar } from "../components/navbar";
 import { Socials } from "../components/socials";
-import Head from 'next/head';
+import { BookNow } from "../components/book-now";
 
+import Head from "next/head";
 
 const YKM = () => {
   return (
     <Box sx={{ background: "#000" }}>
-                 <Head>
-      <title>Misguided Ent. | YKM
-      </title>
-      <meta
+      <Head>
+        <title>Misguided Ent. | YKM</title>
+        <meta
           name="description"
           content="Ykmtheemc Mr lovers and friends and if you don't know, now you
                 know niggaaa.
@@ -19,13 +19,18 @@ const YKM = () => {
                 people's favorite."
           key="desc"
         />
-        <link rel="icon" sizes="32x32" type="image/x-icon" href="/misguided-logo.ico"/>
+        <link
+          rel="icon"
+          sizes="32x32"
+          type="image/x-icon"
+          href="/misguided-logo.ico"
+        />
       </Head>
       <Navbar />
       <Box
         sx={{
-          marginTop:{ xs:'10vh' },
-          height: { xs: "30vh" , md: "40vh"},
+          marginTop: { xs: "10vh" },
+          height: { xs: "30vh", md: "40vh" },
           backgroundImage: 'url("/ykm-logo.jpeg")',
           backgroundSize: "contain",
           backgroundPosition: "bottom",
@@ -170,8 +175,8 @@ const YKM = () => {
               sx={{
                 display: "flex",
                 alignItems: "center",
-                justifyContent:'center',
-                margin:"0 auto",
+                justifyContent: "center",
+                margin: "0 auto",
                 background: "",
                 height: "fit-content",
               }}
@@ -191,6 +196,7 @@ const YKM = () => {
           </Grid>
         </Box>
       </Box>
+      <BookNow artist={"YKM Thee MC"} />
     </Box>
   );
 };

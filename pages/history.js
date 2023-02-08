@@ -64,22 +64,22 @@ const History = (props) => {
   };
 
   const events = [
-    {
-      image:
-        "https://firebasestorage.googleapis.com/v0/b/misguided-946f0.appspot.com/o/events%2Flovea-and-hiphop.jpeg?alt=media&token=7dd6d6be-8929-4c18-93c9-6703f1c70acc",
-      name: "Love and Hip Hop",
-      date: "18 February 2023",
-    },
+    // {
+    //   image:
+    //     "https://firebasestorage.googleapis.com/v0/b/misguided-946f0.appspot.com/o/events%2Flovea-and-hiphop.jpeg?alt=media&token=7dd6d6be-8929-4c18-93c9-6703f1c70acc",
+    //   name: "Love and Hip Hop",
+    //   date: "18 February 2023",
+    // },
     {
       image: "/old-school.jpeg",
       name: "Old School Fridays",
       date: "16 December 2022",
     },
-    {
-      image: "/3-man-show.jpeg",
-      name: "3 Man Show",
-      date: "29 October 2022",
-    },
+    // {
+    //   image: "/3-man-show.jpeg",
+    //   name: "3 Man Show",
+    //   date: "29 October 2022",
+    // },
   ];
 
   const images = [

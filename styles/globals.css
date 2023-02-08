@@ -330,7 +330,7 @@ html body .swiper-button-next:after,
   background-color: #eee !important;
 }
 .css-4cu7fk-MuiButtonBase-root-MuiTab-root.Mui-selected {
-  color: #eee;
-  font-weight: 600;
-  scale: 1.1;
+  color: #eee !important;
+  font-weight: 600 !important;
+  scale: 1.1 !important ;
 }

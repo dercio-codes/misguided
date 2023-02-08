@@ -202,6 +202,7 @@ const History = (props) => {
             fullScreen={true}
             // lazyLoad={true}
             showBullets={true}
+            showIndex={true}
             items={images}
           />
           ;
@@ -229,7 +230,7 @@ const PastEvent = ({ event, handleOpenEvent }) => {
     >
       <Box
         sx={{
-          height: "250px",
+          height: "300px",
           backgroundImage: `url('${event.image}')`,
           backgroundSize: "cover",
           backgroundPosition: "center",

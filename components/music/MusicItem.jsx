@@ -63,9 +63,9 @@ export const MusicItem = (props) => {
         <Box
           sx={{
             height: "150px",
-            background: `url("${props.song.artwork}")`,
+            backgroundImage: `url("${props.song.artwork}")`,
             backgroundColor: "#000",
-            backgroundSize: "contain",
+            backgroundSize: { xs:'cover' , lg:"contain"},
             backgroundRepeat: "no-repeat",
             backgroundPostion: "center",
           }}

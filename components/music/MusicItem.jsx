@@ -65,7 +65,7 @@ export const MusicItem = (props) => {
             height: "150px",
             backgroundImage: `url("${props.song.artwork}")`,
             backgroundColor: "#000",
-            backgroundSize: { xs:'cover' , lg:"contain"},
+            backgroundSize: { xs: "cover", lg: "cover" },
             backgroundRepeat: "no-repeat",
             backgroundPostion: "center",
           }}

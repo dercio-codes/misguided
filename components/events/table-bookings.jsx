@@ -22,9 +22,18 @@ import { useSnackbar } from "notistack";
 import axios from "axios";
 import { GooSpinner } from "react-spinners-kit";
 import { PropagateLoader } from "react-spinners";
+// Import Swiper React components
+import { Swiper, SwiperSlide } from "swiper/react";
+import { Autoplay, EffectCoverflow, Pagination, Navigation } from "swiper";
+
+// Import Swiper styles
+import "swiper/css";
+import "swiper/css/effect-coverflow";
+import "swiper/css/navigation";
+import "swiper/css/pagination";
 
 export const TableBookings = ({ state, openEvent }) => {
-  const { openTableBooking, setOpenTableBooking } = state;
+  const { openTableBooking, setOpenTableBooking, loading, setLoading } = state;
   return (
     <Drawer
       anchor={"bottom"}
@@ -57,23 +66,33 @@ export const TableBookings = ({ state, openEvent }) => {
         <BookTable
           openEvent={openEvent}
           setOpenTableBooking={setOpenTableBooking}
+          loading={loading}
+          setLoading={setLoading}
         />
       </Box>
     </Drawer>
   );
 };
 
-const BookTable = ({ openEvent, setOpenTableBooking }) => {
+const BookTable = ({ openEvent, setOpenTableBooking, loading, setLoading }) => {
   const enqueueSnackbar = useSnackbar();
   const [isProcessing, setIsProcessing] = useState(false);
   const [booking, setBooking] = useState({
-    event_name: openEvent.title,
+    event_name: openEvent.event_name,
     indoor_or_outdoor: "",
     name: "",
     cell: "",
     email: "",
-    num_of_people: 0,
-    names_of_people: [],
+    num_of_people: 6,
+    tablePackage: "",
+    names_of_people: [
+      "Dercio",
+      "YKM",
+      "Karlo",
+      "Caitlyin",
+      "Shadzo",
+      "Kailiegh",
+    ],
   });
   const [newName, setNewName] = useState("");
 
@@ -126,55 +145,43 @@ const BookTable = ({ openEvent, setOpenTableBooking }) => {
 
   const Packages = [
     {
-      Package_Name: "Classic package",
+      Package_Name: "Classic Package",
       Perks: "Entrance and table for 6",
       Alcohol: "A bottle of Jameson plus mixers",
       Price: "R1500",
     },
     {
-      Package_Name: "Gin and juice combo",
-      Perks: "Entrance and table for 6",
-      Alcohol: "A bottle of gin (Tanqueray, Bombay) plus mixers",
-      Price: "R3400",
-    },
-    {
-      Package_Name: "Premium package",
+      Package_Name: "Premium Package",
       Perks: "Entrance and table for 6",
       Alcohol: "A bottle of Hennessy VS plus mixers",
       Price: "R2000",
     },
     {
-      Package_Name: "Gin and juice combo",
-      Perks: "Entrance and table for 6",
-      Alcohol: "A bottle of gin (Tanqueray, Bombay) plus mixers",
-      Price: "R3400",
-    },
-    {
-      Package_Name: "Premium package 2",
+      Package_Name: "Premium Package 2",
       Perks: "Entrance and table for 6",
       Alcohol: "A bottle of Hennessy VSOP plus mixers",
-      Price: "R2400",
+      Price: "R2500",
     },
     {
-      Package_Name: "Big boy combo",
+      Package_Name: "Big Boy Combo",
       Perks: "Entrance and table for 6",
       Alcohol: "A bottle of Vodka ( Ciroc, Sky, absolute) plus mixers",
       Price: "R1500",
     },
     {
-      Package_Name: "Run jozi combo",
+      Package_Name: "Run Jozi Combo",
       Perks: "Entrance and table for 6",
       Alcohol: "A bottle of rum plus mixers",
-      Price: "R3400",
+      Price: "R1300",
     },
     {
-      Package_Name: "Gin and juice combo",
+      Package_Name: "Gin and Juice combo",
       Perks: "Entrance and table for 6",
-      Alcohol: "A bottle of gin (Tanqueray, Bombay) plus mixers",
-      Price: "R3400",
+      Alcohol: "A bottle of gin (Tanqueray, Bombay) + Mixers",
+      Price: "R1300",
     },
     {
-      Package_Name: "Life of the party combo",
+      Package_Name: "Life of The Party Combo",
       Perks: "Entrance and table for 6",
       Alcohol: "Jager meister 1L plus mixers ",
       Price: "R1400",
@@ -191,9 +198,10 @@ const BookTable = ({ openEvent, setOpenTableBooking }) => {
   };
 
   // const handleSubmit = ()  =>  console.log(booking)
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
     setIsProcessing(true);
+    setLoading(true);
     console.log(booking);
 
     if (booking.names_of_people.length < booking.num_of_people) {
@@ -219,7 +227,18 @@ const BookTable = ({ openEvent, setOpenTableBooking }) => {
 
         setIsProcessing(false);
       } else {
-        axios
+        console.log({
+          event_name: booking.event_name,
+          indoor_or_outdoor: booking.indoor_or_outdoor,
+          name: booking.name,
+          num_of_people: booking.num_of_people,
+          names_of_people: booking.names_of_people,
+          cell: booking.cell,
+          email: booking.email,
+          tablePackage: booking.tablePackage,
+          image_link: "https://misguidedsa.co.za/" + openEvent.image,
+        });
+        await axios
           .post("/api/email", {
             event_name: booking.event_name,
             indoor_or_outdoor: booking.indoor_or_outdoor,
@@ -228,7 +247,8 @@ const BookTable = ({ openEvent, setOpenTableBooking }) => {
             names_of_people: booking.names_of_people,
             cell: booking.cell,
             email: booking.email,
-            image_link: "https://misguidedsa.co.za/" + openEvent.img,
+            tablePackage: booking.tablePackage,
+            image_link: "https://misguidedsa.co.za" + openEvent.image,
           })
           .then((res) => {
             if (res.data.message == "MAIL_SENT") {
@@ -261,41 +281,16 @@ const BookTable = ({ openEvent, setOpenTableBooking }) => {
           })
           .catch((err) => {
             console.log(err);
-            alert(err.mesage);
+            alert(err);
             //   enqueueSnackbar(`Failed to send email : ${err.message}`, {
             //     variant: "error",
             //   });
           });
         setIsProcessing(false);
         setOpenTableBooking(false);
+        setLoading(false);
       }
     }
-  };
-
-  const handlePay = () => {
-    var yoco = YocoSDK({
-      publicKey: "pk_test_ed3c54a6gOol69qa7f45",
-    });
-    var checkoutButton = document.querySelector("#checkout-button");
-    checkoutButton.addEventListener("click", function () {
-      yoco.showPopup({
-        amountInCents: 2799,
-        currency: "ZAR",
-        name: "Your Store or Product",
-        description: "Awesome description",
-        callback: function (result) {
-          // This function returns a token that your server can use to capture a payment
-          if (result.error) {
-            const errorMessage = result.error.message;
-            alert("error occured: " + errorMessage);
-          } else {
-            alert("card successfully tokenised: " + result.id);
-          }
-          // In a real integration - you would now pass this chargeToken back to your
-          // server along with the order/basket that the customer has purchased.
-        },
-      });
-    });
   };
 
   return (
@@ -382,7 +377,7 @@ const BookTable = ({ openEvent, setOpenTableBooking }) => {
         </Typography>
 
         <Grid container columnSpacing={12}>
-          <Grid item xs={12} md={6}>
+          <Grid item xs={12} md={12}>
             <Typography
               variant="p"
               width={"100%"}
@@ -523,8 +518,183 @@ const BookTable = ({ openEvent, setOpenTableBooking }) => {
               <MenuItem value="Outdoor">Outdoor </MenuItem>
             </Select>
           </Grid>
-          <Grid item xs={12} md={6}>
+          <Grid item xs={12} md={12} sx={{ margin: "32px 0" }}>
             <Typography
+              sx={{
+                // textAlign: "center",
+                fontWeight: 300,
+                color: "#eee",
+                fontSize: "24px",
+                margin: "0 0 21px 0",
+              }}
+            >
+              Select Table Package :
+            </Typography>
+            <Swiper
+              effect={"coverflow"}
+              grabCursor={true}
+              centeredSlides={true}
+              loop={true}
+              pagination={{
+                type: "progressbar",
+              }}
+              autoplay={{
+                delay: booking.tablePackage === "" ? 2500 : 1000000,
+                disableOnInteraction: false,
+              }}
+              slidesPerView={1}
+              // slidesPerView={1 }
+              navigation={true}
+              coverflowEffect={{
+                rotate: 50,
+                stretch: 0,
+                depth: 100,
+                modifier: 1,
+                slideShadows: true,
+              }}
+              modules={[EffectCoverflow, Pagination, Navigation, Autoplay]}
+              className="mySwiper"
+            >
+              {Packages.map((item, index) => {
+                return (
+                  <Box data-aos="zoom-in" key={index} data-aos-duration="2000">
+                    <SwiperSlide data-zoomable key={index}>
+                      <Box
+                        sx={{
+                          padding: "21px",
+                          minHeight: "30vh",
+                          width: { xs: "100%", md: "50%" },
+                          display: "flex",
+                          flexDirection: "column",
+                          // alignItems: "center",
+                          justifyContent: "center",
+                          background:
+                            booking.tablePackage === item.Package_Name
+                              ? "rgba(142, 208, 192, .7)"
+                              : "rgba(1,1,1,.3)",
+                        }}
+                      >
+                        <Box
+                          sx={{
+                            display: "flex",
+                            flexDirection: "column",
+                            // alignItems: "center",
+                            justifyContent: "center",
+                            width: "100%",
+                          }}
+                        >
+                          <Typography
+                            sx={{
+                              // textAlign: "center",
+                              fontWeight: 600,
+                              color: "#eee",
+                              fontSize: "32px",
+                              // margin: "21px 0",
+                            }}
+                          >
+                            {item.Package_Name}
+                          </Typography>
+
+                          <ul
+                            style={{
+                              width: "100%",
+                              padding: "21px",
+                              margin: "32px 0",
+                              // padding: "0 0 0 70px"
+                            }}
+                          >
+                            <li>
+                              <Typography
+                                sx={{
+                                  // textAlign: "center",
+                                  fontWeight: 300,
+                                  color: "#eee",
+                                  fontSize: "18px",
+                                  // margin: "21px 0",
+                                }}
+                              >
+                                {item.Alcohol}
+                              </Typography>
+                            </li>
+                            <li>
+                              <Typography
+                                sx={{
+                                  // textAlign: "center",
+                                  fontWeight: 300,
+                                  color: "#eee",
+                                  fontSize: "18px",
+                                  // margin: "21px 0",
+                                }}
+                              >
+                                {item.Perks}
+                              </Typography>
+                            </li>
+                          </ul>
+
+                          <Box
+                            sx={{
+                              display: "flex",
+                              justifyContent: "space-between",
+                              alignItems: "flex-end",
+                              padding: "0 0px 0 0",
+                            }}
+                          >
+                            <Typography
+                              sx={{
+                                // textAlign: "center",
+                                fontWeight: 300,
+                                color: "#eee",
+                                fontSize: "18px",
+                                // margin: "21px 0",
+                              }}
+                            >
+                              Total :
+                            </Typography>
+                            <Typography
+                              sx={{
+                                // textAlign: "center",
+                                fontWeight: 600,
+                                color: "#eee",
+                                fontSize: "21px",
+                                // margin: "21px 0",
+                              }}
+                            >
+                              {item.Price}
+                            </Typography>
+                          </Box>
+                        </Box>
+                        <Button
+                          onClick={() => {
+                            setBooking({
+                              ...booking,
+                              tablePackage: item.Package_Name,
+                            });
+                          }}
+                          sx={{
+                            width: { xs: "100%", md: "100%" },
+                            height: "100%",
+                            fontWeight: "600",
+                            fontSize: "12px",
+                            width: "100%",
+                            margin: "12px auto",
+                            padding: { xs: "20px 8px" },
+                            background: "#eee",
+                            color: "#111",
+                            "&:hover": {
+                              color: "#eee",
+                              background: "#111",
+                            },
+                          }}
+                        >
+                          Select
+                        </Button>
+                      </Box>
+                    </SwiperSlide>
+                  </Box>
+                );
+              })}
+            </Swiper>
+            {/* <Typography
               variant="p"
               width={"100%"}
               color={"#eee"}
@@ -559,7 +729,7 @@ const BookTable = ({ openEvent, setOpenTableBooking }) => {
                   },
                 },
               }}
-            />
+            /> */}
 
             <Typography
               variant="p"
@@ -656,9 +826,6 @@ const BookTable = ({ openEvent, setOpenTableBooking }) => {
                   </Box>
                 );
               })}
-            <Button id="checkout-button" onClick={handlePay}>
-              Pay
-            </Button>
 
             <Typography
               variant="p"

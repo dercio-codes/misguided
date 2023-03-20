@@ -10,10 +10,21 @@ export default async function handler(req, res) {
   const cell = req.body["cell"];
   const email = req.body["email"];
   const names_of_people = req.body["names_of_people"];
-  
-  const email_html = format_email(name, indoor_or_outdoor, event_name, num_of_people , image_link , email , cell , names_of_people);
+  const tablePackage = req.body["tablePackage"];
 
-   const headline = `Table Booking From ${name}`
+  const email_html = format_email(
+    name,
+    indoor_or_outdoor,
+    event_name,
+    num_of_people,
+    image_link,
+    email,
+    cell,
+    names_of_people,
+    tablePackage
+  );
+
+  const headline = `Table Booking From ${name}`;
 
   try {
     await send_email(headline, email_html);

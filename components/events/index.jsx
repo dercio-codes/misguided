@@ -26,7 +26,7 @@ import {
   getDocs,
   where,
 } from "firebase/firestore";
-
+import { DotLoader } from "react-spinners";
 import { ref, uploadBytesResumable, getDownloadURL } from "firebase/storage";
 
 // import "./styles.css";
@@ -51,6 +51,7 @@ export const Events = (props) => {
   const matches = useMediaQuery("(max-width:900px)");
   const [openTableBooking, setOpenTableBooking] = useState(false);
   const [openEvent, setopenEvent] = useState("");
+  const [loading, setLoading] = useState(false);
 
   // const getContent = async () => {
   //   const local = [];
@@ -77,13 +78,27 @@ export const Events = (props) => {
     setopenEvent(item);
   };
 
-  return (
+  return loading ? (
+    <Box
+      sx={{
+        height: "100vh",
+        width: "100vw",
+        backround: "#111",
+        display: "flex",
+        justifyContent: "center",
+        alignItems: "center",
+      }}
+    >
+      <DotLoader />
+    </Box>
+  ) : (
     <Box
       id="events"
       sx={{
         // padding: { xs: "1rem 2.5rem", lg: artist ? "0" : "105px 0" },
         minHeight: { xs: "100vh" },
         background: artist ? "" : "#111",
+        padding: "2.5rem 0",
         // width: { xs: "450px", md: "500px", lg: "100%" },
         width: "100%",
       }}
@@ -150,14 +165,25 @@ export const Events = (props) => {
             {events.map((item, index) => {
               return (
                 <Box data-aos="zoom-in" key={index} data-aos-duration="2000">
-                  <SwiperSlide data-zoomable key={index}>
+                  <SwiperSlide
+                    data-zoomable
+                    key={index}
+                    style={{
+                      background: "rgba(142, 208, 192, 0.1)",
+                      // backgroundSize: "cover",
+                      // backdropFilter: "blur(1px)",
+                      // backgroundPosition: "center",
+                      // backgroundRepeat: "no-repeat",
+                      // backgroundImage: `url("${item.image}")`,
+                    }}
+                  >
                     <Typography
                       sx={{
                         textAlign: "center",
                         fontWeight: 600,
                         color: "#eee",
                         fontSize: "32px",
-                        // margin: "21px 0",
+                        margin: "21px 0",
                       }}
                     >
                       {item.event_name}
@@ -246,7 +272,12 @@ export const Events = (props) => {
           <EventModal openEvent={openEvent} state={{ open, setOpen }} />
           <TableBookings
             openEvent={openEvent}
-            state={{ openTableBooking, setOpenTableBooking }}
+            state={{
+              openTableBooking,
+              setOpenTableBooking,
+              loading,
+              setLoading,
+            }}
           />
         </Grid>
       </Grid>

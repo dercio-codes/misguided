@@ -304,8 +304,6 @@ const BookTable = ({ openEvent, setOpenTableBooking, loading, setLoading }) => {
         overflowY: "auto",
       }}
     >
-      <script src="https://js.yoco.com/sdk/v1/yoco-sdk-web.js"></script>
-
       <Box sx={{ width: "100%", display: "flex", justifyContent: "flex-end" }}>
         <Button
           onClick={() => setOpenTableBooking(false)}

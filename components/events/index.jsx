@@ -44,7 +44,7 @@ export const Events = (props) => {
       event_name: "Old School Picnic",
       number_of_table_bookings_accepted: "",
       indoor_or_outdoor_option: false,
-      image: "/old-school-picnic.jpeg",
+      image: "/osf-v.jpeg",
     },
   ]);
   const [open, setOpen] = useState(false);

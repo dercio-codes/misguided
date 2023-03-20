@@ -140,7 +140,7 @@ export const Music = (props) => {
               <Grid container spacing={6}>
                 {Originals.map((song, index) => {
                   return (
-                    <Grid key={index} item xs={12} sm={6} md={4} lg={2}>
+                    <Grid key={index} item xs={6} sm={6} md={4} lg={2}>
                       <MusicItem song={song} setOpen={setOpen} />
                     </Grid>
                   );
@@ -160,7 +160,7 @@ export const Music = (props) => {
               <Grid container spacing={6}>
                 {Mixes.map((song, index) => {
                   return (
-                    <Grid key={index} item xs={12} sm={6} md={4} lg={2}>
+                    <Grid key={index} item xs={6} sm={6} md={4} lg={2}>
                       <MusicItem song={song} setOpen={setOpen} />
                     </Grid>
                   );
@@ -180,7 +180,7 @@ export const Music = (props) => {
               <Grid container spacing={6}>
                 {Remixes.map((song, index) => {
                   return (
-                    <Grid key={index} item xs={12} sm={6} md={4} lg={2}>
+                    <Grid key={index} item xs={6} sm={6} md={4} lg={2}>
                       <MusicItem song={song} setOpen={setOpen} />
                     </Grid>
                   );

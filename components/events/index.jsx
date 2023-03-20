@@ -26,7 +26,7 @@ import {
   getDocs,
   where,
 } from "firebase/firestore";
-
+import { DotLoader } from "react-spinners";
 import { ref, uploadBytesResumable, getDownloadURL } from "firebase/storage";
 
 // import "./styles.css";
@@ -39,26 +39,34 @@ import Link from "next/link";
 
 export const Events = (props) => {
   const { artist, text } = props;
-  const [events, setEvents] = useState([]);
+  const [events, setEvents] = useState([
+    {
+      event_name: "Old School Picnic",
+      number_of_table_bookings_accepted: "",
+      indoor_or_outdoor_option: false,
+      image: "/osf-v.jpeg",
+    },
+  ]);
   const [open, setOpen] = useState(false);
   const matches = useMediaQuery("(max-width:900px)");
   const [openTableBooking, setOpenTableBooking] = useState(false);
   const [openEvent, setopenEvent] = useState("");
+  const [loading, setLoading] = useState(false);
 
-  const getContent = async () => {
-    const local = [];
-    const querySnapshot = await getDocs(collection(db, "events"));
+  // const getContent = async () => {
+  //   const local = [];
+  //   const querySnapshot = await getDocs(collection(db, "events"));
 
-    querySnapshot.forEach((item) => {
-      local.push(item.data());
-    });
-    console.log(local);
-    setEvents(local);
-  };
+  //   querySnapshot.forEach((item) => {
+  //     local.push(item.data());
+  //   });
+  //   console.log(local);
+  //   setEvents(local);
+  // };
 
-  useEffect(async () => {
-    getContent();
-  }, []);
+  // useEffect(async () => {
+  //   getContent();
+  // }, []);
 
   const handleEventClick = (item) => {
     setOpen(true);
@@ -70,13 +78,27 @@ export const Events = (props) => {
     setopenEvent(item);
   };
 
-  return (
+  return loading ? (
+    <Box
+      sx={{
+        height: "100vh",
+        width: "100vw",
+        backround: "#111",
+        display: "flex",
+        justifyContent: "center",
+        alignItems: "center",
+      }}
+    >
+      <DotLoader />
+    </Box>
+  ) : (
     <Box
       id="events"
       sx={{
         // padding: { xs: "1rem 2.5rem", lg: artist ? "0" : "105px 0" },
         minHeight: { xs: "100vh" },
         background: artist ? "" : "#111",
+        padding: "2.5rem 0",
         // width: { xs: "450px", md: "500px", lg: "100%" },
         width: "100%",
       }}
@@ -143,14 +165,25 @@ export const Events = (props) => {
             {events.map((item, index) => {
               return (
                 <Box data-aos="zoom-in" key={index} data-aos-duration="2000">
-                  <SwiperSlide data-zoomable key={index}>
+                  <SwiperSlide
+                    data-zoomable
+                    key={index}
+                    style={{
+                      background: "rgba(142, 208, 192, 0.1)",
+                      // backgroundSize: "cover",
+                      // backdropFilter: "blur(1px)",
+                      // backgroundPosition: "center",
+                      // backgroundRepeat: "no-repeat",
+                      // backgroundImage: `url("${item.image}")`,
+                    }}
+                  >
                     <Typography
                       sx={{
                         textAlign: "center",
                         fontWeight: 600,
                         color: "#eee",
                         fontSize: "32px",
-                        // margin: "21px 0",
+                        margin: "21px 0",
                       }}
                     >
                       {item.event_name}
@@ -164,7 +197,7 @@ export const Events = (props) => {
                         backgroundSize: "contain",
                         backgroundPosition: "center",
                         backgroundRepeat: "no-repeat",
-                        backgroundImage: `url(${item.image})`,
+                        backgroundImage: `url("${item.image}")`,
                       }}
                     />
                     <Typography
@@ -179,43 +212,56 @@ export const Events = (props) => {
                       <></>
                     ) : (
                       <>
-                        {/* <Button
-                        sx={{
-                          width: { xs: "100%", md: "300px" },
-                          fontWeight: "500",
-                          fontSize: { xs: "16px", sm: "16px" },
-                          padding: { xs: "12px 0", md: "16px 0" },
-                          margin: "18px auto",
-                          background: "#eee",
-                          color: "#111",
-                          cursor:item.number_of_table_bookings_accepted === "0" ? "not-allowed" : "pointer",
-                          "&:hover": { color: "#eee" },
-                        }}
-                        disabled={item.number_of_table_bookings_accepted === "0"}
-                        onClick={() => handleTableBookingClick(item)}
-                      >
-                       {item.number_of_table_bookings_accepted === "0" ? "Tables Fully Booked" : "Book Table" }
-                      </Button> */}
+                        <Button
+                          sx={{
+                            width: { xs: "90%", md: "300px" },
+                            fontWeight: "500",
+                            fontSize: { xs: "16px", sm: "16px" },
+                            padding: { xs: "12px 0", md: "16px 0" },
+                            margin: "18px auto",
+                            background: "#eee",
+                            color: "#111",
+                            // cursor:
+                            //   item.number_of_table_bookings_accepted === "0"
+                            //     ? "not-allowed"
+                            //     : "pointer",
+                            "&:hover": { color: "#eee" },
+                          }}
+                          // disabled={
+                          //   item.number_of_table_bookings_accepted === "0"
+                          // }
+                          onClick={() => handleTableBookingClick(item)}
+                        >
+                          {"Book Table"}
+                        </Button>
 
-                        {/* <Link href="https://www.howler.co.za/artists/5005?lang=en">
-                        <a style={{width:'100%'}} >
-                          <Button
-                            sx={{
-                              width: { xs: "100%", md: "300px" },
-                              fontWeight: "500",
-                              fontSize: { xs: "16px", sm: "16px" },
-                              padding: { xs: "12px 0", md: "16px 0" },
-                              margin: "18px auto",
-                              background: "#eee",
-                              color: "#111",
-                              "&:hover": { color: "#eee" },
+                        <Link href="https://www.howler.co.za/events/the-old-school-picnic-misguided-5-year-celebration-8fb3">
+                          <a
+                            style={{
+                              // background: "red",
+                              width: "100%",
+                              margin: "0 auto",
+                              display: "flex",
+                              juastifyContent: "center",
                             }}
-                            // onClick={() => handleTableBookingClick(item)}
                           >
-                            Buy Tickets
-                          </Button>
-                        </a>
-                      </Link> */}
+                            <Button
+                              sx={{
+                                width: { xs: "90%", md: "300px" },
+                                fontWeight: "500",
+                                fontSize: { xs: "16px", sm: "16px" },
+                                padding: { xs: "12px 0", md: "16px 0" },
+                                margin: "8px auto",
+                                background: "#eee",
+                                color: "#111",
+                                "&:hover": { color: "#eee" },
+                              }}
+                              // onClick={() => handleTableBookingClick(item)}
+                            >
+                              Buy Tickets
+                            </Button>
+                          </a>
+                        </Link>
                       </>
                     )}
                   </SwiperSlide>
@@ -226,7 +272,12 @@ export const Events = (props) => {
           <EventModal openEvent={openEvent} state={{ open, setOpen }} />
           <TableBookings
             openEvent={openEvent}
-            state={{ openTableBooking, setOpenTableBooking }}
+            state={{
+              openTableBooking,
+              setOpenTableBooking,
+              loading,
+              setLoading,
+            }}
           />
         </Grid>
       </Grid>

@@ -41,10 +41,19 @@ export const Events = (props) => {
   const { artist, text } = props;
   const [events, setEvents] = useState([
     {
-      event_name: "Old School Picnic",
+      event_name: "Bhebha Bhebha",
       number_of_table_bookings_accepted: "",
       indoor_or_outdoor_option: false,
-      image: "/osf-v.jpeg",
+      image: "/bhebha.jpg",
+    },
+    {
+      event_name: "Love and Hip Hop",
+      number_of_table_bookings_accepted: "",
+      indoor_or_outdoor_option: false,
+      tickets: true,
+      ticketsLink:
+        "https://www.howler.co.za/events/love-hip-hop-featuring-youngstacpt-ce47",
+      image: "/l-n-h.jpg",
     },
   ]);
   const [open, setOpen] = useState(false);
@@ -212,7 +221,7 @@ export const Events = (props) => {
                       <></>
                     ) : (
                       <>
-                        <Button
+                        {/* <Button
                           sx={{
                             width: { xs: "90%", md: "300px" },
                             fontWeight: "500",
@@ -233,35 +242,37 @@ export const Events = (props) => {
                           onClick={() => handleTableBookingClick(item)}
                         >
                           {"Book Table"}
-                        </Button>
+                        </Button> */}
 
-                        <Link href="https://www.howler.co.za/events/the-old-school-picnic-misguided-5-year-celebration-8fb3">
-                          <a
-                            style={{
-                              // background: "red",
-                              width: "100%",
-                              margin: "0 auto",
-                              display: "flex",
-                              juastifyContent: "center",
-                            }}
-                          >
-                            <Button
-                              sx={{
-                                width: { xs: "90%", md: "300px" },
-                                fontWeight: "500",
-                                fontSize: { xs: "16px", sm: "16px" },
-                                padding: { xs: "12px 0", md: "16px 0" },
-                                margin: "8px auto",
-                                background: "#eee",
-                                color: "#111",
-                                "&:hover": { color: "#eee" },
+                        {item.ticketsLink && (
+                          <Link href={item.ticketsLink}>
+                            <a
+                              style={{
+                                // background: "red",
+                                width: "100%",
+                                margin: "0 auto",
+                                display: "flex",
+                                juastifyContent: "center",
                               }}
-                              // onClick={() => handleTableBookingClick(item)}
                             >
-                              Buy Tickets
-                            </Button>
-                          </a>
-                        </Link>
+                              <Button
+                                sx={{
+                                  width: { xs: "90%", md: "300px" },
+                                  fontWeight: "500",
+                                  fontSize: { xs: "16px", sm: "16px" },
+                                  padding: { xs: "12px 0", md: "16px 0" },
+                                  margin: "8px auto",
+                                  background: "#eee",
+                                  color: "#111",
+                                  "&:hover": { color: "#eee" },
+                                }}
+                                // onClick={() => handleTableBookingClick(item)}
+                              >
+                                Buy Tickets
+                              </Button>
+                            </a>
+                          </Link>
+                        )}
                       </>
                     )}
                   </SwiperSlide>

@@ -91,7 +91,7 @@ const Shadzo = () => {
                 fontWeight={"350"}
                 sx={{ textAlign: "center" }}
               >
-                {`Areshad Thomas, age 22. Better known by his stage name DJ ShadzO, born in the year 2000 on the 20th of May and Grew up in Crown Gardens, johannesburg south. Shadzos journey as a Dj began in the year 2015, and in 2017 he decided to start learning how to produce his own music. He looked up to artists like DJ Kent, Shimza and Black coffee. He was constantly motivated to reach new levels in his music and DJ career. He keeps looking for ways to be different compared to any other artist, his goal is to give the people something that no one has ever given them.`}
+                {`Dj ShadzO, age 22. Better known by his stage name DJ ShadzO, born in the year 2000 on the 20th of May and Grew up in Crown Gardens, johannesburg south. Shadzos journey as a Dj began in the year 2015, and in 2017 he decided to start learning how to produce his own music. He looked up to artists like DJ Kent, Shimza and Black coffee. He was constantly motivated to reach new levels in his music and DJ career. He keeps looking for ways to be different compared to any other artist, his goal is to give the people something that no one has ever given them.`}
               </Typography>
             </Box>
           </Grid>
